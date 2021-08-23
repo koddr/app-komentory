@@ -6,7 +6,16 @@ module.exports = {
     fontFamily: {
       sans: ['Inter', ...require('tailwindcss/defaultConfig').theme.fontFamily.sans],
     },
-    extend: {},
+    extend: {
+      colors: {
+        main: {
+          DEFAULT: '#00AB55',
+        },
+        secondary: {
+          DEFAULT: '#F6F4EF',
+        },
+      },
+    },
   },
   variants: {
     extend: {},

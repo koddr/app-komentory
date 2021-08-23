@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body,
+  h1,
+  h2,
+  h3 {
+    @apply text-gray-700;
+  }
+  body {
+    @apply bg-secondary;
+  }
+  h1 {
+    @apply text-3xl;
+    @apply mb-2;
+  }
+  h2 {
+    @apply text-2xl;
+    @apply mb-2;
+  }
+  h3 {
+    @apply text-xl;
+    @apply mb-2;
+  }
+  p {
+    @apply mt-2;
+    @apply mb-2;
+  }
+}

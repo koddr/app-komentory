@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-// Import components.
-import Welcome from '__/components/Welcome.vue';
-import NotFound from '__/components/NotFound.vue';
+// Import views.
+import Welcome from '__/views/Welcome.vue';
+import NotFound from '__/views/NotFound.vue';
 
 // Create the router instance.
 export const routes = createRouter({
