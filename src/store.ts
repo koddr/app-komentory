@@ -4,7 +4,7 @@ import { createStore, useStore as baseUseStore, Store } from 'vuex'
 // Define your typings for the store state.
 export interface State {
   jwt_access_token: String
-  jwt_expire_time: number
+  jwt_expire_timestamp: number
 }
 
 // Define injection key.
@@ -24,16 +24,16 @@ export function useStore() {
 export const store = createStore<State>({
   state: {
     jwt_access_token: '',
-    jwt_expire_time: 0,
+    jwt_expire_timestamp: 0,
   },
   mutations: {
     // Updates JWT Access Token.
     update_jwt_access_token(state, token) {
       state.jwt_access_token = token
     },
-    // Updates JWT expire time.
-    update_jwt_expire_time(state, time) {
-      state.jwt_expire_time = time
+    // Updates JWT expire timestamp.
+    update_jwt_expire_timestamp(state, timestamp) {
+      state.jwt_expire_timestamp = timestamp
     },
   },
 })

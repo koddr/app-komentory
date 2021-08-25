@@ -1,16 +1,13 @@
 <template>
-  <Sidebar />
-  <h1>{{ alias }}</h1>
+  <h1>Projects</h1>
   <p>
     Go to: <router-link to="/">Index</router-link>,
-    <router-link to="/projects">Projects</router-link>
+    <router-link to="/project/1">Project/1</router-link>
   </p>
-  <p>{{ store.state.jwt_access_token }}</p>
-  <p>{{ store.state.jwt_expire_time }}</p>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { onMounted, defineComponent } from 'vue'
 import { useStore } from '__/store'
 
 // Import used components.
@@ -29,6 +26,12 @@ export default defineComponent({
   },
   setup: () => {
     const store = useStore()
+
+    onMounted(() => {
+      store.commit('update_jwt_access_token', 'jwt is this')
+      store.commit('update_jwt_expire_timestamp', 987654321)
+    })
+
     return { store }
   },
 })
