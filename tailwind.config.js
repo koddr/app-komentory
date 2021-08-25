@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./src/**/*.html', './src/**/*.vue', './src/**/*.js'],
+  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'class', // or 'media'
   theme: {
     fontFamily: {
@@ -26,4 +26,4 @@ module.exports = {
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/forms'),
   ],
-};
+}

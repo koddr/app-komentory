@@ -1,7 +1,7 @@
-import { resolve } from 'path';
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import ViteFonts from 'vite-plugin-fonts';
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import ViteFonts from 'vite-plugin-fonts'
 
 export default defineConfig({
   resolve: {
@@ -10,7 +10,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    vue(),
+    // Add plugin for Google Fonts.
     ViteFonts({
       google: {
         families: [
@@ -21,5 +21,7 @@ export default defineConfig({
         ],
       },
     }),
+    // Add plugin for Vue.js.
+    vue(),
   ],
-});
+})
