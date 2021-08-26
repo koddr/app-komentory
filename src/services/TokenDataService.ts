@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from 'axios'
 import { authClient } from '__/requests'
 
 /**
@@ -5,8 +6,13 @@ import { authClient } from '__/requests'
  */
 class TokenDataService {
   //
-  renew(): Promise<any> {
-    return authClient.post('/token/renew')
+  renew(token: String): Promise<any> {
+    let config: AxiosRequestConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+    return authClient.post('/token/renew', {}, config)
   }
 }
 

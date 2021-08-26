@@ -1,10 +1,12 @@
 <template>
   <input
-    :type="inputType"
-    :placeholder="placeholder"
-    :required="required"
-    v-model="inputValue"
     class="px-3 py-2 border-2 rounded-lg"
+    @input="$emit('update:modelValue', $event.target.value)"
+    :type="inputType"
+    :tabindex="tabIndex"
+    :placeholder="placeholder"
+    :value="modelValue"
+    :required="isRequired"
   />
 </template>
 
@@ -15,13 +17,10 @@ export default defineComponent({
   name: 'Input',
   props: {
     inputType: { type: String, required: true },
-    placeholder: { type: String, required: false },
-    required: { type: Boolean, required: false },
-  },
-  data() {
-    return {
-      inputValue: this.inputValue,
-    }
+    tabIndex: { type: String, required: true },
+    placeholder: { type: String, default: '' },
+    modelValue: { type: String, default: '' },
+    isRequired: { type: Boolean, default: false },
   },
 })
 </script>
