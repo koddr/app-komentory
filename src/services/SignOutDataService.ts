@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from 'axios'
 import { authClient } from '__/requests'
 
 /**
@@ -5,8 +6,13 @@ import { authClient } from '__/requests'
  */
 class SignOutDataService {
   //
-  signOut(): Promise<any> {
-    return authClient.post('/sign/out')
+  signOut(token: String): Promise<any> {
+    let config: AxiosRequestConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+    return authClient.post('/sign/out', {}, config)
   }
 }
 
