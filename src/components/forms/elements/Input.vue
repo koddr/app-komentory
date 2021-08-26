@@ -1,9 +1,10 @@
 <template>
   <input
-    :type="type"
+    :type="inputType"
     :placeholder="placeholder"
     :required="required"
-    class="px-3 py-2 rounded-lg"
+    v-model="inputValue"
+    class="px-3 py-2 border-2 rounded-lg"
   />
 </template>
 
@@ -12,11 +13,14 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Input',
+  props: {
+    inputType: { type: String, required: true },
+    placeholder: { type: String, required: false },
+    required: { type: Boolean, required: false },
+  },
   data() {
     return {
-      type: 'input',
-      placeholder: '',
-      required: false,
+      inputValue: this.inputValue,
     }
   },
 })

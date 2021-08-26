@@ -15,9 +15,14 @@ export interface TokenRequest {}
 
 //
 export interface TokenResponse {
-  error: null
-  msg: string
-  data: any
+  data: {
+    error: Boolean
+    msg: String
+    jwt: {
+      token: String
+      expire: Number
+    }
+  }
 }
 
 //

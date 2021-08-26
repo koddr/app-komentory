@@ -17,24 +17,24 @@ class ProjectDataService {
 
 //
 export interface projectDetails {
-  id: string
+  id: String
   created_at: Date
   updated_at: Date
-  user_id: string
-  alias: string
-  project_status: number
+  user_id: String
+  alias: String
+  project_status: Number
   project_attrs: any
 }
 
 //
 export interface ProjectRequest {
-  id: string
+  id: String
 }
 
 //
 export interface ProjectResponse {
-  error: null
-  msg: string
+  error: Boolean
+  msg: String
   project: projectDetails
 }
 
@@ -43,9 +43,9 @@ export interface ProjectsRequest {}
 
 //
 export interface ProjectsResponse {
-  error: null
-  msg: string
-  count: number
+  error: Boolean
+  msg: String
+  count: Number
   projects: projectDetails[]
 }
 
