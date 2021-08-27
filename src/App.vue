@@ -43,7 +43,7 @@ export default defineComponent({
     onUnmounted(() => clearInterval(tokenRenewTimer))
 
     // Return instances.
-    return { store, router }
+    return { store, router, tokenRenewTimer }
   },
 })
 </script>

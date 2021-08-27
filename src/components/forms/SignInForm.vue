@@ -21,7 +21,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import SignInDataService, { SignInRequest, SignInResponse } from '__/services/SignInDataService'
 import Input from '__/components/forms/elements/Input.vue'
@@ -29,45 +30,38 @@ import Button from '__/components/forms/elements/Button.vue'
 
 export default defineComponent({
   name: 'SignInForm',
-  data() {
-    return {
-      email: '',
-      password: '',
-    }
-  },
   components: {
     Input,
     Button,
   },
   setup: () => {
-    //
+    // Define needed instances.
     const store = useStore()
-    return { store }
-  },
-  methods: {
-    async signIn() {
-      //
+    const router = useRouter()
+    const email = ref('')
+    const password = ref('')
+
+    // Define async function for sign in with email and password.
+    const signIn = async () => {
+      // Define data from components.
       let requestData: SignInRequest = {
-        email: this.email,
-        password: this.password,
+        email: email.value,
+        password: password.value,
       }
 
-      //
+      // Define await function for sign in.
       await SignInDataService.signIn(requestData)
         .then((response: SignInResponse) => {
-          //
-          this.store.commit('update_jwt_access_token', response.data.jwt.token)
-          this.store.commit('update_jwt_expire_timestamp', response.data.jwt.expire)
+          // Successful response from Auth server.
+          store.commit('update_jwt_access_token', response.data.jwt.token) // add to store token
+          store.commit('update_jwt_expire_timestamp', response.data.jwt.expire) // add to store expire
+          router.push('/') // push Index page
+        })
+        .catch((error: any) => console.log(error))
+    }
 
-          //
-          this.email = ''
-          this.password = ''
-        })
-        .catch((error: Error) => {
-          //
-          console.log(error)
-        })
-    },
+    // Return instances.
+    return { store, router, email, password, signIn }
   },
 })
 </script>
