@@ -10,13 +10,13 @@ class ProjectDataService {
   }
 
   //
-  get(alias: string): Promise<any> {
+  getByAlias(alias: string): Promise<any> {
     return apiClient.get(`/project/${alias}`)
   }
 }
 
 //
-export interface projectDetails {
+interface project {
   id: String
   created_at: Date
   updated_at: Date
@@ -33,9 +33,11 @@ export interface ProjectRequest {
 
 //
 export interface ProjectResponse {
-  error: Boolean
-  msg: String
-  project: projectDetails
+  data: {
+    error: Boolean
+    msg: String
+    project: project
+  }
 }
 
 //
@@ -43,10 +45,12 @@ export interface ProjectsRequest {}
 
 //
 export interface ProjectsResponse {
-  error: Boolean
-  msg: String
-  count: Number
-  projects: projectDetails[]
+  data: {
+    error: Boolean
+    msg: String
+    count: Number
+    projects: project[]
+  }
 }
 
 //
