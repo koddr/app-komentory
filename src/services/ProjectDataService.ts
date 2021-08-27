@@ -10,32 +10,30 @@ class ProjectDataService {
   }
 
   //
-  getByAlias(alias: string): Promise<any> {
+  getByAlias(alias: String): Promise<any> {
     return apiClient.get(`/project/${alias}`)
   }
 }
 
 //
 interface project {
-  id: String
+  id: string
   created_at: Date
   updated_at: Date
-  user_id: String
-  alias: String
-  project_status: Number
+  user_id: string
+  alias: string
+  project_status: number
   project_attrs: any
 }
 
 //
-export interface ProjectRequest {
-  id: String
-}
+export interface ProjectRequest {}
 
 //
 export interface ProjectResponse {
   data: {
-    error: Boolean
-    msg: String
+    error: boolean
+    msg: string
     project: project
   }
 }
@@ -46,9 +44,9 @@ export interface ProjectsRequest {}
 //
 export interface ProjectsResponse {
   data: {
-    error: Boolean
-    msg: String
-    count: Number
+    error: boolean
+    msg: string
+    count: number
     projects: project[]
   }
 }

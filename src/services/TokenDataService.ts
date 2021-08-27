@@ -22,11 +22,11 @@ export interface TokenRequest {}
 //
 export interface TokenResponse {
   data: {
-    error: Boolean
-    msg: String
+    error: boolean
+    msg: string
     jwt: {
-      token: String
-      expire: Number
+      token: string
+      expire: number
     }
   }
 }

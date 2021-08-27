@@ -3,7 +3,7 @@
     Go to: <router-link to="/">Index</router-link>,
     <router-link to="/sign/in">Sign In</router-link>,
     <router-link to="/projects">Projects</router-link>,
-    <router-link to="/project/1">Project/1</router-link>,
+    <router-link to="/project/676a924d3cce0039">Project/1</router-link>,
     <button @click="signOut()">Sign Out</button>
   </p>
 </template>

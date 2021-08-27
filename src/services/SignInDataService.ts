@@ -12,18 +12,18 @@ class SignInDataService {
 
 //
 export interface SignInRequest {
-  email: String
-  password: String
+  email: string
+  password: string
 }
 
 //
 export interface SignInResponse {
   data: {
-    error: Boolean
-    msg: String
+    error: boolean
+    msg: string
     jwt: {
-      token: String
-      expire: Number
+      token: string
+      expire: number
     }
   }
 }
