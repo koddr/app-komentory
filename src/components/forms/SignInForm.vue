@@ -38,6 +38,8 @@ export default defineComponent({
     // Define needed instances.
     const store = useStore()
     const router = useRouter()
+
+    // Define needed variables (for v-model).
     const email = ref('')
     const password = ref('')
 
@@ -60,7 +62,7 @@ export default defineComponent({
         .catch((error: any) => console.log(error))
     }
 
-    // Return instances.
+    // Return instances and variables.
     return { store, router, email, password, signIn }
   },
 })

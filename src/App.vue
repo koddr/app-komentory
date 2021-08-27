@@ -31,10 +31,10 @@ export default defineComponent({
     }
 
     // Define background async setInterval function for renew token.
-    const tokenRenewTimer = setInterval(() => {
+    const tokenRenewTimer = setInterval(async () => {
       let now = new Date() // standard now time in milliseconds
       let expire = new Date(store.state.jwt_expire_timestamp * 1000 - 60000) // subtract 1 minute from expire
-      if (expire <= now) tokenRenew() // if expire time is less or equal than now, renew token
+      if (expire <= now) await tokenRenew() // if expire time is less or equal than now, renew token
     }, 60000) // 1 minute interval
 
     // If token and expire time not set, try to renew.
