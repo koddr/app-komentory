@@ -2,7 +2,7 @@
 	"name": "app-komentory",
 	"version": "0.0.1",
 	"scripts": {
-		"start": "vite --host",
+		"start": "vite --port 3000 --host",
 		"build": "vue-tsc --noEmit && vite build",
 		"update": "npm outdated && npx npm-check-updates -u && npm install",
 		"serve": "npm run build && vite preview --port 3000 --host"

@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
@@ -32,13 +32,18 @@ export default defineComponent({
 
     // Define needed variables.
     let isLoading = ref(true)
-    let project = reactive({
+    let project = ref({
       id: '',
-      user_id: '',
       created_at: new Date(),
+      updated_at: new Date(),
+      user_id: '',
+      alias: '',
+      project_status: 0,
       project_attrs: {
         title: '',
         description: '',
+        picture: '',
+        url: '',
       },
     })
 
@@ -47,10 +52,7 @@ export default defineComponent({
       await ProjectDataService.getByAlias(props.alias)
         .then((response: ProjectResponse) => {
           // Successful response from API server.
-          project.id = response.data.project.id
-          project.user_id = response.data.project.user_id
-          project.created_at = response.data.project.created_at
-          project.project_attrs = response.data.project.project_attrs
+          project.value = response.data.project
           isLoading.value = false
         })
         .catch((error: any) => {

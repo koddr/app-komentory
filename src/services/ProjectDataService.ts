@@ -23,7 +23,12 @@ interface project {
   user_id: string
   alias: string
   project_status: number
-  project_attrs: any
+  project_attrs: {
+    title: string
+    description: string
+    picture: string
+    url: string
+  }
 }
 
 //
