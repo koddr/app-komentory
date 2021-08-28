@@ -1,7 +1,7 @@
 <template>
   <input
     class="px-3 py-2 border-2 rounded-lg"
-    @input="$emit('update:modelValue', $event.target.value)"
+    @input="$emit('update:modelValue', handleInputChange($event))"
     :type="inputType"
     :tabindex="tabIndex"
     :placeholder="placeholder"
@@ -21,6 +21,11 @@ export default defineComponent({
     placeholder: { type: String, default: '' },
     modelValue: { type: String, default: '' },
     isRequired: { type: Boolean, default: false },
+  },
+  setup: () => {
+    // Define event handler for input change.
+    const handleInputChange = (event: Event) => (event.target as HTMLInputElement).value
+    return { handleInputChange }
   },
 })
 </script>

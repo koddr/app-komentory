@@ -5,7 +5,7 @@
 		"start": "vite --host",
 		"build": "vue-tsc --noEmit && vite build",
 		"update": "npm outdated && npx npm-check-updates -u && npm install",
-		"serve": "vite preview --host"
+		"serve": "npm run build && vite preview --port 3000 --host"
 	},
 	"dependencies": {
 		"axios": "^0.21.1",
@@ -18,7 +18,7 @@
 		"@tailwindcss/forms": "^0.3.3",
 		"@tailwindcss/line-clamp": "^0.2.1",
 		"@tailwindcss/typography": "^0.4.1",
-		"@types/node": "^16.7.3",
+		"@types/node": "^16.7.4",
 		"@types/tailwindcss": "^2.2.1",
 		"@vitejs/plugin-vue": "^1.6.0",
 		"@vue/compiler-sfc": "^3.2.6",
