@@ -57,7 +57,7 @@ export default defineComponent({
           // Successful response from Auth server.
           store.commit('update_jwt_access_token', response.data.jwt.token) // add token to store
           store.commit('update_jwt_expire_timestamp', response.data.jwt.expire) // add expire to store
-          router.push('/') // push Index page
+          router.push({ name: 'index' }) // push Index page
         })
         .catch((error: any) => console.log(error))
     }

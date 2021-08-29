@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
 
-// Import app routes and stores.
+// Import App routes and stores.
 import { routes } from '__/routes'
 import { store, key } from '__/store'
 
-// Import app styles.
+// Import App styles.
 import '__/assets/css/style.css'
 
 // Import the App component.

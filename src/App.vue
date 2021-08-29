@@ -25,7 +25,7 @@ export default defineComponent({
         })
         .catch((error) => {
           // Failed response from Auth server.
-          if (error.response.status === 401) router.push('/sign/in') // 401: push Sign In page
+          if (error.response.status === 401) router.push({ name: 'sign-in' }) // 401: push Sign In page
           console.log(error)
         })
     }

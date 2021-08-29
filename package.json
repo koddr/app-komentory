@@ -18,7 +18,7 @@
 		"@tailwindcss/forms": "^0.3.3",
 		"@tailwindcss/line-clamp": "^0.2.1",
 		"@tailwindcss/typography": "^0.4.1",
-		"@types/node": "^16.7.4",
+		"@types/node": "^16.7.6",
 		"@types/tailwindcss": "^2.2.1",
 		"@vitejs/plugin-vue": "^1.6.0",
 		"@vue/compiler-sfc": "^3.2.6",

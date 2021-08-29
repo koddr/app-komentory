@@ -29,7 +29,7 @@ export default defineComponent({
           // Successful response from Auth server.
           store.commit('update_jwt_access_token', '') // set token to initial
           store.commit('update_jwt_expire_timestamp', 0) // set expire time to initial
-          router.push('/sign/in') // push Sign In page
+          router.push({ name: 'sign-in' }) // push Sign In page
         })
         .catch((error: any) => console.log(error))
     }

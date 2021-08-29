@@ -69,7 +69,7 @@ export default defineComponent({
 
       // Define await function for sign up.
       await SignUpDataService.signUp(requestData)
-        .then(() => router.push('/sign/in')) // push Sign In page
+        .then(() => router.push({ name: 'sign-in' })) // push Sign In page
         .catch((error: any) => console.log(error))
     }
 
