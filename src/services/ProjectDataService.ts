@@ -17,6 +17,7 @@ class ProjectDataService {
   /**
    * @method getByAlias
    * @description Method to get one project from API by alias.
+   * @param {String} alias
    * @returns Promise
    */
   getByAlias(alias: String): Promise<any> {

@@ -41,6 +41,7 @@ export default defineComponent({
 
     // Define needed variables.
     const isLoading = ref(true)
+    const tasks_count = ref(0)
     const project = ref({
       id: '',
       created_at: new Date(),
@@ -50,7 +51,6 @@ export default defineComponent({
       project_status: 0,
       project_attrs: { title: '', description: '', picture: '', url: '' },
     })
-    const tasks_count = ref(0)
     const tasks = ref([
       {
         id: '',
