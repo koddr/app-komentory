@@ -39,7 +39,7 @@ export default defineComponent({
     const store = useStore()
     const router = useRouter()
 
-    // Define needed variables (for v-model).
+    // Define needed variables.
     const email = ref('')
     const password = ref('')
 

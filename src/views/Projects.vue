@@ -26,9 +26,9 @@ export default defineComponent({
     const router = useRouter()
 
     // Define needed variables.
-    let isLoading = ref(true)
-    let count = ref(0)
-    let projects = ref([
+    const isLoading = ref(true)
+    const count = ref(0)
+    const projects = ref([
       {
         id: '',
         created_at: new Date(),
