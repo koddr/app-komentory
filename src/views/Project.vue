@@ -7,6 +7,10 @@
   <div v-else>
     <p>{{ project.project_attrs.title }}</p>
     <p>{{ project.created_at }}</p>
+    <p>Tasks: {{ tasks_count }}</p>
+    <ul>
+      <li v-for="task in tasks" :key="task.id">{{ task.task_attrs.title }}</li>
+    </ul>
   </div>
 </template>
 
@@ -44,23 +48,29 @@ export default defineComponent({
       user_id: '',
       alias: '',
       project_status: 0,
-      project_attrs: {
-        title: '',
-        description: '',
-        picture: '',
-        url: '',
-      },
+      project_attrs: { title: '', description: '', picture: '', url: '' },
     })
+    const tasks_count = ref(0)
+    const tasks = ref([
+      {
+        id: '',
+        created_at: new Date(),
+        updated_at: new Date(),
+        task_attrs: { title: '', description: '', picture: '', url: '' },
+      },
+    ])
 
     // Define function for getting project by alias.
     const getProjectByAlias = async () => {
       await ProjectDataService.getByAlias(props.alias)
         .then((response: ProjectResponse) => {
           // Successful response from API server.
-          project.value = response.data.project
-          isLoading.value = false
+          tasks.value = response.data.tasks // add tasks list
+          tasks_count.value = response.data.tasks_count // add tasks count
+          project.value = response.data.project // add project info
+          isLoading.value = false // cancel loader
         })
-        .catch((error: any) => {
+        .catch((error) => {
           // Failed response from API server.
           if (error.response.status === 401) router.push('/sign/in') // 401: push Sign In page
           console.log(error)
@@ -71,7 +81,7 @@ export default defineComponent({
     onMounted(() => getProjectByAlias())
 
     // Return instances and lifecycle hooks.
-    return { store, router, project, isLoading }
+    return { store, router, project, tasks, tasks_count, isLoading }
   },
 })
 </script>

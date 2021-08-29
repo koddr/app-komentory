@@ -20,10 +20,10 @@ export default defineComponent({
       await TokenDataService.renew(store.state.jwt_access_token)
         .then((response: TokenResponse) => {
           // Successful response from Auth server.
-          store.commit('update_jwt_access_token', response.data.jwt.token) // add to store token
-          store.commit('update_jwt_expire_timestamp', response.data.jwt.expire) // add to store expire
+          store.commit('update_jwt_access_token', response.data.jwt.token) // add token to store
+          store.commit('update_jwt_expire_timestamp', response.data.jwt.expire) // add expire to store
         })
-        .catch((error: any) => {
+        .catch((error) => {
           // Failed response from Auth server.
           if (error.response.status === 401) router.push('/sign/in') // 401: push Sign In page
           console.log(error)

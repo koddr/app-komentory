@@ -55,11 +55,11 @@ export default defineComponent({
       await SignInDataService.signIn(requestData)
         .then((response: SignInResponse) => {
           // Successful response from Auth server.
-          store.commit('update_jwt_access_token', response.data.jwt.token) // add to store token
-          store.commit('update_jwt_expire_timestamp', response.data.jwt.expire) // add to store expire
+          store.commit('update_jwt_access_token', response.data.jwt.token) // add token to store
+          store.commit('update_jwt_expire_timestamp', response.data.jwt.expire) // add expire to store
           router.push('/') // push Index page
         })
-        .catch((error: any) => console.log(error))
+        .catch((error) => console.log(error))
     }
 
     // Return instances and variables.

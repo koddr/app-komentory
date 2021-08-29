@@ -43,12 +43,7 @@ export default defineComponent({
         user_id: '',
         alias: '',
         project_status: 0,
-        project_attrs: {
-          title: '',
-          description: '',
-          picture: '',
-          url: '',
-        },
+        project_attrs: { title: '', description: '', picture: '', url: '' },
       },
     ])
 
@@ -57,11 +52,11 @@ export default defineComponent({
       await ProjectDataService.getAll()
         .then((response: ProjectsResponse) => {
           // Successful response from API server.
-          projects.value = response.data.projects
-          count.value = response.data.count
-          isLoading.value = false
+          projects.value = response.data.projects // add projects list
+          count.value = response.data.count // add project count
+          isLoading.value = false // cancel loader
         })
-        .catch((error: any) => {
+        .catch((error) => {
           // Failed response from API server.
           if (error.response.status === 401) router.push('/sign/in') // 401: push Sign In page
           console.log(error)
