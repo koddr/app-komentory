@@ -1,7 +1,10 @@
 <template>
   <h1>Project alias: {{ alias }}</h1>
   <Sidebar />
-  <div v-if="!isLoading">
+  <div v-if="isLoading">
+    <CodeLoader />
+  </div>
+  <div v-else>
     <p>{{ project.project_attrs.title }}</p>
     <p>{{ project.created_at }}</p>
   </div>
@@ -12,6 +15,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
+import CodeLoader from '__/components/loaders/CodeLoader.vue'
 import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
@@ -23,6 +27,7 @@ export default defineComponent({
     },
   },
   components: {
+    CodeLoader,
     Sidebar,
   },
   setup: (props) => {

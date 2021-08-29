@@ -1,11 +1,16 @@
 <template>
   <h1>Projects: {{ count }}</h1>
   <Sidebar />
-  <ul v-if="!isLoading">
-    <li v-for="project in projects" :key="project.id">
-      <router-link :to="`/project/${project.alias}`">{{ project.alias }}</router-link>
-    </li>
-  </ul>
+  <div v-if="isLoading">
+    <CodeLoader />
+  </div>
+  <div v-else>
+    <ul>
+      <li v-for="project in projects" :key="project.id">
+        <router-link :to="`/project/${project.alias}`">{{ project.alias }}</router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,11 +18,13 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectsResponse } from '__/services/ProjectDataService'
+import CodeLoader from '__/components/loaders/CodeLoader.vue'
 import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
   name: 'Projects',
   components: {
+    CodeLoader,
     Sidebar,
   },
   setup: () => {
