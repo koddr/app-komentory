@@ -1,15 +1,17 @@
 <template>
-  <h1>Projects: {{ count }}</h1>
-  <Sidebar />
-  <div v-if="isLoading">
-    <CodeLoader />
-  </div>
-  <div v-else>
-    <ul>
-      <li v-for="project in projects" :key="project.id">
-        <router-link :to="`/project/${project.alias}`">{{ project.alias }}</router-link>
-      </li>
-    </ul>
+  <div class="container py-2 px-2">
+    <h1>Projects: {{ count }}</h1>
+    <Sidebar />
+    <div v-if="isLoading">
+      <CodeLoader />
+    </div>
+    <div v-else>
+      <ul>
+        <li v-for="project in projects" :key="project.id">
+          <router-link :to="`/project/${project.alias}`">{{ project.alias }}</router-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

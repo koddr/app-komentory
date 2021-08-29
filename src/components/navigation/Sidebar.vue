@@ -1,11 +1,12 @@
 <template>
-  <p>
-    Go to: <router-link to="/">Index</router-link>,
-    <router-link to="/sign/in">Sign In</router-link>,
-    <router-link to="/projects">Projects</router-link>,
-    <router-link to="/project/676a924d3cce0039">Project/1</router-link>,
-    <button @click="signOut()">Sign Out</button>
-  </p>
+  <ul>
+    <li><router-link to="/">Index</router-link></li>
+    <li><router-link to="/sign/up">Sign Up</router-link></li>
+    <li><router-link to="/sign/in">Sign In</router-link></li>
+    <li><router-link to="/projects">Projects</router-link></li>
+    <li><router-link to="/project/676a924d3cce0039">Project/1</router-link></li>
+    <li><button @click="signOut()">Sign Out</button></li>
+  </ul>
 </template>
 
 <script lang="ts">

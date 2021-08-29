@@ -1,16 +1,18 @@
 <template>
-  <h1>Project alias: {{ alias }}</h1>
-  <Sidebar />
-  <div v-if="isLoading">
-    <CodeLoader />
-  </div>
-  <div v-else>
-    <p>{{ project.project_attrs.title }}</p>
-    <p>{{ project.created_at }}</p>
-    <p>Tasks: {{ tasks_count }}</p>
-    <ul>
-      <li v-for="task in tasks" :key="task.id">{{ task.task_attrs.title }}</li>
-    </ul>
+  <div class="container py-2 px-2">
+    <h1>Project alias: {{ alias }}</h1>
+    <Sidebar />
+    <div v-if="isLoading">
+      <CodeLoader />
+    </div>
+    <div v-else>
+      <p>{{ project.project_attrs.title }}</p>
+      <p>{{ project.created_at }}</p>
+      <p>Tasks: {{ tasks_count }}</p>
+      <ul>
+        <li v-for="task in tasks" :key="task.id">{{ task.task_attrs.title }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 

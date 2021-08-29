@@ -17,7 +17,7 @@
       isRequired
     />
   </p>
-  <p><Button @click="signIn" tabIndex="3">Submit</Button></p>
+  <p><Button @click="signIn" tabIndex="3">Sign In</Button></p>
 </template>
 
 <script lang="ts">
@@ -59,7 +59,7 @@ export default defineComponent({
           store.commit('update_jwt_expire_timestamp', response.data.jwt.expire) // add expire to store
           router.push('/') // push Index page
         })
-        .catch((error) => console.log(error))
+        .catch((error: any) => console.log(error))
     }
 
     // Return instances and variables.

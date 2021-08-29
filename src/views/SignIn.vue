@@ -1,7 +1,9 @@
 <template>
-  <h1>Sign In</h1>
-  <Sidebar />
-  <SignInForm />
+  <div class="container py-2 px-2">
+    <h1>Sign In</h1>
+    <Sidebar />
+    <SignInForm />
+  </div>
 </template>
 
 <script lang="ts">
