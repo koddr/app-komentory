@@ -4,7 +4,7 @@ module.exports = {
   darkMode: 'class', // or 'media'
   theme: {
     fontFamily: {
-      sans: ['Inter', ...require('tailwindcss/defaultConfig').theme.fontFamily.sans],
+      sans: ['Inter var', ...require('tailwindcss/defaultConfig').theme.fontFamily.sans],
     },
     extend: {
       colors: {

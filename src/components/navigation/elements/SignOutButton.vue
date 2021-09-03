@@ -1,0 +1,34 @@
+<template>
+  <button type="button" @click="signOut()"><slot></slot></button>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from '__/store'
+import SignOutDataService from '__/services/SignOutDataService'
+
+export default defineComponent({
+  name: 'SignOutButton',
+  setup: () => {
+    // Define needed instances.
+    const store = useStore()
+    const router = useRouter()
+
+    // Define async function for sign out.
+    const signOut = async () => {
+      await SignOutDataService.signOut(store.state.jwt_access_token)
+        .then(() => {
+          // Successful response from Auth server.
+          store.commit('update_jwt_access_token', '') // set token to initial
+          store.commit('update_jwt_expire_timestamp', 0) // set expire time to initial
+          router.push({ name: 'sign-in' }) // push Sign In page
+        })
+        .catch((error: any) => console.log(error))
+    }
+
+    //
+    return { store, router, signOut }
+  },
+})
+</script>

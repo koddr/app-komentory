@@ -10,9 +10,11 @@
     @apply text-gray-700;
   }
   body {
+    @apply font-normal;
     @apply bg-secondary;
   }
   h1 {
+    @apply font-medium;
     @apply text-3xl;
     @apply mb-2;
   }

@@ -27,7 +27,6 @@
 		"tailwindcss": "^2.2.9",
 		"typescript": "^4.4.2",
 		"vite": "^2.5.3",
-		"vite-plugin-fonts": "^0.2.2",
 		"vue-tsc": "^0.3.0"
 	}
 }
