@@ -8,7 +8,7 @@ class SignUpDataService {
   /**
    * @method signUp
    * @description Method to register user with given name, email and password.
-   * @param {Object} data
+   * @param {SignUpRequest} data
    * @returns Promise
    */
   signUp(data: SignUpRequest): Promise<any> {

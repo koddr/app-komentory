@@ -8,7 +8,7 @@ class SignInDataService {
   /**
    * @method signIn
    * @description Method to authenticate user by email and password.
-   * @param {Object} data
+   * @param {SignInRequest} data
    * @returns Promise
    */
   signIn(data: SignInRequest): Promise<any> {
