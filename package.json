@@ -8,7 +8,7 @@
 		"serve": "npm run build && vite preview --port 3000 --host"
 	},
 	"dependencies": {
-		"axios": "^0.21.1",
+		"axios": "^0.21.3",
 		"vue": "^3.2.8",
 		"vue-router": "^4.0.11",
 		"vuex": "^4.0.2"
