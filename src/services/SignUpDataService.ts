@@ -27,6 +27,9 @@ export interface SignUpRequest {
     first_name: string
     last_name: string
   }
+  user_settings: {
+    marketing_email_subscription: boolean
+  }
 }
 
 // Export SignUp data service.

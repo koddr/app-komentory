@@ -29,13 +29,40 @@
       isRequired
     />
   </p>
-  <p><Button @click="signUp" tabIndex="5">Sign Up</Button></p>
+  <SwitchGroup>
+    <div class="flex items-center">
+      <Switch
+        v-model="marketing_email_subscription"
+        :class="marketing_email_subscription ? 'bg-main' : 'bg-main-lighter'"
+        class="
+          relative
+          inline-flex
+          items-center
+          h-7
+          transition-colors
+          rounded-full
+          w-14
+          focus:outline-none
+          focus:ring-2 focus:ring-offset-2 focus:ring-blue-600
+        "
+        tabindex="5"
+      >
+        <span
+          :class="marketing_email_subscription ? 'translate-x-6' : 'translate-x-1'"
+          class="inline-block w-4 h-4 transition-transform transform bg-white rounded-full"
+        />
+      </Switch>
+      <SwitchLabel class="ml-4">Subscribe to the marketing emails from Komentory</SwitchLabel>
+    </div>
+  </SwitchGroup>
+  <p><Button @click="signUp" tabIndex="6">Sign Up</Button></p>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import isAxiosError from 'axios'
+import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue'
 import SignUpDataService, { SignUpRequest } from '__/services/SignUpDataService'
 import PostmarkService, { PostmarkRequest } from '__/services/PostmarkService'
 import Input from '__/components/forms/elements/Input.vue'
@@ -46,16 +73,20 @@ export default defineComponent({
   components: {
     Input,
     Button,
+    Switch,
+    SwitchGroup,
+    SwitchLabel,
   },
   setup: () => {
     // Define needed instances.
     const router = useRouter()
 
     // Define needed variables.
-    const first_name = ref('')
-    const last_name = ref('')
     const email = ref('')
     const password = ref('')
+    const first_name = ref('')
+    const last_name = ref('')
+    const marketing_email_subscription = ref(false)
 
     // Define async function for sign up with name, email and password.
     const signUp = async () => {
@@ -66,6 +97,9 @@ export default defineComponent({
         user_attrs: {
           first_name: first_name.value,
           last_name: last_name.value,
+        },
+        user_settings: {
+          marketing_email_subscription: marketing_email_subscription.value,
         },
       }
 
@@ -95,7 +129,7 @@ export default defineComponent({
     }
 
     // Return instances and variables.
-    return { router, first_name, last_name, email, password, signUp }
+    return { router, first_name, last_name, email, password, marketing_email_subscription, signUp }
   },
 })
 </script>
