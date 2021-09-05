@@ -23,6 +23,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import isAxiosError from 'axios'
 import { useStore } from '__/store'
 import SignInDataService, { SignInRequest, SignInResponse } from '__/services/SignInDataService'
 import Input from '__/components/forms/elements/Input.vue'
@@ -51,15 +52,18 @@ export default defineComponent({
         password: password.value,
       }
 
-      // Define await function for sign in.
-      await SignInDataService.signIn(requestData)
-        .then((response: SignInResponse) => {
-          // Successful response from Auth server.
-          store.commit('update_jwt_access_token', response.data.jwt.token) // add token to store
-          store.commit('update_jwt_expire_timestamp', response.data.jwt.expire) // add expire to store
-          router.push({ name: 'index' }) // push Index page
-        })
-        .catch((error: any) => console.log(error))
+      try {
+        // Define await function for sign in.
+        const { data } = await SignInDataService.signIn(requestData)
+        // Successful response from Auth server.
+        store.commit('update_jwt_access_token', data.jwt.token) // add token to store
+        store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
+        router.push({ name: 'index' }) // push Index page
+      } catch (error: any) {
+        if (isAxiosError(error)) {
+          console.log(error)
+        } else console.log(error)
+      }
     }
 
     // Return instances and variables.

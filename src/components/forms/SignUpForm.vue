@@ -35,7 +35,9 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import isAxiosError from 'axios'
 import SignUpDataService, { SignUpRequest } from '__/services/SignUpDataService'
+import PostmarkService, { PostmarkRequest } from '__/services/PostmarkService'
 import Input from '__/components/forms/elements/Input.vue'
 import Button from '__/components/forms/elements/Button.vue'
 
@@ -67,10 +69,29 @@ export default defineComponent({
         },
       }
 
-      // Define await function for sign up.
-      await SignUpDataService.signUp(requestData)
-        .then(() => router.push({ name: 'sign-in' })) // push Sign In page
-        .catch((error: any) => console.log(error))
+      // Define data for Postmark request.
+      let postmarkData: PostmarkRequest = {
+        email: email.value,
+        template: 'activate-my-account',
+        variables: {
+          first_name: first_name.value,
+        },
+      }
+
+      try {
+        // Define await function for sign up.
+        const { status } = await SignUpDataService.signUp(requestData)
+        // Check, if sign up response is success.
+        if (status === 201) {
+          // Define await function for send email.
+          const { status } = await PostmarkService.send(postmarkData)
+          if (status === 200) router.push({ name: 'sign-in' }) // push Sign In page
+        }
+      } catch (error: any) {
+        if (isAxiosError(error)) {
+          console.log(error)
+        } else console.log(error)
+      }
     }
 
     // Return instances and variables.
