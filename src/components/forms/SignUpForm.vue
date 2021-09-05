@@ -85,7 +85,7 @@ export default defineComponent({
         if (status === 201) {
           // Define await function for send email.
           const { status } = await PostmarkService.send(postmarkData)
-          if (status === 200) router.push({ name: 'sign-in' }) // push Sign In page
+          if (status === 200) router.push({ name: 'sign-in' }) // 200: push Sign In page
         }
       } catch (error: any) {
         if (isAxiosError(error)) {

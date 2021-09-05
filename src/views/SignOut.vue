@@ -1,16 +1,16 @@
 <template>
-  <button type="button" @click="signOut()"><slot></slot></button>
+  <p>Successful sign out</p>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import isAxiosError from 'axios'
 import { useStore } from '__/store'
 import SignOutDataService from '__/services/SignOutDataService'
 
 export default defineComponent({
-  name: 'SignOutButton',
+  name: 'SignOut',
   setup: () => {
     // Define needed instances.
     const store = useStore()
@@ -20,20 +20,24 @@ export default defineComponent({
     const signOut = async () => {
       try {
         // Define await function for sign out.
-        const {} = await SignOutDataService.signOut(store.state.jwt_access_token)
+        await SignOutDataService.signOut(store.state.jwt_access_token)
         // Successful response from Auth server.
         store.commit('update_jwt_access_token', '') // set token to initial
         store.commit('update_jwt_expire_timestamp', 0) // set expire time to initial
         router.push({ name: 'sign-in' }) // push Sign In page
       } catch (error: any) {
         if (isAxiosError(error)) {
+          if (error.response.status === 400) router.push({ name: 'sign-in' }) // 400: push Sign In page
           console.log(error)
         } else console.log(error)
       }
     }
 
-    //
-    return { store, router, signOut }
+    // Define needed lifecycle hooks.
+    onMounted(() => signOut())
+
+    // Return instances.
+    return { store, router }
   },
 })
 </script>

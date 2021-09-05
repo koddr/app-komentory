@@ -5,6 +5,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+import isAxiosError from 'axios'
 import { useStore } from '__/store'
 import TokenDataService, { TokenResponse } from '__/services/TokenDataService'
 
@@ -17,17 +18,18 @@ export default defineComponent({
 
     // Define function for renew token.
     const tokenRenew = async () => {
-      await TokenDataService.renew(store.state.jwt_access_token)
-        .then((response: TokenResponse) => {
-          // Successful response from Auth server.
-          store.commit('update_jwt_access_token', response.data.jwt.token) // add token to store
-          store.commit('update_jwt_expire_timestamp', response.data.jwt.expire) // add expire to store
-        })
-        .catch((error) => {
+      try {
+        const { data }: TokenResponse = await TokenDataService.renew(store.state.jwt_access_token)
+        // Successful response from Auth server.
+        store.commit('update_jwt_access_token', data.jwt.token) // add token to store
+        store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
+      } catch (error: any) {
+        if (isAxiosError(error)) {
           // Failed response from Auth server.
           if (error.response.status === 401) router.push({ name: 'sign-in' }) // 401: push Sign In page
           console.log(error)
-        })
+        } else console.log(error)
+      }
     }
 
     // Define background async setInterval function for renew token.
