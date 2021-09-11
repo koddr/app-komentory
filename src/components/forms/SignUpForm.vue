@@ -114,17 +114,20 @@ export default defineComponent({
 
       try {
         // Define await function for sign up.
-        const { status } = await SignUpDataService.signUp(requestData)
-        // Check, if sign up response is success.
-        if (status === 201) {
+        const { data } = await SignUpDataService.signUp(requestData)
+        // Successful response from API server.
+        if (data.status === 201) {
           // Define await function for send email.
           const { status } = await PostmarkService.send(postmarkData)
-          if (status === 200) router.push({ name: 'sign-in' }) // 200: push Sign In page
+          // Successful response from Postmark server and go to sign in page,
+          // or failed with error message.
+          status === 200 ? router.push({ name: 'sign-in' }) : console.error(data.msg)
+        } else if (data.status === 400) {
+          // Failed response from API server.
+          console.warn(data.msg)
         }
       } catch (error: any) {
-        if (isAxiosError(error)) {
-          console.log(error)
-        } else console.log(error)
+        console.error(error)
       }
     }
 

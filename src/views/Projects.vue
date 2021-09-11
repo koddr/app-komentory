@@ -53,14 +53,18 @@ export default defineComponent({
     const getAllProjects = async () => {
       try {
         const { data }: ProjectsResponse = await ProjectDataService.getAll()
-        // Failed response from API server.
-        if (data.error && data.status === 401) router.push({ name: 'sign-in' }) // 401: push Sign In page
-        // Successful response from API server.
-        projects.value = data.projects // add projects list
-        count.value = data.count // add project count
-        isLoading.value = false // cancel loader
+        // Successful response from API server,
+        // or failed with warning message.
+        if (data.status === 200) {
+          projects.value = data.projects // add projects list
+          count.value = data.count // add project count
+          isLoading.value = false // cancel loader
+        } else if (data.status === 401) {
+          // Failed response from API server.
+          router.push({ name: 'sign-in' }) // 401: push Sign In page
+        } else console.warn(data.msg)
       } catch (error: any) {
-        console.log(error)
+        console.error(error)
       }
     }
 

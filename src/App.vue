@@ -19,11 +19,14 @@ export default defineComponent({
     const tokenRenew = async () => {
       try {
         const { data }: TokenResponse = await TokenDataService.renew(store.state.jwt_access_token)
-        // Failed response from Auth server.
-        if (data.error && data.status === 401) router.push({ name: 'sign-in' }) // 401: push Sign In page
         // Successful response from Auth server.
-        store.commit('update_jwt_access_token', data.jwt.token) // add token to store
-        store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
+        if (data.status === 200) {
+          store.commit('update_jwt_access_token', data.jwt.token) // add token to store
+          store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
+        } else if (data.status === 401) {
+          // Failed response from Auth server.
+          router.push({ name: 'sign-in' }) // 401: push Sign In page
+        }
       } catch (error: any) {
         console.log(error)
       }

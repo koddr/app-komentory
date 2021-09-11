@@ -66,16 +66,22 @@ export default defineComponent({
     const getProjectByAlias = async () => {
       try {
         const { data }: ProjectResponse = await ProjectDataService.getByAlias(props.alias)
-        // Failed response from API server.
-        if (data.error && data.status === 401) router.push({ name: 'sign-in' }) // 401: push Sign In page
-        if (data.error && data.status === 404) router.push({ name: 'not-found' }) // 404: push Not Found page
-        // Successful response from API server.
-        tasks.value = data.tasks // add tasks list
-        tasks_count.value = data.tasks_count // add tasks count
-        project.value = data.project // add project info
-        isLoading.value = false // cancel loader
+        // Successful response from API server,
+        // or failed with warning message.
+        if (data.status === 200) {
+          tasks.value = data.tasks // add tasks list
+          tasks_count.value = data.tasks_count // add tasks count
+          project.value = data.project // add project info
+          isLoading.value = false // cancel loader
+        } else if (data.status === 401) {
+          // Failed response from API server.
+          router.push({ name: 'sign-in' }) // 401: push Sign In page
+        } else if (data.status === 404) {
+          // Failed response from API server.
+          router.push({ name: 'not-found' }) // 404: push Not Found page
+        } else console.warn(data.msg)
       } catch (error: any) {
-        console.log(error)
+        console.error(error)
       }
     }
 

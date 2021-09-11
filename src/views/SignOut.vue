@@ -25,7 +25,7 @@ export default defineComponent({
         store.commit('update_jwt_expire_timestamp', 0) // set expire time to initial
         router.push({ name: 'sign-in' }) // push Sign In page
       } catch (error: any) {
-        console.log(error)
+        console.error(error)
       }
     }
 
