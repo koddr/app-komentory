@@ -3,7 +3,7 @@
     <h1>Project alias: {{ alias }}</h1>
     <Sidebar />
     <div v-if="isLoading">
-      <CodeLoader />
+      <ContentLoader />
     </div>
     <div v-else>
       <p>{{ project.project_attrs.title }}</p>
@@ -21,7 +21,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
-import CodeLoader from '__/components/loaders/CodeLoader.vue'
+import ContentLoader from '__/components/loaders/ContentLoader.vue'
 import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
@@ -33,7 +33,7 @@ export default defineComponent({
     },
   },
   components: {
-    CodeLoader,
+    ContentLoader,
     Sidebar,
   },
   setup: (props) => {
@@ -64,19 +64,19 @@ export default defineComponent({
 
     // Define function for getting project by alias.
     const getProjectByAlias = async () => {
-      await ProjectDataService.getByAlias(props.alias)
-        .then((response: ProjectResponse) => {
-          // Successful response from API server.
-          tasks.value = response.data.tasks // add tasks list
-          tasks_count.value = response.data.tasks_count // add tasks count
-          project.value = response.data.project // add project info
-          isLoading.value = false // cancel loader
-        })
-        .catch((error) => {
-          // Failed response from API server.
-          if (error.response.status === 401) router.push({ name: 'sign-in' }) // 401: push Sign In page
-          console.log(error)
-        })
+      try {
+        const { data }: ProjectResponse = await ProjectDataService.getByAlias(props.alias)
+        // Failed response from API server.
+        if (data.error && data.status === 401) router.push({ name: 'sign-in' }) // 401: push Sign In page
+        if (data.error && data.status === 404) router.push({ name: 'not-found' }) // 404: push Not Found page
+        // Successful response from API server.
+        tasks.value = data.tasks // add tasks list
+        tasks_count.value = data.tasks_count // add tasks count
+        project.value = data.project // add project info
+        isLoading.value = false // cancel loader
+      } catch (error: any) {
+        console.log(error)
+      }
     }
 
     // Define needed lifecycle hooks.

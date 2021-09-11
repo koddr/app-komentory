@@ -3,7 +3,7 @@
     <h1>Projects: {{ count }}</h1>
     <Sidebar />
     <div v-if="isLoading">
-      <CodeLoader />
+      <ContentLoader />
     </div>
     <div v-else>
       <ul>
@@ -20,13 +20,13 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectsResponse } from '__/services/ProjectDataService'
-import CodeLoader from '__/components/loaders/CodeLoader.vue'
+import ContentLoader from '__/components/loaders/ContentLoader.vue'
 import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
   name: 'Projects',
   components: {
-    CodeLoader,
+    ContentLoader,
     Sidebar,
   },
   setup: () => {
@@ -51,18 +51,17 @@ export default defineComponent({
 
     // Define function for getting all projects.
     const getAllProjects = async () => {
-      await ProjectDataService.getAll()
-        .then((response: ProjectsResponse) => {
-          // Successful response from API server.
-          projects.value = response.data.projects // add projects list
-          count.value = response.data.count // add project count
-          isLoading.value = false // cancel loader
-        })
-        .catch((error) => {
-          // Failed response from API server.
-          if (error.response.status === 401) router.push({ name: 'sign-in' }) // 401: push Sign In page
-          console.log(error)
-        })
+      try {
+        const { data }: ProjectsResponse = await ProjectDataService.getAll()
+        // Failed response from API server.
+        if (data.error && data.status === 401) router.push({ name: 'sign-in' }) // 401: push Sign In page
+        // Successful response from API server.
+        projects.value = data.projects // add projects list
+        count.value = data.count // add project count
+        isLoading.value = false // cancel loader
+      } catch (error: any) {
+        console.log(error)
+      }
     }
 
     // Define needed lifecycle hooks.

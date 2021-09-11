@@ -64,6 +64,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'CodeLoader',
+  name: 'ContentLoader',
 })
 </script>

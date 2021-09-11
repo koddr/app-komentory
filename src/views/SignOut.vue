@@ -5,7 +5,6 @@
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import isAxiosError from 'axios'
 import { useStore } from '__/store'
 import SignOutDataService from '__/services/SignOutDataService'
 
@@ -26,10 +25,7 @@ export default defineComponent({
         store.commit('update_jwt_expire_timestamp', 0) // set expire time to initial
         router.push({ name: 'sign-in' }) // push Sign In page
       } catch (error: any) {
-        if (isAxiosError(error)) {
-          if (error.response.status === 400) router.push({ name: 'sign-in' }) // 400: push Sign In page
-          console.log(error)
-        } else console.log(error)
+        console.log(error)
       }
     }
 

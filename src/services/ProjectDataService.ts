@@ -33,6 +33,7 @@ export interface ProjectsResponse {
   data: {
     error: boolean
     msg: string
+    status: number
     count: number
     projects: project[]
   }
@@ -46,6 +47,7 @@ export interface ProjectResponse {
   data: {
     error: boolean
     msg: string
+    status: number
     project: project
     tasks_count: number
     tasks: task[]

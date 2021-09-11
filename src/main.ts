@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 
 // Import App routes and stores.
-import { routes } from '__/routes'
+import { router } from '__/routes'
 import { store, key } from '__/store'
 
 // Import App styles.
@@ -14,7 +14,7 @@ import App from '__/App.vue'
 const app = createApp(App)
 
 // Install plugins.
-app.use(routes)
+app.use(router)
 app.use(store, key)
 
 // Mount the App component to the root element.

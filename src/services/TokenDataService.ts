@@ -29,6 +29,7 @@ class TokenDataService {
 export interface TokenResponse {
   data: {
     error: boolean
+    status: number
     msg: string
     jwt: {
       token: string
