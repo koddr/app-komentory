@@ -23,5 +23,5 @@ const routes: Array<RouteRecordRaw> = [
 // Create the router instance.
 export const router = createRouter({
   history: createWebHashHistory(),
-  routes: routes,
+  routes,
 })
