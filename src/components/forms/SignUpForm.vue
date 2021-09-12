@@ -61,7 +61,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import isAxiosError from 'axios'
 import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue'
 import SignUpDataService, { SignUpRequest } from '__/services/SignUpDataService'
 import PostmarkService, { PostmarkRequest } from '__/services/PostmarkService'

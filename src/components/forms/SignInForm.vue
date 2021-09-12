@@ -24,7 +24,7 @@
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
-import SignInDataService, { SignInRequest, SignInResponse } from '__/services/SignInDataService'
+import SignInDataService, { SignInRequest } from '__/services/SignInDataService'
 import Input from '__/components/forms/elements/Input.vue'
 import Button from '__/components/forms/elements/Button.vue'
 

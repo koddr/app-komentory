@@ -24,5 +24,20 @@ export interface AccountActivateRequest {
   code: string
 }
 
+/**
+ * @interface AccountActivateResponse
+ * @description Public interface to describe request data for AccountActivate model.
+ */
+export interface AccountActivateResponse {
+  data: {
+    status: number
+    msg: string
+    user: {
+      email: string
+      first_name: string
+    }
+  }
+}
+
 // Export AccountActivate data service.
 export default new AccountActivateDataService()

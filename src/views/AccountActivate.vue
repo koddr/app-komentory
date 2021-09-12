@@ -8,7 +8,9 @@ import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import AccountActivateDataService, {
   AccountActivateRequest,
+  AccountActivateResponse,
 } from '__/services/AccountActivateDataService'
+import PostmarkService, { PostmarkRequest } from '__/services/PostmarkService'
 
 export default defineComponent({
   name: 'AccountActivate',
@@ -28,12 +30,29 @@ export default defineComponent({
       }
 
       try {
-        // Define await function for sign out.
-        const { data } = await AccountActivateDataService.activate(requestData)
-        // Successful response from Auth server.
+        // Define await function for activate account.
+        const { data }: AccountActivateResponse = await AccountActivateDataService.activate(
+          requestData,
+        )
+        // Successful response from API server.
         if (data.status === 200) {
-          router.push({ name: 'sign-in' }) // push Sign In page
-        } else console.warn(data.msg)
+          // Define data for Postmark request.
+          let postmarkData: PostmarkRequest = {
+            email: data.user.email,
+            template: 'welcome',
+            variables: {
+              first_name: data.user.first_name,
+            },
+          }
+          // Define await function for send email.
+          const { status } = await PostmarkService.send(postmarkData)
+          // Successful response from Postmark server and go to sign in page,
+          // or failed with error message.
+          status === 200 ? router.push({ name: 'sign-in' }) : console.error(data.msg)
+        } else if (data.status === 400) {
+          // Failed response from API server.
+          console.warn(data.msg)
+        }
       } catch (error: any) {
         console.error(error)
       }
