@@ -27,10 +27,7 @@ import Sidebar from '__/components/navigation/Sidebar.vue'
 export default defineComponent({
   name: 'Project',
   props: {
-    alias: {
-      type: String,
-      required: true,
-    },
+    alias: { type: String, required: true },
   },
   components: {
     ContentLoader,
