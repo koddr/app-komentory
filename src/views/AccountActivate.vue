@@ -48,7 +48,13 @@ export default defineComponent({
           const { status } = await PostmarkService.send(postmarkData)
           // Successful response from Postmark server and go to sign in page,
           // or failed with error message.
-          status === 200 ? router.push({ name: 'sign-in' }) : console.error(data.msg)
+          if (status === 200) {
+            router.push({ name: 'sign-in' }) // go to sign in page
+          } else {
+            console.error(
+              `status error ${status} (see: https://postmarkapp.com/developer/api/overview#error-codes)`,
+            )
+          }
         } else if (data.status === 400) {
           // Failed response from API server.
           console.warn(data.msg)
