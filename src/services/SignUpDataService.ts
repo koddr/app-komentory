@@ -12,7 +12,7 @@ class SignUpDataService {
    * @returns Promise
    */
   signUp(data: SignUpRequest): Promise<any> {
-    return authClient.put('/sign/up', data)
+    return authClient.post('/user/create', data)
   }
 }
 

@@ -13,7 +13,7 @@ class SignOutDataService {
    */
   signOut(token: String): Promise<any> {
     authClient.defaults.headers.common['Authorization'] = `Bearer ${token}` // add required header
-    return authClient.post('/sign/out')
+    return authClient.delete('/user/logout')
   }
 }
 

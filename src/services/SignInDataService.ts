@@ -12,7 +12,7 @@ class SignInDataService {
    * @returns Promise
    */
   signIn(data: SignInRequest): Promise<any> {
-    return authClient.post('/sign/in', data)
+    return authClient.post('/user/login', data)
   }
 }
 

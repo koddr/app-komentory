@@ -3,6 +3,7 @@ import axios, { AxiosInstance } from 'axios'
 // Create a new axios instance for Komentory/Auth/v1 requests.
 export const authClient: AxiosInstance = axios.create({
   baseURL: 'https://auth.komentory.com/v1',
+  // baseURL: 'http://127.0.0.1:5000/v1',
   headers: {
     'Content-Type': 'application/json',
   },
