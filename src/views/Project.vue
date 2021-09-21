@@ -72,7 +72,7 @@ export default defineComponent({
           isLoading.value = false // cancel loader
         } else if (data.status === 401) {
           // Failed response from API server.
-          router.push({ name: 'sign-in' }) // 401: push Sign In page
+          router.push({ name: 'login' }) // 401: push User Login page
         } else if (data.status === 404) {
           // Failed response from API server.
           router.push({ name: 'not-found' }) // 404: push Not Found page

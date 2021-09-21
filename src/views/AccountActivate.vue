@@ -31,9 +31,7 @@ export default defineComponent({
 
       try {
         // Define await function for activate account.
-        const { data }: AccountActivateResponse = await AccountActivateDataService.activate(
-          requestData,
-        )
+        const { data }: AccountActivateResponse = await AccountActivateDataService.activate(requestData)
         // Successful response from API server.
         if (data.status === 200) {
           // Define data for Postmark request.
@@ -49,12 +47,8 @@ export default defineComponent({
           // Successful response from Postmark server and go to sign in page,
           // or failed with error message.
           if (status === 200) {
-            router.push({ name: 'sign-in' }) // go to sign in page
-          } else {
-            console.error(
-              `status error ${status} (see: https://postmarkapp.com/developer/api/overview#error-codes)`,
-            )
-          }
+            router.push({ name: 'login' }) // 200: go to User Login page
+          } else console.error(`status error ${status}`) // or show error message
         } else if (data.status === 400) {
           // Failed response from API server.
           console.warn(data.msg)

@@ -61,8 +61,8 @@ export default defineComponent({
           isLoading.value = false // cancel loader
         } else if (data.status === 401) {
           // Failed response from API server.
-          router.push({ name: 'sign-in' }) // 401: push Sign In page
-        } else console.warn(data.msg)
+          router.push({ name: 'login' }) // 401: push User Login page
+        } else console.warn(data.msg) // or show error message
       } catch (error: any) {
         console.error(error)
       }
