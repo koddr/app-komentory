@@ -23,9 +23,10 @@ export default defineComponent({
         if (data.status === 200) {
           store.commit('update_jwt_access_token', data.jwt.token) // add token to store
           store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
+          store.commit('update_current_user', data.user) // add user data to store
         } else if (data.status === 401) {
           // Failed response from Auth server.
-          router.push({ name: 'sign-in' }) // 401: push Sign In page
+          router.push({ name: 'login' }) // 401: push User Login page
         }
       } catch (error: any) {
         console.log(error)

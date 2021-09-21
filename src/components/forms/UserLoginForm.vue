@@ -17,19 +17,19 @@
       isRequired
     />
   </p>
-  <p><Button @click="signIn" tabIndex="3">Sign In</Button></p>
+  <p><Button @click="login" tabIndex="3">Login</Button></p>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
-import SignInDataService, { SignInRequest } from '__/services/SignInDataService'
+import UserLoginDataService, { UserLoginRequest } from '__/services/UserLoginDataService'
 import Input from '__/components/forms/elements/Input.vue'
 import Button from '__/components/forms/elements/Button.vue'
 
 export default defineComponent({
-  name: 'SignInForm',
+  name: 'UserLoginForm',
   components: {
     Input,
     Button,
@@ -43,23 +43,24 @@ export default defineComponent({
     const email = ref('')
     const password = ref('')
 
-    // Define async function for sign in with email and password.
-    const signIn = async () => {
+    // Define async function for user login with email and password.
+    const login = async () => {
       // Define data from components.
-      let requestData: SignInRequest = {
+      let requestData: UserLoginRequest = {
         email: email.value,
         password: password.value,
       }
 
       try {
-        // Define await function for sign in.
-        const { data } = await SignInDataService.signIn(requestData)
+        // Define await function for user login.
+        const { data } = await UserLoginDataService.login(requestData)
         // Successful response from Auth server,
         // or failed with error message.
         if (data.status === 200) {
           store.commit('update_jwt_access_token', data.jwt.token) // add token to store
           store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
-          router.push({ name: 'index' }) // push Index page
+          store.commit('update_current_user', data.user) // add user data to store
+          router.push({ name: 'index' }) // 200: push Index page
         } else console.warn(data.msg)
       } catch (error: any) {
         console.error(error)
@@ -67,7 +68,7 @@ export default defineComponent({
     }
 
     // Return instances and variables.
-    return { store, router, email, password, signIn }
+    return { store, router, email, password, login }
   },
 })
 </script>

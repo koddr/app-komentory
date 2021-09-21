@@ -9,7 +9,7 @@ import { useStore } from '__/store'
 import SignOutDataService from '__/services/SignOutDataService'
 
 export default defineComponent({
-  name: 'SignOut',
+  name: 'UserLogout',
   setup: () => {
     // Define needed instances.
     const store = useStore()
@@ -23,7 +23,7 @@ export default defineComponent({
         // Successful response from Auth server.
         store.commit('update_jwt_access_token', '') // set token to initial
         store.commit('update_jwt_expire_timestamp', 0) // set expire time to initial
-        router.push({ name: 'sign-in' }) // push Sign In page
+        router.push({ name: 'login' }) // push User Login page
       } catch (error: any) {
         console.error(error)
       }

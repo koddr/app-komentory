@@ -11,10 +11,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('__/views/AccountActivate.vue'),
   },
 
-  // Sign X routes:
-  { path: '/sign/in', name: 'sign-in', component: () => import('__/views/SignIn.vue') },
-  { path: '/sign/up', name: 'sign-up', component: () => import('__/views/SignUp.vue') },
-  { path: '/sign/out', name: 'sign-out', component: () => import('__/views/SignOut.vue') },
+  // Login/Logout & Register routes:
+  { path: '/login', name: 'login', component: () => import('__/views/UserLogin.vue') },
+  { path: '/logout', name: 'logout', component: () => import('__/views/UserLogout.vue') },
+  { path: '/register', name: 'register', component: () => import('__/views/UserRegister.vue') },
 
   // Project routes:
   { path: '/projects', name: 'projects', component: () => import('__/views/Projects.vue') },

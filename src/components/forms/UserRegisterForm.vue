@@ -68,7 +68,7 @@ import Input from '__/components/forms/elements/Input.vue'
 import Button from '__/components/forms/elements/Button.vue'
 
 export default defineComponent({
-  name: 'SignUpForm',
+  name: 'UserRegisterForm',
   components: {
     Input,
     Button,
@@ -118,10 +118,10 @@ export default defineComponent({
         if (data.status === 201) {
           // Define await function for send email.
           const { status } = await PostmarkService.send(postmarkData)
-          // Successful response from Postmark server and go to sign in page,
+          // Successful response from Postmark server and go to user login page,
           // or failed with error message.
           if (status === 200) {
-            router.push({ name: 'sign-in' }) // go to sign in page
+            router.push({ name: 'login' }) // go to User Login page
           } else {
             console.error(
               `status error ${status} (see: https://postmarkapp.com/developer/api/overview#error-codes)`,

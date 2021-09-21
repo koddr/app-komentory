@@ -23,12 +23,18 @@ class TokenDataService {
  */
 export interface TokenResponse {
   data: {
-    error: boolean
     status: number
     msg: string
     jwt: {
       token: string
       expire: number
+    }
+    user: {
+      id: string
+      email: string
+      username: string
+      user_status: number
+      user_attrs: object
     }
   }
 }

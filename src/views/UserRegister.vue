@@ -1,21 +1,21 @@
 <template>
   <div class="container py-2 px-2">
-    <h1>Sign In</h1>
+    <h1>Sign Up</h1>
     <Sidebar />
-    <SignInForm />
+    <UserRegisterForm />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import SignInForm from '__/components/forms/SignInForm.vue'
+import UserRegisterForm from '__/components/forms/UserRegisterForm.vue'
 import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
-  name: 'SignIn',
+  name: 'UserRegister',
   components: {
     Sidebar,
-    SignInForm,
+    UserRegisterForm,
   },
 })
 </script>
