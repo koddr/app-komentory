@@ -88,11 +88,17 @@ interface task {
   task_attrs: {
     name: string
     description: string
-    steps: string[]
+    steps: step[]
     documents: string[]
     images: string[]
     links: string[]
   }
+}
+
+// Private interface to describe Steps field in Task model.
+interface step {
+  position: number
+  description: string
 }
 
 // Export Project data service.
