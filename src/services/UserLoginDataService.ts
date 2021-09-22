@@ -31,8 +31,8 @@ export interface UserLoginRequest {
  */
 export interface UserLoginResponse {
   data: {
-    status: number
     msg: string
+    status: number
     jwt: {
       token: string
       expire: number
@@ -42,7 +42,14 @@ export interface UserLoginResponse {
       email: string
       username: string
       user_status: number
-      user_attrs: object
+      user_attrs: {
+        first_name: string
+        last_name: string
+        about_me: string
+        picture: string
+        website_url: string
+        abilities: string[]
+      }
     }
   }
 }

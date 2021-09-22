@@ -15,6 +15,16 @@ class ProjectDataService {
   }
 
   /**
+   * @method getAllByUsername
+   * @description Method to get all projects from API by given username.
+   * @param {String} username
+   * @returns Promise
+   */
+  getAllByUsername(username: String): Promise<any> {
+    return apiClient.get(`/user/${username}/projects`)
+  }
+
+  /**
    * @method getByAlias
    * @description Method to get one project from API by alias.
    * @param {String} alias
@@ -31,7 +41,6 @@ class ProjectDataService {
  */
 export interface ProjectsResponse {
   data: {
-    error: boolean
     msg: string
     status: number
     count: number
@@ -45,7 +54,6 @@ export interface ProjectsResponse {
  */
 export interface ProjectResponse {
   data: {
-    error: boolean
     msg: string
     status: number
     project: project
@@ -65,8 +73,10 @@ interface project {
   project_attrs: {
     title: string
     description: string
+    category: string
+    website_url: string
     picture: string
-    url: string
+    tags: string[]
   }
 }
 
@@ -76,10 +86,12 @@ interface task {
   created_at: Date
   updated_at: Date
   task_attrs: {
-    title: string
+    name: string
     description: string
-    picture: string
-    url: string
+    steps: string[]
+    documents: string[]
+    images: string[]
+    links: string[]
   }
 }
 

@@ -30,8 +30,8 @@ export interface AccountActivateRequest {
  */
 export interface AccountActivateResponse {
   data: {
-    status: number
     msg: string
+    status: number
     user: {
       email: string
       first_name: string

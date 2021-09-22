@@ -23,8 +23,8 @@ class TokenDataService {
  */
 export interface TokenResponse {
   data: {
-    status: number
     msg: string
+    status: number
     jwt: {
       token: string
       expire: number
