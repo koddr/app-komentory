@@ -37,7 +37,7 @@
       <SwitchLabel class="ml-4">Subscribe to the marketing emails from Komentory</SwitchLabel>
     </div>
   </SwitchGroup>
-  <p><Button @click="signUp" tabIndex="6">Sign Up</Button></p>
+  <p><Button @click="register" tabIndex="6">Register</Button></p>
 </template>
 
 <script lang="ts">

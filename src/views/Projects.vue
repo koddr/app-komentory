@@ -8,7 +8,9 @@
     <div v-else>
       <ul>
         <li v-for="project in projects" :key="project.id">
-          <router-link :to="`/project/${project.alias}`">{{ project.alias }}</router-link>
+          <router-link :to="{ name: 'project-details', params: { alias: project.alias } }">
+            {{ project.alias }}
+          </router-link>
         </li>
       </ul>
     </div>
@@ -37,32 +39,18 @@ export default defineComponent({
     // Define needed variables.
     const isLoading = ref(true)
     const count = ref(0)
-    const projects = ref([
-      {
-        id: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        user_id: '',
-        alias: '',
-        project_status: 0,
-        project_attrs: { title: '', description: '', picture: '', url: '' },
-      },
-    ])
+    const projects = ref([{}])
 
     // Define function for getting all projects.
     const getAllProjects = async () => {
       try {
-        const { data }: ProjectsResponse = await ProjectDataService.getAll()
-        // Successful response from API server,
-        // or failed with warning message.
-        if (data.status === 200) {
-          projects.value = data.projects // add projects list
-          count.value = data.count // add project count
+        const { data: projects_response }: ProjectsResponse = await ProjectDataService.getAll()
+        // Successful response from API server, or failed with warning message.
+        if (projects_response.status === 200) {
+          projects.value = projects_response.projects // add projects list
+          count.value = projects_response.count // add project count
           isLoading.value = false // cancel loader
-        } else if (data.status === 401) {
-          // Failed response from API server.
-          router.push({ name: 'login' }) // 401: push User Login page
-        } else console.warn(data.msg) // or show error message
+        } else console.warn(projects_response.msg) // or show error message
       } catch (error: any) {
         console.error(error)
       }

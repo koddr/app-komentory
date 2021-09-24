@@ -40,15 +40,23 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/projects',
     name: 'projects',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
     component: () => import('__/views/Projects.vue'),
   },
   {
     path: '/project/:alias',
     name: 'project-details',
     props: true,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
     component: () => import('__/views/Project.vue'),
+  },
+  // Task routes:
+  {
+    path: '/task/:alias',
+    name: 'task-details',
+    props: true,
+    meta: { requiresAuth: true },
+    component: () => import('__/views/Task.vue'),
   },
   // Not found route:
   {

@@ -8,9 +8,13 @@
     <div v-else>
       <p>{{ project.project_attrs.title }}</p>
       <p>{{ project.created_at }}</p>
-      <p>Tasks: {{ tasks_count }}</p>
+      <p>Tasks: {{ project.tasks_count }}</p>
       <ul>
-        <li v-for="task in tasks" :key="task.id">{{ task.task_attrs.title }}</li>
+        <li v-for="task in tasks" :key="task.id">
+          <router-link :to="{ name: 'task-details', params: { alias: task.alias } }">
+            {{ task.task_attrs.name }}
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>
@@ -21,6 +25,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
+import TaskDataService, { TasksResponse } from '__/services/TaskDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 import Sidebar from '__/components/navigation/Sidebar.vue'
 
@@ -40,43 +45,39 @@ export default defineComponent({
 
     // Define needed variables.
     const isLoading = ref(true)
-    const tasks_count = ref(0)
-    const project = ref({
-      id: '',
-      created_at: new Date(),
-      updated_at: new Date(),
-      user_id: '',
-      alias: '',
-      project_status: 0,
-      project_attrs: { title: '', description: '', picture: '', url: '' },
-    })
-    const tasks = ref([
-      {
-        id: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        task_attrs: { title: '', description: '', picture: '', url: '' },
-      },
-    ])
+    const project = ref({})
+    const tasks = ref([{}])
 
     // Define function for getting project by alias.
     const getProjectByAlias = async () => {
       try {
-        const { data }: ProjectResponse = await ProjectDataService.getByAlias(props.alias)
-        // Successful response from API server,
-        // or failed with warning message.
-        if (data.status === 200) {
-          tasks.value = data.tasks // add tasks list
-          tasks_count.value = data.tasks_count // add tasks count
-          project.value = data.project // add project info
-          isLoading.value = false // cancel loader
-        } else if (data.status === 401) {
-          // Failed response from API server.
-          router.push({ name: 'login' }) // 401: push User Login page
-        } else if (data.status === 404) {
+        const { data: project_response }: ProjectResponse = await ProjectDataService.getByAlias(props.alias)
+        // Successful response from API server, or failed with warning message.
+        if (project_response.status === 200) {
+          // Get the project data:
+          project.value = project_response.project // add project info
+          // Get tasks by given project id.
+          await getTasksByProjectID(project_response.project.id)
+          // Cancel content loader.
+          isLoading.value = false
+        } else if (project_response.status === 404) {
           // Failed response from API server.
           router.push({ name: 'not-found' }) // 404: push Not Found page
-        } else console.warn(data.msg)
+        } else console.warn(project_response.msg)
+      } catch (error: any) {
+        console.error(error)
+      }
+    }
+
+    // Define function for getting all tasks by project ID.
+    const getTasksByProjectID = async (project_id: string) => {
+      try {
+        const { data: tasks_response }: TasksResponse = await TaskDataService.getAllByProjectID(project_id)
+        // Successful response from API server, or failed with warning message.
+        if (tasks_response.status === 200) {
+          // Get tasks data:
+          tasks.value = tasks_response.tasks // add tasks info
+        } else console.warn(tasks_response.msg)
       } catch (error: any) {
         console.error(error)
       }
@@ -86,7 +87,7 @@ export default defineComponent({
     onMounted(() => getProjectByAlias())
 
     // Return instances and lifecycle hooks.
-    return { store, router, project, tasks, tasks_count, isLoading }
+    return { store, router, project, tasks, isLoading }
   },
 })
 </script>

@@ -57,8 +57,6 @@ export interface ProjectResponse {
     msg: string
     status: number
     project: project
-    tasks_count: number
-    tasks: task[]
   }
 }
 
@@ -78,27 +76,7 @@ interface project {
     picture: string
     tags: string[]
   }
-}
-
-// Private interface to describe Task model.
-interface task {
-  id: string
-  created_at: Date
-  updated_at: Date
-  task_attrs: {
-    name: string
-    description: string
-    steps: step[]
-    documents: string[]
-    images: string[]
-    links: string[]
-  }
-}
-
-// Private interface to describe Steps field in Task model.
-interface step {
-  position: number
-  description: string
+  tasks_count: number
 }
 
 // Export Project data service.

@@ -1,6 +1,6 @@
 <template>
   <div class="container py-2 px-2">
-    <h1>Sign Up</h1>
+    <h1>User Register</h1>
     <Sidebar />
     <UserRegisterForm />
   </div>
