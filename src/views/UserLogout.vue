@@ -24,6 +24,7 @@ export default defineComponent({
         store.commit('update_jwt_access_token', '') // set token to initial
         store.commit('update_jwt_expire_timestamp', 0) // set expire time to initial
         store.commit('update_current_user', {}) // set current user to initial
+        localStorage.removeItem('_komentory') // clear local storage
         router.push({ name: 'login' }) // push User Login page
       } catch (error: any) {
         console.error(error)

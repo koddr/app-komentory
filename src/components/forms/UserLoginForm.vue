@@ -1,21 +1,9 @@
 <template>
   <p>
-    <Input
-      v-model="email"
-      inputType="email"
-      placeholder="Enter email address"
-      tabIndex="1"
-      isRequired
-    />
+    <Input v-model="email" inputType="email" placeholder="Enter email address" tabIndex="1" isRequired />
   </p>
   <p>
-    <Input
-      v-model="password"
-      inputType="password"
-      placeholder="Enter password"
-      tabIndex="2"
-      isRequired
-    />
+    <Input v-model="password" inputType="password" placeholder="Enter password" tabIndex="2" isRequired />
   </p>
   <p><Button @click="login" tabIndex="3">Login</Button></p>
 </template>
@@ -54,13 +42,20 @@ export default defineComponent({
       try {
         // Define await function for user login.
         const { data } = await UserLoginDataService.login(requestData)
-        // Successful response from Auth server,
-        // or failed with error message.
+        // Successful response from Auth server, or failed with error message.
         if (data.status === 200) {
+          // Store response data:
           store.commit('update_jwt_access_token', data.jwt.token) // add token to store
           store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
           store.commit('update_current_user', data.user) // add user data to store
-          router.push({ name: 'index' }) // 200: push Index page
+          // Add a random string to the local storage to indicate that the user is authenticated.
+          localStorage.setItem('_komentory', Math.random().toString(36).substring(2, 36))
+          // Catch saved route in ?redirect= query.
+          const { redirect } = router.currentRoute.value.query
+          // Checking, if redirect route is exists.
+          if (redirect !== undefined) {
+            router.replace({ path: String(redirect) }) // 200: replace current route to saved
+          } else router.push({ name: 'index' }) // 200: push Index page
         } else console.warn(data.msg)
       } catch (error: any) {
         console.error(error)

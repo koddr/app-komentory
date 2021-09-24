@@ -17,5 +17,17 @@ const app = createApp(App)
 app.use(router)
 app.use(store, key)
 
+// Set middleware before each route.
+router.beforeEach((to) => {
+  // Checking router meta and user authentication.
+  if (to.meta.requiresAuth && !localStorage.getItem('_komentory')) {
+    // If not, redirect to User Login page.
+    return {
+      path: '/login',
+      query: { redirect: to.fullPath }, // save the location we were at to come back later
+    }
+  }
+})
+
 // Mount the App component to the root element.
 app.mount('#app-komentory')
