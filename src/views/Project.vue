@@ -25,7 +25,6 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
-import TaskDataService, { TasksResponse } from '__/services/TaskDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 import Sidebar from '__/components/navigation/Sidebar.vue'
 
@@ -56,28 +55,13 @@ export default defineComponent({
         if (project_response.status === 200) {
           // Get the project data:
           project.value = project_response.project // add project info
-          // Get tasks by given project id.
-          await getTasksByProjectID(project_response.project.id)
+          tasks.value = project_response.project.tasks! // add project tasks array
           // Cancel content loader.
           isLoading.value = false
         } else if (project_response.status === 404) {
           // Failed response from API server.
-          router.push({ name: 'not-found' }) // 404: push Not Found page
-        } else console.warn(project_response.msg)
-      } catch (error: any) {
-        console.error(error)
-      }
-    }
-
-    // Define function for getting all tasks by project ID.
-    const getTasksByProjectID = async (project_id: string) => {
-      try {
-        const { data: tasks_response }: TasksResponse = await TaskDataService.getAllByProjectID(project_id)
-        // Successful response from API server, or failed with warning message.
-        if (tasks_response.status === 200) {
-          // Get tasks data:
-          tasks.value = tasks_response.tasks // add tasks info
-        } else console.warn(tasks_response.msg)
+          router.replace({ name: 'not-found' }) // 404: replace path to Not Found page
+        } else console.warn(project_response.msg) // or show error message
       } catch (error: any) {
         console.error(error)
       }

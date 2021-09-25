@@ -9,12 +9,9 @@
       <p>{{ task.task_attrs.name }}</p>
       <p>{{ task.created_at }}</p>
       <p>Answers: {{ task.answers_count }}</p>
+      <h2>Steps</h2>
       <ul>
-        <li v-for="answer in answers" :key="answer.id">
-          <router-link :to="{ name: 'answer-details', params: { alias: answer.alias } }">
-            {{ answer.alias }}
-          </router-link>
-        </li>
+        <li v-for="step in task.task_attrs.steps" :key="step.position">{{ step.position }}. {{ step.description }}</li>
       </ul>
     </div>
   </div>
@@ -25,7 +22,6 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import TaskDataService, { TaskResponse } from '__/services/TaskDataService'
-import AnswerDataService, { AnswersResponse } from '__/services/AnswerDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 import Sidebar from '__/components/navigation/Sidebar.vue'
 
@@ -46,7 +42,6 @@ export default defineComponent({
     // Define needed variables.
     const isLoading = ref(true)
     const task = ref({})
-    const answers = ref([{}])
 
     // Define function for getting task by alias.
     const getTaskByAlias = async () => {
@@ -56,28 +51,12 @@ export default defineComponent({
         if (task_response.status === 200) {
           // Get the task data:
           task.value = task_response.task // add task info
-          // Get answers by given task id.
-          await getAnswersByTaskID(task_response.task.id)
           // Cancel content loader.
           isLoading.value = false
         } else if (task_response.status === 404) {
           // Failed response from API server.
-          router.push({ name: 'not-found' }) // 404: push Not Found page
-        } else console.warn(task_response.msg)
-      } catch (error: any) {
-        console.error(error)
-      }
-    }
-
-    // Define function for getting all answers by task ID.
-    const getAnswersByTaskID = async (task_id: string) => {
-      try {
-        const { data: answers_response }: AnswersResponse = await AnswerDataService.getAllByTaskID(task_id)
-        // Successful response from API server, or failed with warning message.
-        if (answers_response.status === 200) {
-          // Get tasks data:
-          answers.value = answers_response.answers // add answers info
-        } else console.warn(answers_response.msg)
+          router.replace({ name: 'not-found' }) // 404: replace path to Not Found page
+        } else console.warn(task_response.msg) // or show error message
       } catch (error: any) {
         console.error(error)
       }
@@ -87,7 +66,7 @@ export default defineComponent({
     onMounted(() => getTaskByAlias())
 
     // Return instances and lifecycle hooks.
-    return { store, router, task, answers, isLoading }
+    return { store, router, task, isLoading }
   },
 })
 </script>

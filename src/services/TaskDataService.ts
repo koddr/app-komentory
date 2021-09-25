@@ -35,7 +35,7 @@ export interface TasksResponse {
     msg: string
     status: number
     count: number
-    tasks: task[]
+    tasks: Task[]
   }
 }
 
@@ -47,12 +47,15 @@ export interface TaskResponse {
   data: {
     msg: string
     status: number
-    task: task
+    task: Task
   }
 }
 
-// Private interface to describe Task model.
-interface task {
+/**
+ * @interface Task
+ * @description Public interface to describe Task model.
+ */
+export interface Task {
   id: string
   created_at: Date
   updated_at: Date

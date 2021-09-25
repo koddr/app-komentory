@@ -68,7 +68,7 @@ interface answer {
   updated_at: Date
   alias: string
   answer_attrs: {
-    text: string
+    description: string
     documents: string[]
     images: string[]
     links: string[]

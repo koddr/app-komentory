@@ -1,4 +1,5 @@
 import { apiClient } from '__/requests'
+import { Task } from '__/services/TaskDataService'
 
 /**
  * @class ProjectDataService
@@ -77,6 +78,7 @@ interface project {
     tags: string[]
   }
   tasks_count: number
+  tasks?: Task[]
 }
 
 // Export Project data service.

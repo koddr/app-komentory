@@ -47,9 +47,11 @@ export default defineComponent({
         const { data: projects_response }: ProjectsResponse = await ProjectDataService.getAll()
         // Successful response from API server, or failed with warning message.
         if (projects_response.status === 200) {
+          // Get the project data:
           projects.value = projects_response.projects // add projects list
           count.value = projects_response.count // add project count
-          isLoading.value = false // cancel loader
+          // Cancel content loader.
+          isLoading.value = false
         } else console.warn(projects_response.msg) // or show error message
       } catch (error: any) {
         console.error(error)

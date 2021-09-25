@@ -44,8 +44,7 @@ export default defineComponent({
           }
           // Define await function for send email.
           const { status } = await PostmarkService.send(postmarkData)
-          // Successful response from Postmark server and go to sign in page,
-          // or failed with error message.
+          // Successful response from Postmark server and go to sign in page, or failed with error message.
           if (status === 200) {
             router.push({ name: 'login' }) // 200: go to User Login page
           } else console.error(`status error ${status}`) // or show error message

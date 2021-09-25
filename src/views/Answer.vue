@@ -46,32 +46,16 @@ export default defineComponent({
         if (answer_response.status === 200) {
           // Get the task data:
           answer.value = answer_response.answer // add answer info
-          // Get answers by given task id.
-          // await getTasksByProjectID(task_response.task.id)
           // Cancel content loader.
           isLoading.value = false
         } else if (answer_response.status === 404) {
           // Failed response from API server.
-          router.push({ name: 'not-found' }) // 404: push Not Found page
-        } else console.warn(answer_response.msg)
+          router.replace({ name: 'not-found' }) // 404: replace path to Not Found page
+        } else console.warn(answer_response.msg) // or show error message
       } catch (error: any) {
         console.error(error)
       }
     }
-
-    // Define function for getting all tasks by project ID.
-    // const getTasksByProjectID = async (project_id: string) => {
-    //   try {
-    //     const { data: tasks_response }: TasksResponse = await TaskDataService.getAllByProjectID(project_id)
-    //     // Successful response from API server, or failed with warning message.
-    //     if (tasks_response.status === 200) {
-    //       // Get tasks data:
-    //       tasks.value = tasks_response.tasks // add tasks info
-    //     } else console.warn(tasks_response.msg)
-    //   } catch (error: any) {
-    //     console.error(error)
-    //   }
-    // }
 
     // Define needed lifecycle hooks.
     onMounted(() => getAnswerByAlias())
