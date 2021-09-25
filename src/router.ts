@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import { store } from './store'
 
 // Create a routes array.
 const routes: Array<RouteRecordRaw> = [
@@ -57,6 +56,14 @@ const routes: Array<RouteRecordRaw> = [
     props: true,
     meta: { requiresAuth: true },
     component: () => import('__/views/Task.vue'),
+  },
+  // Answer routes:
+  {
+    path: '/answer/:alias',
+    name: 'answer-details',
+    props: true,
+    meta: { requiresAuth: true },
+    component: () => import('__/views/Answer.vue'),
   },
   // Not found route:
   {
