@@ -1,22 +1,19 @@
 <template>
-  <div class="container py-2 px-2">
-    <h1>Project alias: {{ alias }}</h1>
-    <Sidebar />
-    <div v-if="isLoading">
-      <ContentLoader />
-    </div>
-    <div v-else>
-      <p>{{ project.project_attrs.title }}</p>
-      <p>{{ project.created_at }}</p>
-      <p>Tasks: {{ project.tasks_count }}</p>
-      <ul>
-        <li v-for="task in tasks" :key="task.id">
-          <router-link :to="{ name: 'task-details', params: { alias: task.alias } }">
-            {{ task.task_attrs.name }}
-          </router-link>
-        </li>
-      </ul>
-    </div>
+  <h1>Project alias: {{ alias }}</h1>
+  <div v-if="isLoading">
+    <ContentLoader />
+  </div>
+  <div v-else>
+    <p>{{ project.project_attrs.title }}</p>
+    <p>{{ project.created_at }}</p>
+    <p>Tasks: {{ project.tasks_count }}</p>
+    <ul>
+      <li v-for="task in tasks" :key="task.id">
+        <router-link :to="{ name: 'task-details', params: { alias: task.alias } }">
+          {{ task.task_attrs.name }}
+        </router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -26,7 +23,6 @@ import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
-import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
   name: 'Project',
@@ -35,7 +31,6 @@ export default defineComponent({
   },
   components: {
     ContentLoader,
-    Sidebar,
   },
   setup: (props) => {
     // Define needed instances.
@@ -55,7 +50,7 @@ export default defineComponent({
         if (project_response.status === 200) {
           // Get the project data:
           project.value = project_response.project // add project info
-          tasks.value = project_response.project.tasks! // add project tasks array
+          tasks.value = project_response.project.tasks! // add project tasks to array
           // Cancel content loader.
           isLoading.value = false
         } else if (project_response.status === 404) {
@@ -71,7 +66,7 @@ export default defineComponent({
     onMounted(() => getProjectByAlias())
 
     // Return instances and lifecycle hooks.
-    return { store, router, project, tasks, isLoading }
+    return { project, tasks, isLoading }
   },
 })
 </script>

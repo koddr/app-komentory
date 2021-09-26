@@ -97,18 +97,18 @@ export default defineComponent({
 
       try {
         // Define await function for sign up.
-        const { data } = await UserRegisterDataService.register(requestData)
+        const { data: user_register } = await UserRegisterDataService.register(requestData)
         // Successful response from API server.
-        if (data.status === 201) {
+        if (user_register.status === 201) {
           // Define await function for send email.
-          const { status } = await PostmarkService.send(postmarkData)
+          const { status: postmark_status } = await PostmarkService.send(postmarkData)
           // Successful response from Postmark server and go to user login page, or failed with error message.
-          if (status === 200) {
+          if (postmark_status === 200) {
             router.push({ name: 'login' }) // 200: go to User Login page
-          } else console.error(`status error ${status}`) // show error message
-        } else if (data.status === 400) {
+          } else console.error(`status error ${status}`) // or show error message
+        } else if (user_register.status === 400) {
           // Failed response from API server.
-          console.warn(data.msg)
+          console.warn(user_register.msg)
         }
       } catch (error: any) {
         console.error(error)
@@ -116,15 +116,7 @@ export default defineComponent({
     }
 
     // Return instances and variables.
-    return {
-      router,
-      first_name,
-      last_name,
-      email,
-      password,
-      marketing_email_subscription,
-      register,
-    }
+    return { first_name, last_name, email, password, marketing_email_subscription, register }
   },
 })
 </script>

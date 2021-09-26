@@ -1,19 +1,16 @@
 <template>
-  <div class="container py-2 px-2">
-    <h1>Projects: {{ count }}</h1>
-    <Sidebar />
-    <div v-if="isLoading">
-      <ContentLoader />
-    </div>
-    <div v-else>
-      <ul>
-        <li v-for="project in projects" :key="project.id">
-          <router-link :to="{ name: 'project-details', params: { alias: project.alias } }">
-            {{ project.alias }}
-          </router-link>
-        </li>
-      </ul>
-    </div>
+  <h1>Projects: {{ count }}</h1>
+  <div v-if="isLoading">
+    <ContentLoader />
+  </div>
+  <div v-else>
+    <ul>
+      <li v-for="project in projects" :key="project.id">
+        <router-link :to="{ name: 'project-details', params: { alias: project.alias } }">
+          {{ project.alias }}
+        </router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -23,13 +20,11 @@ import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectsResponse } from '__/services/ProjectDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
-import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
   name: 'Projects',
   components: {
     ContentLoader,
-    Sidebar,
   },
   setup: () => {
     // Define needed instances.
@@ -62,7 +57,7 @@ export default defineComponent({
     onMounted(() => getAllProjects())
 
     // Return instances and lifecycle hooks.
-    return { store, router, count, projects, isLoading }
+    return { count, projects, isLoading }
   },
 })
 </script>

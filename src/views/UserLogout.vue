@@ -33,9 +33,6 @@ export default defineComponent({
 
     // Define needed lifecycle hooks.
     onMounted(() => logout())
-
-    // Return instances.
-    return { store, router }
   },
 })
 </script>

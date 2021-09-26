@@ -1,14 +1,11 @@
 <template>
-  <div class="container py-2 px-2">
-    <h1>Answer alias: {{ alias }}</h1>
-    <Sidebar />
-    <div v-if="isLoading">
-      <ContentLoader />
-    </div>
-    <div v-else>
-      <p>{{ answer.answer_attrs.text }}</p>
-      <p>{{ answer.created_at }}</p>
-    </div>
+  <h1>Answer alias: {{ alias }}</h1>
+  <div v-if="isLoading">
+    <ContentLoader />
+  </div>
+  <div v-else>
+    <p>{{ answer.answer_attrs.text }}</p>
+    <p>{{ answer.created_at }}</p>
   </div>
 </template>
 
@@ -18,7 +15,6 @@ import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import AnswerDataService, { AnswerResponse } from '__/services/AnswerDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
-import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
   name: 'Answer',
@@ -27,7 +23,6 @@ export default defineComponent({
   },
   components: {
     ContentLoader,
-    Sidebar,
   },
   setup: (props) => {
     // Define needed instances.
@@ -61,7 +56,7 @@ export default defineComponent({
     onMounted(() => getAnswerByAlias())
 
     // Return instances and lifecycle hooks.
-    return { store, router, answer, isLoading }
+    return { answer, isLoading }
   },
 })
 </script>

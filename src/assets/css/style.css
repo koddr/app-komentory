@@ -26,6 +26,7 @@
     @apply text-xl;
     @apply mb-2;
   }
+  hr,
   p {
     @apply mt-2;
     @apply mb-2;

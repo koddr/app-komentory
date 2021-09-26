@@ -1,5 +1,9 @@
 <template>
-  <router-view />
+  <div class="container py-2 px-2">
+    <Sidebar />
+    <hr />
+    <router-view />
+  </div>
 </template>
 
 <script lang="ts">
@@ -7,9 +11,13 @@ import { defineComponent, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import TokenDataService, { TokenResponse } from '__/services/TokenDataService'
+import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
   name: 'App',
+  components: {
+    Sidebar,
+  },
   setup: () => {
     // Define needed instances.
     const store = useStore()
@@ -18,18 +26,19 @@ export default defineComponent({
     // Define function for renew token.
     const tokenRenew = async () => {
       try {
-        const { data }: TokenResponse = await TokenDataService.renew(store.state.jwt_access_token)
+        const { data: token_response }: TokenResponse = await TokenDataService.renew(store.state.jwt_access_token)
         // Successful response from Auth server.
-        if (data.status === 200) {
-          store.commit('update_jwt_access_token', data.jwt.token) // add token to store
-          store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
-          store.commit('update_current_user', data.user) // add user data to store
-        } else if (data.status === 401) {
+        if (token_response.status === 200) {
+          // Store the token data:
+          store.commit('update_jwt_access_token', token_response.jwt.token) // add token to store
+          store.commit('update_jwt_expire_timestamp', token_response.jwt.expire) // add expire to store
+          store.commit('update_current_user', token_response.user) // add user data to store
+        } else if (token_response.status === 401) {
           // Failed response from Auth server.
           router.push({ name: 'login' }) // 401: push User Login page
-        }
+        } else console.warn(token_response.msg) // or show error message
       } catch (error: any) {
-        console.log(error)
+        console.error(error)
       }
     }
 
@@ -46,9 +55,6 @@ export default defineComponent({
     // Define needed lifecycle hooks.
     onMounted(() => tokenRenewTimer)
     onUnmounted(() => clearInterval(tokenRenewTimer))
-
-    // Return instances and lifecycle hooks.
-    return { store, router }
   },
 })
 </script>

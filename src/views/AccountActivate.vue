@@ -59,9 +59,6 @@ export default defineComponent({
 
     // Define needed lifecycle hooks.
     onMounted(() => accountActivate())
-
-    // Return instances.
-    return { store, router }
   },
 })
 </script>

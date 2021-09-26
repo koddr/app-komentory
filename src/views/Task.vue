@@ -1,19 +1,16 @@
 <template>
-  <div class="container py-2 px-2">
-    <h1>Task alias: {{ alias }}</h1>
-    <Sidebar />
-    <div v-if="isLoading">
-      <ContentLoader />
-    </div>
-    <div v-else>
-      <p>{{ task.task_attrs.name }}</p>
-      <p>{{ task.created_at }}</p>
-      <p>Answers: {{ task.answers_count }}</p>
-      <h2>Steps</h2>
-      <ul>
-        <li v-for="step in task.task_attrs.steps" :key="step.position">{{ step.position }}. {{ step.description }}</li>
-      </ul>
-    </div>
+  <h1>Task alias: {{ alias }}</h1>
+  <div v-if="isLoading">
+    <ContentLoader />
+  </div>
+  <div v-else>
+    <p>{{ task.task_attrs.name }}</p>
+    <p>{{ task.created_at }}</p>
+    <p>Answers: {{ task.answers_count }}</p>
+    <h2>Steps</h2>
+    <ul>
+      <li v-for="step in task.task_attrs.steps" :key="step.position">{{ step.position }}. {{ step.description }}</li>
+    </ul>
   </div>
 </template>
 
@@ -23,7 +20,6 @@ import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import TaskDataService, { TaskResponse } from '__/services/TaskDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
-import Sidebar from '__/components/navigation/Sidebar.vue'
 
 export default defineComponent({
   name: 'Task',
@@ -32,7 +28,6 @@ export default defineComponent({
   },
   components: {
     ContentLoader,
-    Sidebar,
   },
   setup: (props) => {
     // Define needed instances.
@@ -66,7 +61,7 @@ export default defineComponent({
     onMounted(() => getTaskByAlias())
 
     // Return instances and lifecycle hooks.
-    return { store, router, task, isLoading }
+    return { task, isLoading }
   },
 })
 </script>

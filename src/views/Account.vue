@@ -1,18 +1,14 @@
 <template>
-  <div class="container py-2 px-2">
-    <h1>Index</h1>
-    <Sidebar />
-  </div>
+  <h1>Account</h1>
+  <p>Hi, {{ current_user.user_attrs?.first_name }}!</p>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Sidebar from '__/components/navigation/Sidebar.vue'
+import { mapState } from 'vuex'
 
 export default defineComponent({
   name: 'Account',
-  components: {
-    Sidebar,
-  },
+  computed: mapState(['current_user']),
 })
 </script>
