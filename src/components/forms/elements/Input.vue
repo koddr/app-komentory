@@ -1,6 +1,6 @@
 <template>
   <input
-    class="px-3 py-2 border-2 rounded-lg"
+    class="px-4 py-3 border-2 rounded-xl"
     @input="$emit('update:modelValue', handleInputChange($event))"
     :type="inputType"
     :tabindex="tabIndex"

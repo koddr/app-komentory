@@ -11,10 +11,12 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 import { useStore } from '__/store'
 import UserLoginDataService, { UserLoginRequest } from '__/services/UserLoginDataService'
 import Input from '__/components/forms/elements/Input.vue'
 import Button from '__/components/forms/elements/Button.vue'
+import EmojiHandWave from '__/components/emoji/hand/Wave.vue'
 
 export default defineComponent({
   name: 'UserLoginForm',
@@ -26,6 +28,7 @@ export default defineComponent({
     // Define needed instances.
     const store = useStore()
     const router = useRouter()
+    const toast = useToast()
 
     // Define needed variables.
     const email = ref('')
@@ -44,6 +47,8 @@ export default defineComponent({
         const { data } = await UserLoginDataService.login(requestData)
         // Successful response from Auth server, or failed with error message.
         if (data.status === 200) {
+          // Send success message.
+          toast.success('You have successfully logged in!', { icon: EmojiHandWave })
           // Store response data:
           store.commit('update_jwt_access_token', data.jwt.token) // add token to store
           store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
@@ -63,7 +68,7 @@ export default defineComponent({
     }
 
     // Return instances and variables.
-    return { store, router, email, password, login }
+    return { email, password, login }
   },
 })
 </script>

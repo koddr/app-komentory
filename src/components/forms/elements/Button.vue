@@ -1,9 +1,5 @@
 <template>
-  <button
-    class="px-3 py-2 border-2 bg-main text-white rounded-lg"
-    type="button"
-    :tabindex="tabIndex"
-  >
+  <button class="px-4 py-3 border-2 bg-main text-white rounded-xl" type="button" :tabindex="tabIndex">
     <slot>Button</slot>
   </button>
 </template>
