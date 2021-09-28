@@ -2,13 +2,14 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 // Create a routes array.
 const routes: Array<RouteRecordRaw> = [
-  // Account routes:
+  // Index route:
   {
     path: '/',
     name: 'index',
     meta: { requiresAuth: true }, // only authenticate user can enter to account
     component: () => import('__/views/Account.vue'),
   },
+  // Account routes:
   {
     path: '/account/activate',
     name: 'account-activate',
@@ -34,6 +35,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'register',
     meta: { requiresAuth: false },
     component: () => import('__/views/UserRegister.vue'),
+  },
+  // Information routes:
+  {
+    path: '/get-started',
+    name: 'get-started',
+    component: () => import('__/views/GetStarted.vue'),
   },
   // Project routes:
   {

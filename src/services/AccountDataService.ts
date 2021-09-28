@@ -1,10 +1,10 @@
 import { authClient } from '__/requests'
 
 /**
- * @class AccountActivateDataService
- * @description Axios service provider for make API requests to AccountActivate model.
+ * @class AccountDataService
+ * @description Axios service provider for make API requests to Account model.
  */
-class AccountActivateDataService {
+class AccountDataService {
   /**
    * @method activate
    * @description Method to activate user account.
@@ -39,5 +39,5 @@ export interface AccountActivateResponse {
   }
 }
 
-// Export AccountActivate data service.
-export default new AccountActivateDataService()
+// Export Account data service.
+export default new AccountDataService()
