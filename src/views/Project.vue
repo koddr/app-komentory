@@ -39,8 +39,8 @@ export default defineComponent({
 
     // Define needed variables.
     const isLoading = ref(true)
-    const project = ref({})
-    const tasks = ref([{}])
+    const project: any = ref({})
+    const tasks: any = ref([{}])
 
     // Define function for getting project by alias.
     const getProjectByAlias = async () => {

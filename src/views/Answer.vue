@@ -12,7 +12,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from '__/store'
 import AnswerDataService, { AnswerResponse } from '__/services/AnswerDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 
@@ -26,12 +25,11 @@ export default defineComponent({
   },
   setup: (props) => {
     // Define needed instances.
-    const store = useStore()
     const router = useRouter()
 
     // Define needed variables.
     const isLoading = ref(true)
-    const answer = ref({})
+    const answer: any = ref({})
 
     // Define function for getting task by alias.
     const getAnswerByAlias = async () => {

@@ -17,7 +17,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from '__/store'
 import TaskDataService, { TaskResponse } from '__/services/TaskDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 
@@ -31,12 +30,11 @@ export default defineComponent({
   },
   setup: (props) => {
     // Define needed instances.
-    const store = useStore()
     const router = useRouter()
 
     // Define needed variables.
     const isLoading = ref(true)
-    const task = ref({})
+    const task: any = ref({})
 
     // Define function for getting task by alias.
     const getTaskByAlias = async () => {

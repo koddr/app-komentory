@@ -34,7 +34,7 @@ export default defineComponent({
     // Define needed variables.
     const isLoading = ref(true)
     const count = ref(0)
-    const projects = ref([{}])
+    const projects: any = ref([{}])
 
     // Define function for getting all projects.
     const getAllProjects = async () => {
