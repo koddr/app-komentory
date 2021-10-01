@@ -6,6 +6,7 @@ export const authClient: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 5000, // 5 second
   withCredentials: true,
 })
 
@@ -16,6 +17,7 @@ export const apiClient: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 5000, // 5 second
   withCredentials: true,
 })
 
@@ -27,4 +29,5 @@ export const postmarkClient: AxiosInstance = axios.create({
     'Content-Type': 'application/json',
     'X-Postmark-Server-Token': import.meta.env.POSTMARK_SERVER_TOKEN,
   },
+  timeout: 5000, // 5 second
 })

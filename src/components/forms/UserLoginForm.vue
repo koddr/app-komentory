@@ -48,7 +48,7 @@ export default defineComponent({
         // Successful response from Auth server, or failed with error message.
         if (data.status === 200) {
           // Send success message.
-          toast.success('You have successfully logged in!', { icon: EmojiHandWave })
+          toast.success(`Hey, ${data.user.user_attrs.first_name}. Welcome to your account!`, { icon: EmojiHandWave })
           // Store response data:
           store.commit('update_jwt_access_token', data.jwt.token) // add token to store
           store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store

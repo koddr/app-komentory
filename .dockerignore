@@ -7,7 +7,7 @@ Dockerfile
 Makefile
 LICENSE
 **/*.md
-**/*_test.go
+**/*_test.*
 
 # Folders
 .git/

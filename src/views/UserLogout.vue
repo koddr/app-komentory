@@ -5,8 +5,10 @@
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 import { useStore } from '__/store'
 import UserLogoutDataService from '__/services/UserLogoutDataService'
+import EmojiHandClap from '__/components/emoji/hand/Clap.vue'
 
 export default defineComponent({
   name: 'UserLogout',
@@ -14,18 +16,21 @@ export default defineComponent({
     // Define needed instances.
     const store = useStore()
     const router = useRouter()
+    const toast = useToast()
 
     // Define async function for sign out.
     const logout = async () => {
       try {
         // Define await function for sign out.
         await UserLogoutDataService.logout(store.state.jwt_access_token)
+        // Send success message.
+        toast.info("You're out. We'll be waiting for you again!", { icon: EmojiHandClap })
         // Successful response from Auth server.
         store.commit('update_jwt_access_token', '') // set token to initial
         store.commit('update_jwt_expire_timestamp', 0) // set expire time to initial
         store.commit('update_current_user', {}) // set current user to initial
         localStorage.removeItem('_komentory') // clear local storage
-        router.push({ name: 'login' }) // push User Login page
+        router.replace({ name: 'login' }) // replace path to User Login page
       } catch (error: any) {
         console.error(error)
       }
