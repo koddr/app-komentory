@@ -4,6 +4,9 @@
     <ContentLoader />
   </div>
   <div v-else>
+    <p>
+      <router-link :to="{ name: 'project-details', params: { alias: project.alias } }">Back</router-link>
+    </p>
     <p>{{ task.task_attrs.name }}</p>
     <p>{{ task.created_at }}</p>
     <p>Answers: {{ task.answers_count }}</p>
@@ -17,6 +20,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from '__/store'
 import TaskDataService, { TaskResponse } from '__/services/TaskDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 
@@ -30,11 +34,13 @@ export default defineComponent({
   },
   setup: (props) => {
     // Define needed instances.
+    const store = useStore()
     const router = useRouter()
 
     // Define needed variables.
-    const isLoading = ref(true)
+    const project = store.state.current_project
     const task: any = ref({})
+    const isLoading = ref(true)
 
     // Define function for getting task by alias.
     const getTaskByAlias = async () => {
@@ -59,7 +65,7 @@ export default defineComponent({
     onMounted(() => getTaskByAlias())
 
     // Return instances and lifecycle hooks.
-    return { task, isLoading }
+    return { project, task, isLoading }
   },
 })
 </script>

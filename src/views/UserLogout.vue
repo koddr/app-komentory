@@ -7,6 +7,7 @@ import { defineComponent, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 import { useStore } from '__/store'
+import { REMOVE_CURRENT_STATE } from '__/store-constants'
 import UserLogoutDataService from '__/services/UserLogoutDataService'
 import EmojiHandClap from '__/components/emoji/hand/Clap.vue'
 
@@ -26,9 +27,7 @@ export default defineComponent({
         // Send success message.
         toast.info("You're out. We'll be waiting for you again!", { icon: EmojiHandClap })
         // Successful response from Auth server.
-        store.commit('update_jwt_access_token', '') // set token to initial
-        store.commit('update_jwt_expire_timestamp', 0) // set expire time to initial
-        store.commit('update_current_user', {}) // set current user to initial
+        store.commit(REMOVE_CURRENT_STATE) // set state to initial
         localStorage.removeItem('_komentory') // clear local storage
         router.replace({ name: 'login' }) // replace path to User Login page
       } catch (error: any) {

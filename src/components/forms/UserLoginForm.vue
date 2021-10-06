@@ -13,6 +13,7 @@ import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 import { useStore } from '__/store'
+import { UPDATE_JWT, UPDATE_CURRENT_USER } from '__/store-constants'
 import UserLoginDataService, { UserLoginRequest } from '__/services/UserLoginDataService'
 import Input from '__/components/forms/elements/Input.vue'
 import Button from '__/components/forms/elements/Button.vue'
@@ -50,9 +51,8 @@ export default defineComponent({
           // Send success message.
           toast.success(`Hey, ${data.user.user_attrs.first_name}. Welcome to your account!`, { icon: EmojiHandWave })
           // Store response data:
-          store.commit('update_jwt_access_token', data.jwt.token) // add token to store
-          store.commit('update_jwt_expire_timestamp', data.jwt.expire) // add expire to store
-          store.commit('update_current_user', data.user) // add user data to store
+          store.commit(UPDATE_JWT, data.jwt) // add JWT data to store
+          store.commit(UPDATE_CURRENT_USER, data.user) // add user data to store
           // Add a random string to the local storage to indicate that the user is authenticated.
           localStorage.setItem('_komentory', Math.random().toString(36).substring(2, 36))
           // Catch saved route in ?redirect= query.

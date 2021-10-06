@@ -4,6 +4,9 @@
     <ContentLoader />
   </div>
   <div v-else>
+    <p>
+      <router-link :to="{ name: 'projects' }">Back</router-link>
+    </p>
     <p>{{ project.project_attrs.title }}</p>
     <p>{{ project.created_at }}</p>
     <p>Tasks: {{ project.tasks_count }}</p>
@@ -21,6 +24,7 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
+import { UPDATE_CURRENT_PROJECT } from '__/store-constants'
 import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 
@@ -51,6 +55,7 @@ export default defineComponent({
           // Get the project data:
           project.value = project_response.project // add project info
           tasks.value = project_response.project.tasks! // add project tasks to array
+          store.commit(UPDATE_CURRENT_PROJECT, project_response.project) // add current project to store
           // Cancel content loader.
           isLoading.value = false
         } else if (project_response.status === 404) {
