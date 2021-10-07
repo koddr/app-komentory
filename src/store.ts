@@ -4,8 +4,10 @@ import * as store_const from '__/store-constants'
 
 // Define your typings for the store state.
 export interface State {
-  jwt_access_token: string
-  jwt_expire_timestamp: number
+  jwt: {
+    access_token: string
+    expire: number
+  }
   current_user: object
   current_project: object
 }
@@ -26,8 +28,10 @@ export function useStore() {
 // Define store.
 export const store = createStore<State>({
   state: {
-    jwt_access_token: '',
-    jwt_expire_timestamp: 0,
+    jwt: {
+      access_token: '',
+      expire: 0,
+    },
     current_user: {}, // cached user data
     current_project: {}, // cached project data
   },
@@ -38,8 +42,8 @@ export const store = createStore<State>({
 
     // Update JWT data.
     [store_const.UPDATE_JWT](state, jwt) {
-      state.jwt_access_token = jwt.access_token
-      state.jwt_expire_timestamp = jwt.expire
+      state.jwt.access_token = jwt.access_token
+      state.jwt.expire = jwt.expire
     },
     // Update current user data.
     [store_const.UPDATE_CURRENT_USER](state, user) {
@@ -56,8 +60,8 @@ export const store = createStore<State>({
 
     // Remove current state.
     [store_const.REMOVE_CURRENT_STATE](state) {
-      state.jwt_access_token = ''
-      state.jwt_expire_timestamp = 0
+      state.jwt.access_token = ''
+      state.jwt.expire = 0
       state.current_user = {}
       state.current_project = {}
     },

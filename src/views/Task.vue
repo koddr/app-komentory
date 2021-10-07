@@ -5,7 +5,7 @@
   </div>
   <div v-else>
     <p>
-      <router-link :to="{ name: 'project-details', params: { alias: project.alias } }">Back</router-link>
+      <router-link :to="{ name: 'project-details', params: { alias: project_alias } }">Back</router-link>
     </p>
     <p>{{ task.task_attrs.name }}</p>
     <p>{{ task.created_at }}</p>
@@ -38,9 +38,11 @@ export default defineComponent({
     const router = useRouter()
 
     // Define needed variables.
-    const project = store.state.current_project
     const task: any = ref({})
     const isLoading = ref(true)
+
+    // Decomposition project data.
+    const { alias: project_alias }: any = store.state.current_project
 
     // Define function for getting task by alias.
     const getTaskByAlias = async () => {
@@ -65,7 +67,7 @@ export default defineComponent({
     onMounted(() => getTaskByAlias())
 
     // Return instances and lifecycle hooks.
-    return { project, task, isLoading }
+    return { project_alias, task, isLoading }
   },
 })
 </script>

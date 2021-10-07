@@ -1,11 +1,11 @@
 <template>
   <ul>
-    <li><router-link to="/">Account</router-link></li>
-    <li><router-link to="/get-started">Get Started</router-link></li>
-    <li><router-link to="/login">Login</router-link></li>
-    <li><router-link to="/register">Register</router-link></li>
-    <li><router-link to="/projects">Projects</router-link></li>
-    <li><router-link to="/logout">Logout</router-link></li>
+    <li><router-link :to="{ name: 'index' }">Account</router-link></li>
+    <li><router-link :to="{ name: 'get-started' }">Get Started</router-link></li>
+    <li><router-link :to="{ name: 'login' }">Login</router-link></li>
+    <li><router-link :to="{ name: 'register' }">Register</router-link></li>
+    <li><router-link :to="{ name: 'projects' }">Projects</router-link></li>
+    <li><router-link :to="{ name: 'logout' }">Logout</router-link></li>
   </ul>
 </template>
 

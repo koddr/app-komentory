@@ -16,8 +16,6 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from '__/store'
 import ProjectDataService, { ProjectsResponse } from '__/services/ProjectDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 
@@ -27,10 +25,6 @@ export default defineComponent({
     ContentLoader,
   },
   setup: () => {
-    // Define needed instances.
-    const store = useStore()
-    const router = useRouter()
-
     // Define needed variables.
     const isLoading = ref(true)
     const count = ref(0)

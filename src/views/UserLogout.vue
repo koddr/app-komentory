@@ -19,11 +19,14 @@ export default defineComponent({
     const router = useRouter()
     const toast = useToast()
 
+    // Define needed variables.
+    const { access_token } = store.state.jwt
+
     // Define async function for sign out.
     const logout = async () => {
       try {
         // Define await function for sign out.
-        await UserLogoutDataService.logout(store.state.jwt_access_token)
+        await UserLogoutDataService.logout(access_token)
         // Send success message.
         toast.info("You're out. We'll be waiting for you again!", { icon: EmojiHandClap })
         // Successful response from Auth server.

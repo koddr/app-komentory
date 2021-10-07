@@ -25,13 +25,12 @@ export default defineComponent({
     const router = useRouter()
 
     // Define needed variables.
-    const jwt_access_token = store.state.jwt_access_token
-    const jwt_expire_timestamp = store.state.jwt_expire_timestamp
+    const { access_token, expire } = store.state.jwt
 
     // Define function for renew token.
     const tokenRenew = async () => {
       try {
-        const { data: token_response }: TokenResponse = await TokenDataService.renew(jwt_access_token)
+        const { data: token_response }: TokenResponse = await TokenDataService.renew(access_token)
         // Successful response from Auth server.
         if (token_response.status === 200) {
           // Store the token data:
@@ -49,12 +48,12 @@ export default defineComponent({
     // Define background async setInterval function for renew token.
     const tokenRenewTimer = setInterval(async () => {
       let now = new Date() // standard now time in milliseconds
-      let expire = new Date(jwt_expire_timestamp * 1000 - 60000) // subtract 1 minute from expire
-      if (expire <= now) await tokenRenew() // if expire time is less or equal than now, renew token
+      let expire_time = new Date(expire * 1000 - 60000) // subtract 1 minute from expire
+      if (expire_time <= now) await tokenRenew() // if expire time is less or equal than now, renew token
     }, 60000) // 1 minute interval
 
     // If token and expire time not set, try to renew.
-    if (jwt_access_token === '' && jwt_expire_timestamp === 0) tokenRenew()
+    if (access_token === '' && expire === 0) tokenRenew()
 
     // Define needed lifecycle hooks.
     onMounted(() => tokenRenewTimer)

@@ -58,7 +58,7 @@ export default defineComponent({
           // Catch saved route in ?redirect= query.
           const { redirect } = router.currentRoute.value.query
           // Checking, if redirect route is exists.
-          if (redirect !== undefined) {
+          if (redirect) {
             router.replace({ path: String(redirect) }) // 200: replace current route to saved
           } else router.push({ name: 'index' }) // 200: push Index page
         } else console.warn(data.msg)
