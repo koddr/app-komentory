@@ -6,6 +6,16 @@ import { apiClient } from '__/requests'
  */
 class AnswerDataService {
   /**
+   * @method getByID
+   * @description Method to get one Answer from API by given ID.
+   * @param {String} answer_id
+   * @returns Promise
+   */
+  getByID(answer_id: String): Promise<any> {
+    return apiClient.get(`/answer/${answer_id}`)
+  }
+
+  /**
    * @method getAllByProjectID
    * @description Method to get all Answers from API by given project ID.
    * @param {String} project_id
@@ -23,16 +33,6 @@ class AnswerDataService {
    */
   getAllByTaskID(task_id: String): Promise<any> {
     return apiClient.get(`/task/${task_id}/answers`)
-  }
-
-  /**
-   * @method getByAlias
-   * @description Method to get one Answer from API by given alias.
-   * @param {String} alias
-   * @returns Promise
-   */
-  getByAlias(alias: String): Promise<any> {
-    return apiClient.get(`/answer/${alias}`)
   }
 }
 
@@ -66,12 +66,18 @@ interface answer {
   id: string
   created_at: Date
   updated_at: Date
-  alias: string
-  answer_attrs: {
+  status: number
+  attrs: {
     description: string
     documents: string[]
     images: string[]
     links: string[]
+  }
+  author: {
+    user_id: string
+    first_name: string
+    last_name: string
+    picture: string
   }
 }
 

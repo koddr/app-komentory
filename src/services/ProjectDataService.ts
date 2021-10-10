@@ -16,23 +16,23 @@ class ProjectDataService {
   }
 
   /**
-   * @method getAllByUsername
-   * @description Method to get all projects from API by given username.
-   * @param {String} username
+   * @method getAllByUserID
+   * @description Method to get all projects from API by given user ID.
+   * @param {String} user_id
    * @returns Promise
    */
-  getAllByUsername(username: String): Promise<any> {
-    return apiClient.get(`/user/${username}/projects`)
+  getAllByUserID(user_id: String): Promise<any> {
+    return apiClient.get(`/user/${user_id}/projects`)
   }
 
   /**
-   * @method getByAlias
-   * @description Method to get one project from API by alias.
-   * @param {String} alias
+   * @method getByID
+   * @description Method to get one project from API by ID.
+   * @param {String} project_id
    * @returns Promise
    */
-  getByAlias(alias: String): Promise<any> {
-    return apiClient.get(`/project/${alias}`)
+  getByID(project_id: String): Promise<any> {
+    return apiClient.get(`/project/${project_id}`)
   }
 }
 
@@ -45,7 +45,7 @@ export interface ProjectsResponse {
     msg: string
     status: number
     count: number
-    projects: project[]
+    projects: projects[]
   }
 }
 
@@ -66,10 +66,8 @@ interface project {
   id: string
   created_at: Date
   updated_at: Date
-  user_id: string
-  alias: string
-  project_status: number
-  project_attrs: {
+  status: number
+  attrs: {
     title: string
     description: string
     category: string
@@ -77,8 +75,36 @@ interface project {
     picture: string
     tags: string[]
   }
+  author: {
+    user_id: string
+    first_name: string
+    last_name: string
+    picture: string
+  }
   tasks_count: number
-  tasks?: Task[]
+  tasks: Task[]
+}
+
+// Private interface to describe Projects model.
+interface projects {
+  id: string
+  created_at: Date
+  updated_at: Date
+  attrs: {
+    title: string
+    description: string
+    category: string
+    website_url: string
+    picture: string
+    tags: string[]
+  }
+  author: {
+    user_id: string
+    first_name: string
+    last_name: string
+    picture: string
+  }
+  tasks_count: number
 }
 
 // Export Project data service.

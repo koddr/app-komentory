@@ -1,6 +1,6 @@
 <template>
   <h1>Account</h1>
-  <p>Hi, {{ current_user.user_attrs?.first_name }}!</p>
+  <p>Hi, {{ current_user.first_name }}!</p>
 </template>
 
 <script lang="ts">
@@ -9,6 +9,6 @@ import { mapState } from 'vuex'
 
 export default defineComponent({
   name: 'Account',
-  computed: mapState(['current_user']),
+  computed: mapState(['current_user']), // add current user from state
 })
 </script>

@@ -50,7 +50,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('__/views/Projects.vue'),
   },
   {
-    path: '/project/:alias',
+    path: '/project/:id',
     name: 'project-details',
     props: true,
     meta: { requiresAuth: false },
@@ -58,7 +58,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   // Task routes:
   {
-    path: '/task/:alias',
+    path: '/task/:id',
     name: 'task-details',
     props: true,
     meta: { requiresAuth: true },
@@ -66,7 +66,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   // Answer routes:
   {
-    path: '/answer/:alias',
+    path: '/answer/:id',
     name: 'answer-details',
     props: true,
     meta: { requiresAuth: true },

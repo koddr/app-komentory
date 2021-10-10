@@ -31,4 +31,12 @@
     @apply mt-2;
     @apply mb-2;
   }
+  a {
+    @apply border-b;
+    @apply border-main;
+  }
+  a:hover {
+    @apply border-b-0;
+    @apply border-transparent;
+  }
 }

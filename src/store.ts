@@ -8,8 +8,20 @@ export interface State {
     access_token: string
     expire: number
   }
-  current_user: object
-  current_project: object
+  current_user: {
+    id: string
+    email: string
+    user_status: number
+    first_name: string
+    last_name: string
+    about_me: string
+    picture: string
+    website_url: string
+    abilities: string[]
+  }
+  current_project: {
+    id: string
+  }
 }
 
 // Define injection key.
@@ -32,8 +44,20 @@ export const store = createStore<State>({
       access_token: '',
       expire: 0,
     },
-    current_user: {}, // cached user data
-    current_project: {}, // cached project data
+    current_user: {
+      id: '',
+      email: '',
+      user_status: 0,
+      first_name: '',
+      last_name: '',
+      about_me: '',
+      picture: '',
+      website_url: '',
+      abilities: [],
+    },
+    current_project: {
+      id: '',
+    },
   },
   mutations: {
     /**
@@ -42,16 +66,30 @@ export const store = createStore<State>({
 
     // Update JWT data.
     [store_const.UPDATE_JWT](state, jwt) {
-      state.jwt.access_token = jwt.access_token
-      state.jwt.expire = jwt.expire
+      state.jwt = {
+        access_token: jwt.token,
+        expire: jwt.expire,
+      }
     },
     // Update current user data.
     [store_const.UPDATE_CURRENT_USER](state, user) {
-      state.current_user = user
+      state.current_user = {
+        id: user.id,
+        email: user.email,
+        user_status: user.user_status,
+        first_name: user.user_attrs.first_name,
+        last_name: user.user_attrs.last_name,
+        about_me: user.user_attrs.about_me,
+        picture: user.user_attrs.picture,
+        website_url: user.user_attrs.website_url,
+        abilities: [...user.user_attrs.abilities],
+      }
     },
     // Update current project data.
     [store_const.UPDATE_CURRENT_PROJECT](state, project) {
-      state.current_project = project
+      state.current_project = {
+        id: project.id,
+      }
     },
 
     /**
@@ -60,10 +98,24 @@ export const store = createStore<State>({
 
     // Remove current state.
     [store_const.REMOVE_CURRENT_STATE](state) {
-      state.jwt.access_token = ''
-      state.jwt.expire = 0
-      state.current_user = {}
-      state.current_project = {}
+      state.jwt = {
+        access_token: '',
+        expire: 0,
+      }
+      state.current_user = {
+        id: '',
+        email: '',
+        user_status: 0,
+        first_name: '',
+        last_name: '',
+        about_me: '',
+        picture: '',
+        website_url: '',
+        abilities: [],
+      }
+      state.current_project = {
+        id: '',
+      }
     },
   },
 })

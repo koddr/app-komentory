@@ -1,10 +1,10 @@
 <template>
-  <h1>Answer alias: {{ alias }}</h1>
+  <h1>Answer ID: {{ id }}</h1>
   <div v-if="isLoading">
     <ContentLoader />
   </div>
   <div v-else>
-    <p>{{ answer.answer_attrs.text }}</p>
+    <p>{{ answer.attrs.description }}</p>
     <p>{{ answer.created_at }}</p>
   </div>
 </template>
@@ -18,7 +18,7 @@ import ContentLoader from '__/components/loaders/ContentLoader.vue'
 export default defineComponent({
   name: 'Answer',
   props: {
-    alias: { type: String, required: true },
+    id: { type: String, required: true },
   },
   components: {
     ContentLoader,
@@ -34,7 +34,7 @@ export default defineComponent({
     // Define function for getting task by alias.
     const getAnswerByAlias = async () => {
       try {
-        const { data: answer_response }: AnswerResponse = await AnswerDataService.getByAlias(props.alias)
+        const { data: answer_response }: AnswerResponse = await AnswerDataService.getByID(props.id)
         // Successful response from API server, or failed with warning message.
         if (answer_response.status === 200) {
           // Get the task data:

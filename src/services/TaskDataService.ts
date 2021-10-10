@@ -6,6 +6,16 @@ import { apiClient } from '__/requests'
  */
 class TaskDataService {
   /**
+   * @method getByID
+   * @description Method to get one task from API by given ID.
+   * @param {String} task_id
+   * @returns Promise
+   */
+  getByID(task_id: String): Promise<any> {
+    return apiClient.get(`/task/${task_id}`)
+  }
+
+  /**
    * @method getAllByProjectID
    * @description Method to get all tasks from API by given project ID.
    * @param {String} project_id
@@ -13,16 +23,6 @@ class TaskDataService {
    */
   getAllByProjectID(project_id: String): Promise<any> {
     return apiClient.get(`/project/${project_id}/tasks`)
-  }
-
-  /**
-   * @method getByAlias
-   * @description Method to get one task from API by given alias.
-   * @param {String} alias
-   * @returns Promise
-   */
-  getByAlias(alias: String): Promise<any> {
-    return apiClient.get(`/task/${alias}`)
   }
 }
 
@@ -59,8 +59,28 @@ export interface Task {
   id: string
   created_at: Date
   updated_at: Date
-  alias: string
-  task_attrs: {
+  project_id: string
+  status: number
+  attrs: {
+    name: string
+    description: string
+    steps: step[]
+    documents: string[]
+    images: string[]
+    links: string[]
+  }
+  answers_count: number
+}
+
+/**
+ * @interface Tasks
+ * @description Public interface to describe Tasks model.
+ */
+export interface Tasks {
+  id: string
+  created_at: Date
+  updated_at: Date
+  attrs: {
     name: string
     description: string
     steps: step[]

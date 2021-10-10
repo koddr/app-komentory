@@ -6,8 +6,8 @@
   <div v-else>
     <ul>
       <li v-for="project in projects" :key="project.id">
-        <router-link :to="{ name: 'project-details', params: { alias: project.alias } }">
-          {{ project.alias }}
+        <router-link :to="{ name: 'project-details', params: { id: project.id } }">
+          {{ project.attrs.title }}
         </router-link>
       </li>
     </ul>

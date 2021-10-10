@@ -1,5 +1,5 @@
 <template>
-  <h1>Project alias: {{ alias }}</h1>
+  <h1>Project ID: {{ id }}</h1>
   <div v-if="isLoading">
     <ContentLoader />
   </div>
@@ -7,14 +7,14 @@
     <p>
       <router-link :to="{ name: 'projects' }">Back</router-link>
     </p>
-    <p>{{ project.project_attrs.title }}</p>
+    <p>{{ project.attrs.title }}</p>
     <p>{{ project.created_at }}</p>
+    <p>Author: {{ project.author.first_name }}</p>
     <p>Tasks: {{ project.tasks_count }}</p>
     <ul>
       <li v-for="task in tasks" :key="task.id">
-        <router-link :to="{ name: 'task-details', params: { alias: task.alias } }">
-          {{ task.task_attrs.name }}
-        </router-link>
+        <router-link :to="{ name: 'task-details', params: { id: task.id } }">{{ task.name }}</router-link> &mdash;
+        {{ task.description }}
       </li>
     </ul>
   </div>
@@ -31,7 +31,7 @@ import ContentLoader from '__/components/loaders/ContentLoader.vue'
 export default defineComponent({
   name: 'Project',
   props: {
-    alias: { type: String, required: true },
+    id: { type: String, required: true },
   },
   components: {
     ContentLoader,
@@ -46,10 +46,10 @@ export default defineComponent({
     const project: any = ref({})
     const tasks: any = ref([{}])
 
-    // Define function for getting project by alias.
-    const getProjectByAlias = async () => {
+    // Define function for getting project by ID.
+    const getProjectByID = async () => {
       try {
-        const { data: project_response }: ProjectResponse = await ProjectDataService.getByAlias(props.alias)
+        const { data: project_response }: ProjectResponse = await ProjectDataService.getByID(props.id)
         // Successful response from API server, or failed with warning message.
         if (project_response.status === 200) {
           // Get the project data:
@@ -68,7 +68,7 @@ export default defineComponent({
     }
 
     // Define needed lifecycle hooks.
-    onMounted(() => getProjectByAlias())
+    onMounted(() => getProjectByID())
 
     // Return instances and lifecycle hooks.
     return { project, tasks, isLoading }
