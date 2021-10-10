@@ -4,13 +4,11 @@
     <ContentLoader />
   </div>
   <div v-else>
-    <ul>
-      <li v-for="project in projects" :key="project.id">
-        <router-link :to="{ name: 'project-details', params: { id: project.id } }">
-          {{ project.attrs.title }}
-        </router-link>
-      </li>
-    </ul>
+    <div v-for="project in projects" :key="project.id" class="mt-2 mb-2 py-2 px-3 border rounded">
+      <router-link :to="{ name: 'project-details', params: { id: project.id } }">
+        {{ project.attrs.title }}
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -26,9 +24,9 @@ export default defineComponent({
   },
   setup: () => {
     // Define needed variables.
-    const isLoading = ref(true)
-    const count = ref(0)
     const projects: any = ref([{}])
+    const count = ref(0)
+    const isLoading = ref(true)
 
     // Define function for getting all projects.
     const getAllProjects = async () => {

@@ -4,6 +4,9 @@
     <ContentLoader />
   </div>
   <div v-else>
+    <p>
+      <router-link :to="{ name: 'task-answers', params: { id: answer.task_id } }">Back</router-link>
+    </p>
     <p>{{ answer.attrs.description }}</p>
     <p>{{ answer.created_at }}</p>
   </div>

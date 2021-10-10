@@ -1,6 +1,6 @@
 {
 	"name": "app-komentory",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"scripts": {
 		"start": "vite --port 3000 --host",
 		"start-backend": "make run -C ../api",
@@ -10,7 +10,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.21.4",
-		"vue": "^3.2.19",
+		"vue": "^3.2.20",
 		"vue-router": "^4.0.11",
 		"vue-toastification": "^2.0.0-rc.1",
 		"vuex": "^4.0.2"

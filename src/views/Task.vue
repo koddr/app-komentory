@@ -4,22 +4,26 @@
     <ContentLoader />
   </div>
   <div v-else>
-    <p v-if="current_project.alias">
-      <router-link :to="{ name: 'project-details', params: { id: current_project.id } }">Back</router-link>
+    <p>
+      <router-link :to="{ name: 'project-details', params: { id: task.project_id } }">Back</router-link>
     </p>
     <p>{{ task.attrs.name }}</p>
     <p>{{ task.created_at }}</p>
-    <p>Answers: {{ task.answers_count }}</p>
     <h2>Steps</h2>
     <ul>
       <li v-for="step in task.attrs.steps" :key="step.position">{{ step.position }}. {{ step.description }}</li>
     </ul>
+    <p>
+      Answers: {{ task.answers_count }}
+      <router-link v-if="task.answers_count > 0" :to="{ name: 'task-answers', params: { id: task.id } }">
+        Show
+      </router-link>
+    </p>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import { mapState } from 'vuex'
 import { useRouter } from 'vue-router'
 import TaskDataService, { TaskResponse } from '__/services/TaskDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
@@ -32,7 +36,6 @@ export default defineComponent({
   components: {
     ContentLoader,
   },
-  computed: mapState(['current_project']), // add current project from state
   setup: (props) => {
     // Define needed instances.
     const router = useRouter()

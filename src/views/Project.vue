@@ -11,12 +11,10 @@
     <p>{{ project.created_at }}</p>
     <p>Author: {{ project.author.first_name }}</p>
     <p>Tasks: {{ project.tasks_count }}</p>
-    <ul>
-      <li v-for="task in tasks" :key="task.id">
-        <router-link :to="{ name: 'task-details', params: { id: task.id } }">{{ task.name }}</router-link> &mdash;
-        {{ task.description }}
-      </li>
-    </ul>
+    <div v-for="task in tasks" :key="task.id" class="mt-2 mb-2 py-2 px-3 border rounded">
+      <router-link :to="{ name: 'task-details', params: { id: task.id } }">{{ task.name }}</router-link> &mdash;
+      {{ task.description }}
+    </div>
   </div>
 </template>
 
@@ -24,7 +22,6 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
-import { UPDATE_CURRENT_PROJECT } from '__/store-constants'
 import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 
@@ -55,7 +52,6 @@ export default defineComponent({
           // Get the project data:
           project.value = project_response.project // add project info
           tasks.value = project_response.project.tasks! // add project tasks to array
-          store.commit(UPDATE_CURRENT_PROJECT, project_response.project) // add current project to store
           // Cancel content loader.
           isLoading.value = false
         } else if (project_response.status === 404) {

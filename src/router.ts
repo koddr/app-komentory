@@ -64,6 +64,13 @@ const routes: Array<RouteRecordRaw> = [
     meta: { requiresAuth: true },
     component: () => import('__/views/Task.vue'),
   },
+  {
+    path: '/task/:id/answers',
+    name: 'task-answers',
+    props: true,
+    meta: { requiresAuth: true },
+    component: () => import('__/views/Answers.vue'),
+  },
   // Answer routes:
   {
     path: '/answer/:id',

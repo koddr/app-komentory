@@ -19,9 +19,6 @@ export interface State {
     website_url: string
     abilities: string[]
   }
-  current_project: {
-    id: string
-  }
 }
 
 // Define injection key.
@@ -55,9 +52,6 @@ export const store = createStore<State>({
       website_url: '',
       abilities: [],
     },
-    current_project: {
-      id: '',
-    },
   },
   mutations: {
     /**
@@ -85,12 +79,6 @@ export const store = createStore<State>({
         abilities: [...user.user_attrs.abilities],
       }
     },
-    // Update current project data.
-    [store_const.UPDATE_CURRENT_PROJECT](state, project) {
-      state.current_project = {
-        id: project.id,
-      }
-    },
 
     /**
      * Mutations for removing state.
@@ -112,9 +100,6 @@ export const store = createStore<State>({
         picture: '',
         website_url: '',
         abilities: [],
-      }
-      state.current_project = {
-        id: '',
       }
     },
   },
