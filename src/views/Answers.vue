@@ -14,7 +14,7 @@
         </router-link>
       </p>
       <p>{{ answer.author.first_name }} {{ answer.author.last_name }}</p>
-      <DateFormatted :date="answer.created_at" :locale="'en-US'" :isTime="true" />
+      <DateFormatted :date="answer.created_at" :locale="'en-US'" :withTime="true" />
     </div>
   </div>
 </template>

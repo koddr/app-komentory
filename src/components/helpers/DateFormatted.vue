@@ -4,7 +4,7 @@
       <CalendarIcon class="h-5 w-5" />
       <div>{{ dateFormatted }}</div>
     </div>
-    <div v-if="isTime" class="inline-flex space-x-1">
+    <div v-if="withTime" class="inline-flex space-x-1">
       <ClockIcon class="h-5 w-5" />
       <div>{{ timeFormatted }}</div>
     </div>
@@ -24,20 +24,20 @@ export default defineComponent({
   props: {
     date: { type: String, required: true },
     locale: { type: String, required: true },
-    isTime: { type: Boolean, default: false },
+    withTime: { type: Boolean, default: false },
   },
   setup: (props) => {
     // Define needed variables.
     const date = new Date(props.date)
 
-    //
+    // Formatted date.
     const dateFormatted = date.toLocaleDateString(props.locale, {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     })
 
-    //
+    // Formatted time.
     const timeFormatted = `${date.getHours()}:${date.getMinutes()}`
 
     // Return instances and lifecycle hooks.
