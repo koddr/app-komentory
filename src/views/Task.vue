@@ -11,7 +11,7 @@
     <p>{{ task.created_at }}</p>
     <h2>Steps</h2>
     <ul>
-      <li v-for="step in task.attrs.steps" :key="step.position">{{ step.position }}. {{ step.description }}</li>
+      <li v-for="step in steps" :key="step.position">{{ step.position }}. {{ step.description }}</li>
     </ul>
     <p>
       Answers: {{ task.answers_count }}
@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import TaskDataService, { TaskResponse } from '__/services/TaskDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
@@ -42,6 +42,7 @@ export default defineComponent({
 
     // Define needed variables.
     const task: any = ref({})
+    const steps: any = ref([{}])
     const isLoading = ref(true)
 
     // Define function for getting task by ID.
@@ -52,6 +53,7 @@ export default defineComponent({
         if (task_response.status === 200) {
           // Get the task data:
           task.value = task_response.task // add task info
+          steps.value = task_response.task.attrs.steps.sort((a: any, b: any) => a.position - b.position) // add sort for steps
           // Cancel content loader.
           isLoading.value = false
         } else if (task_response.status === 404) {
@@ -67,7 +69,7 @@ export default defineComponent({
     onMounted(() => getTaskByID())
 
     // Return instances and lifecycle hooks.
-    return { task, isLoading }
+    return { task, steps, isLoading }
   },
 })
 </script>
