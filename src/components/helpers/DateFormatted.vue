@@ -1,12 +1,14 @@
 <template>
-  <div class="inline-flex space-x-2 text-sm text-gray-400">
-    <div class="inline-flex space-x-1">
-      <CalendarIcon class="h-5 w-5" />
-      <div>{{ dateFormatted }}</div>
-    </div>
-    <div v-if="withTime" class="inline-flex space-x-1">
-      <ClockIcon class="h-5 w-5" />
-      <div>{{ timeFormatted }}</div>
+  <div class="mt-1 mb-1">
+    <div class="inline-flex space-x-2 text-sm text-gray-400">
+      <div class="inline-flex space-x-1">
+        <CalendarIcon class="h-5 w-5" />
+        <div>{{ dateFormatted }}</div>
+      </div>
+      <div v-if="withTime" class="inline-flex space-x-1">
+        <ClockIcon class="h-5 w-5" />
+        <div>{{ timeFormatted }}</div>
+      </div>
     </div>
   </div>
 </template>

@@ -8,12 +8,16 @@
       <router-link :to="{ name: 'task-details', params: { id } }">Back</router-link>
     </p>
     <div v-for="answer in answers" :key="answer.id" class="mt-2 mb-2 py-2 px-3 border rounded">
+      <AuthorCard
+        :id="answer.author.user_id"
+        :first_name="answer.author.first_name"
+        :last_name="answer.author.last_name"
+      />
       <p class="truncate">
         <router-link :to="{ name: 'answer-details', params: { id: answer.id } }">
           {{ answer.attrs.description }}
         </router-link>
       </p>
-      <p>{{ answer.author.first_name }} {{ answer.author.last_name }}</p>
       <DateFormatted :date="answer.created_at" :locale="'en-US'" :withTime="true" />
     </div>
   </div>
@@ -25,6 +29,7 @@ import { useRouter } from 'vue-router'
 import AnswerDataService, { AnswersResponse } from '__/services/AnswerDataService'
 import ContentLoader from '__/components/loaders/ContentLoader.vue'
 import DateFormatted from '__/components/helpers/DateFormatted.vue'
+import AuthorCard from '__/components/helpers/AuthorCard.vue'
 
 export default defineComponent({
   name: 'Answers',
@@ -34,6 +39,7 @@ export default defineComponent({
   components: {
     ContentLoader,
     DateFormatted,
+    AuthorCard,
   },
   setup: (props) => {
     // Define needed instances.

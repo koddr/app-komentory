@@ -79,6 +79,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: { requiresAuth: true },
     component: () => import('__/views/Answer.vue'),
   },
+  // User routes:
+  {
+    path: '/user/:id',
+    name: 'user-details',
+    props: true,
+    meta: { requiresAuth: true },
+    component: () => import('__/views/User.vue'),
+  },
   // Not found route:
   {
     path: '/:pathMatch(.*)*',
