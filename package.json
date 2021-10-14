@@ -1,9 +1,9 @@
 {
 	"name": "app-komentory",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"scripts": {
 		"start": "vite --port 3000 --host",
-		"start-backend": "make docker.postgres -C ../api && make run -C ../api",
+		"start-backend": "make run -C ../api",
 		"build": "vue-tsc --noEmit && vite build",
 		"update": "npx npm-check-updates -u && npm install",
 		"serve": "npm run build && vite preview --port 3000 --host"

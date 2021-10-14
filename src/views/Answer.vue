@@ -16,7 +16,7 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AnswerDataService, { AnswerResponse } from '__/services/AnswerDataService'
-import ContentLoader from '__/components/loaders/ContentLoader.vue'
+import { ContentLoader } from '__/components'
 
 export default defineComponent({
   name: 'Answer',

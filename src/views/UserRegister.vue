@@ -5,7 +5,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import UserRegisterForm from '__/components/forms/UserRegisterForm.vue'
+import { UserRegisterForm } from '__/components'
 
 export default defineComponent({
   name: 'UserRegister',

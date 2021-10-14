@@ -46,8 +46,7 @@ import { useRouter } from 'vue-router'
 import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue'
 import UserRegisterDataService, { UserRegisterRequest } from '__/services/UserRegisterDataService'
 import PostmarkService, { PostmarkRequest } from '__/services/PostmarkService'
-import Input from '__/components/forms/elements/Input.vue'
-import Button from '__/components/forms/elements/Button.vue'
+import { Input, Button } from '__/components'
 
 export default defineComponent({
   name: 'UserRegisterForm',

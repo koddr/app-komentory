@@ -9,7 +9,7 @@ import { useToast } from 'vue-toastification'
 import { useStore } from '__/store'
 import { REMOVE_CURRENT_STATE } from '__/store-constants'
 import UserLogoutDataService from '__/services/UserLogoutDataService'
-import EmojiHandClap from '__/components/emoji/hand/Clap.vue'
+import { EmojiHandClap } from '__/components/emoji'
 
 export default defineComponent({
   name: 'UserLogout',

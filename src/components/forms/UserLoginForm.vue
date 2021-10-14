@@ -15,9 +15,8 @@ import { useToast } from 'vue-toastification'
 import { useStore } from '__/store'
 import { UPDATE_JWT, UPDATE_CURRENT_USER } from '__/store-constants'
 import UserLoginDataService, { UserLoginRequest } from '__/services/UserLoginDataService'
-import Input from '__/components/forms/elements/Input.vue'
-import Button from '__/components/forms/elements/Button.vue'
-import EmojiHandWave from '__/components/emoji/hand/Wave.vue'
+import { Input, Button } from '__/components'
+import { EmojiHandWave } from '__/components/emoji'
 
 export default defineComponent({
   name: 'UserLoginForm',

@@ -12,6 +12,7 @@
         :id="answer.author.user_id"
         :first_name="answer.author.first_name"
         :last_name="answer.author.last_name"
+        :picture="answer.author.picture"
       />
       <p class="truncate">
         <router-link :to="{ name: 'answer-details', params: { id: answer.id } }">
@@ -27,9 +28,7 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AnswerDataService, { AnswersResponse } from '__/services/AnswerDataService'
-import ContentLoader from '__/components/loaders/ContentLoader.vue'
-import DateFormatted from '__/components/helpers/DateFormatted.vue'
-import AuthorCard from '__/components/helpers/AuthorCard.vue'
+import { ContentLoader, DateFormatted, AuthorCard } from '__/components'
 
 export default defineComponent({
   name: 'Answers',

@@ -6,7 +6,7 @@ export const authClient: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 3000, // 3 second
+  timeout: 5000, // 5 second
   withCredentials: true,
 })
 
@@ -16,7 +16,7 @@ export const apiClient: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 1500, // 1.5 second
+  timeout: 3000, // 3 second
   withCredentials: true,
 })
 

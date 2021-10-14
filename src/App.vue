@@ -12,7 +12,7 @@ import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import { UPDATE_JWT, UPDATE_CURRENT_USER } from '__/store-constants'
 import TokenDataService, { TokenResponse } from '__/services/TokenDataService'
-import Sidebar from '__/components/navigation/Sidebar.vue'
+import { Sidebar } from '__/components'
 
 export default defineComponent({
   name: 'App',

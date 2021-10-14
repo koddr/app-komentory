@@ -5,6 +5,12 @@
   </div>
   <div v-else>
     <div v-for="project in projects" :key="project.id" class="mt-2 mb-2 py-2 px-3 border rounded">
+      <AuthorCard
+        :id="project.author.user_id"
+        :first_name="project.author.first_name"
+        :last_name="project.author.last_name"
+        :picture="project.author.picture"
+      />
       <router-link :to="{ name: 'project-details', params: { id: project.id } }">
         {{ project.attrs.title }}
       </router-link>
@@ -15,12 +21,13 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import ProjectDataService, { ProjectsResponse } from '__/services/ProjectDataService'
-import ContentLoader from '__/components/loaders/ContentLoader.vue'
+import { ContentLoader, AuthorCard } from '__/components'
 
 export default defineComponent({
   name: 'Projects',
   components: {
     ContentLoader,
+    AuthorCard,
   },
   setup: () => {
     // Define needed variables.

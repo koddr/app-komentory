@@ -23,7 +23,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
-import ContentLoader from '__/components/loaders/ContentLoader.vue'
+import { ContentLoader } from '__/components'
 
 export default defineComponent({
   name: 'Project',
