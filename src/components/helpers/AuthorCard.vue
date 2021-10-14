@@ -1,7 +1,12 @@
 <template>
   <div class="mt-1 mb-1">
-    <div class="inline-flex space-x-2 text-sm text-gray-400">
-      <img v-if="picture" class="w-5 h-5 block rounded-full" :src="picture" alt="user picture" />
+    <div class="inline-flex items-center space-x-2 text-sm text-gray-400">
+      <img
+        v-if="picture"
+        :src="picture"
+        class="w-7 h-7 block rounded-full border-2 border-main-lighter"
+        alt="user picture"
+      />
       <div>
         <router-link :to="{ name: 'user-details', params: { id } }">{{ fullName }}</router-link>
       </div>
@@ -17,7 +22,7 @@ export default defineComponent({
   props: {
     id: { type: String, required: true },
     first_name: { type: String, required: true },
-    last_name: { type: String, default: false },
+    last_name: { type: String, required: false },
     picture: { type: String, required: false },
   },
   setup: (props) => {

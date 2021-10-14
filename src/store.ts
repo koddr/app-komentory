@@ -25,7 +25,7 @@ export interface State {
 export const key: InjectionKey<Store<State>> = Symbol()
 
 /**
- * Define your own `useStore` composition function.
+ * Define my own `useStore` composition function.
  *
  * Now, by importing your own composable function, you can retrieve the typed store without
  * having to provide the injection key and its typing.
@@ -51,6 +51,14 @@ export const store = createStore<State>({
       picture: '',
       website_url: '',
       abilities: [],
+    },
+  },
+  getters: {
+    /**
+     * Getter for checking user authentication.
+     */
+    isUserLoggedIn(state) {
+      return state.current_user.id === '' // always return true, if user is NOT logged in
     },
   },
   mutations: {

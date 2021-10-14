@@ -4,7 +4,7 @@
     <ContentLoader />
   </div>
   <div v-else>
-    <div v-for="project in projects" :key="project.id" class="mt-2 mb-2 py-2 px-3 border rounded">
+    <div v-for="project in projects" :key="project.id" class="py-2 px-3 border rounded">
       <AuthorCard
         :id="project.author.user_id"
         :first_name="project.author.first_name"
