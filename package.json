@@ -3,9 +3,9 @@
 	"version": "0.3.0",
 	"scripts": {
 		"start": "vite --port 3000 --host",
-		"start-backend": "make run -C ../api",
+		"start-backend": "make docker.postgres -C ../api && make run -C ../api",
 		"build": "vue-tsc --noEmit && vite build",
-		"update": "npm outdated && npx npm-check-updates -u && npm install",
+		"update": "npx npm-check-updates -u && npm install",
 		"serve": "npm run build && vite preview --port 3000 --host"
 	},
 	"dependencies": {
@@ -22,13 +22,13 @@
 		"@tailwindcss/forms": "^0.3.4",
 		"@tailwindcss/line-clamp": "^0.2.2",
 		"@tailwindcss/typography": "^0.4.1",
-		"@types/node": "^16.10.4",
+		"@types/node": "^16.10.9",
 		"@types/tailwindcss": "^2.2.1",
 		"@vitejs/plugin-vue": "^1.9.3",
 		"@vue/compiler-sfc": "^3.2.20",
 		"autoprefixer": "^10.3.7",
 		"postcss": "^8.3.9",
-		"tailwindcss": "^2.2.16",
+		"tailwindcss": "^2.2.17",
 		"typescript": "^4.4.4",
 		"vite": "^2.6.7",
 		"vue-tsc": "^0.28.3"
