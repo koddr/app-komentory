@@ -44,8 +44,12 @@
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue'
-import UserRegisterDataService, { UserRegisterRequest } from '__/services/UserRegisterDataService'
-import PostmarkService, { PostmarkRequest } from '__/services/PostmarkService'
+import {
+  UserRegisterDataService as User,
+  UserRegisterRequest as RegisterRequest,
+  PostmarkDataService as Postmark,
+  PostmarkRequest,
+} from '__/services'
 import { Input, Button } from '__/components'
 
 export default defineComponent({
@@ -71,7 +75,7 @@ export default defineComponent({
     // Define async function for register with name, email and password.
     const register = async () => {
       // Define data from components.
-      let requestData: UserRegisterRequest = {
+      let requestData: RegisterRequest = {
         email: email.value,
         password: password.value,
         user_attrs: {
@@ -96,11 +100,11 @@ export default defineComponent({
 
       try {
         // Define await function for sign up.
-        const { data: user_register } = await UserRegisterDataService.register(requestData)
+        const { data: user_register } = await User.register(requestData)
         // Successful response from API server.
         if (user_register.status === 201) {
           // Define await function for send email.
-          const { status: postmark_status } = await PostmarkService.send(postmarkData)
+          const { status: postmark_status } = await Postmark.send(postmarkData)
           // Successful response from Postmark server and go to user login page, or failed with error message.
           if (postmark_status === 200) {
             router.push({ name: 'login' }) // 200: go to User Login page

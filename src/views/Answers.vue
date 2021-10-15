@@ -29,7 +29,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import AnswerDataService, { AnswersResponse } from '__/services/AnswerDataService'
+import { AnswerDataService as Answer, AnswersResponse } from '__/services'
 import { ContentLoader, DateFormatted, AuthorCard } from '__/components'
 
 export default defineComponent({
@@ -53,7 +53,7 @@ export default defineComponent({
     // Define function for getting answers by task ID.
     const getAnswerByTaskID = async () => {
       try {
-        const { data: answers_response }: AnswersResponse = await AnswerDataService.getAllByTaskID(props.id)
+        const { data: answers_response }: AnswersResponse = await Answer.getAllByTaskID(props.id)
         // Successful response from API server, or failed with warning message.
         if (answers_response.status === 200) {
           // Get the task data:

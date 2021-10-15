@@ -1,6 +1,6 @@
 {
 	"name": "app-komentory",
-	"version": "0.3.1",
+	"version": "0.4.0",
 	"scripts": {
 		"start": "vite --port 3000 --host",
 		"start-backend": "make run -C ../api",
@@ -22,7 +22,7 @@
 		"@tailwindcss/forms": "^0.3.4",
 		"@tailwindcss/line-clamp": "^0.2.2",
 		"@tailwindcss/typography": "^0.4.1",
-		"@types/node": "^16.10.9",
+		"@types/node": "^16.11.0",
 		"@types/tailwindcss": "^2.2.1",
 		"@vitejs/plugin-vue": "^1.9.3",
 		"@vue/compiler-sfc": "^3.2.20",
@@ -31,6 +31,6 @@
 		"tailwindcss": "^2.2.17",
 		"typescript": "^4.4.4",
 		"vite": "^2.6.7",
-		"vue-tsc": "^0.28.3"
+		"vue-tsc": "^0.28.4"
 	}
 }

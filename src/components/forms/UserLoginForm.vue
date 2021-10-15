@@ -14,9 +14,9 @@ import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 import { useStore } from '__/store'
 import { UPDATE_JWT, UPDATE_CURRENT_USER } from '__/store-constants'
-import UserLoginDataService, { UserLoginRequest } from '__/services/UserLoginDataService'
+import { UserLoginDataService as User, UserLoginRequest } from '__/services'
 import { Input, Button } from '__/components'
-import { EmojiHandWave } from '__/components/emoji'
+import { EmojiHandWave } from '__/emojis'
 
 export default defineComponent({
   name: 'UserLoginForm',
@@ -44,7 +44,7 @@ export default defineComponent({
 
       try {
         // Define await function for user login.
-        const { data } = await UserLoginDataService.login(requestData)
+        const { data } = await User.login(requestData)
         // Successful response from Auth server, or failed with error message.
         if (data.status === 200) {
           // Send success message.

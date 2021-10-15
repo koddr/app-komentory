@@ -21,8 +21,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from '__/store'
-import ProjectDataService, { ProjectResponse } from '__/services/ProjectDataService'
+import { ProjectDataService as Project, ProjectResponse } from '__/services'
 import { ContentLoader } from '__/components'
 
 export default defineComponent({
@@ -35,7 +34,6 @@ export default defineComponent({
   },
   setup: (props) => {
     // Define needed instances.
-    const store = useStore()
     const router = useRouter()
 
     // Define needed variables.
@@ -46,7 +44,7 @@ export default defineComponent({
     // Define function for getting project by ID.
     const getProjectByID = async () => {
       try {
-        const { data: project_response }: ProjectResponse = await ProjectDataService.getByID(props.id)
+        const { data: project_response }: ProjectResponse = await Project.getByID(props.id)
         // Successful response from API server, or failed with warning message.
         if (project_response.status === 200) {
           // Get the project data:

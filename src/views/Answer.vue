@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import AnswerDataService, { AnswerResponse } from '__/services/AnswerDataService'
+import { AnswerDataService as Answer, AnswerResponse } from '__/services'
 import { ContentLoader } from '__/components'
 
 export default defineComponent({
@@ -37,7 +37,7 @@ export default defineComponent({
     // Define function for getting task by alias.
     const getAnswerByAlias = async () => {
       try {
-        const { data: answer_response }: AnswerResponse = await AnswerDataService.getByID(props.id)
+        const { data: answer_response }: AnswerResponse = await Answer.getByID(props.id)
         // Successful response from API server, or failed with warning message.
         if (answer_response.status === 200) {
           // Get the task data:

@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import ProjectDataService, { ProjectsResponse } from '__/services/ProjectDataService'
+import { ProjectDataService, ProjectsResponse } from '__/services'
 import { ContentLoader, AuthorCard } from '__/components'
 
 export default defineComponent({

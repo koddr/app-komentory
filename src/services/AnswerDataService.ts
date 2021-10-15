@@ -37,10 +37,10 @@ class AnswerDataService {
 }
 
 /**
- * @interface AnswersResponse
+ * @interface IAnswersResponse
  * @description Public interface to describe response data for Answer model for many Answers.
  */
-export interface AnswersResponse {
+export interface IAnswersResponse {
   data: {
     msg: string
     status: number
@@ -50,10 +50,10 @@ export interface AnswersResponse {
 }
 
 /**
- * @interface AnswerResponse
+ * @interface IAnswerResponse
  * @description Public interface to describe response data for Answer model for one Answer.
  */
-export interface AnswerResponse {
+export interface IAnswerResponse {
   data: {
     msg: string
     status: number

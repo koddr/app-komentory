@@ -8,19 +8,19 @@ class UserRegisterDataService {
   /**
    * @method register
    * @description Method to register user with given name, email and password.
-   * @param {UserRegisterRequest} data
+   * @param {IUserRegisterRequest} data
    * @returns Promise
    */
-  register(data: UserRegisterRequest): Promise<any> {
+  register(data: IUserRegisterRequest): Promise<any> {
     return authClient.post('/user/create', data)
   }
 }
 
 /**
- * @interface UserRegisterRequest
+ * @interface IUserRegisterRequest
  * @description Public interface to describe request data for UserRegister model.
  */
-export interface UserRegisterRequest {
+export interface IUserRegisterRequest {
   email: string
   password: string
   user_attrs: {

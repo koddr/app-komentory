@@ -11,7 +11,7 @@ import { defineComponent, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import { UPDATE_JWT, UPDATE_CURRENT_USER } from '__/store-constants'
-import TokenDataService, { TokenResponse } from '__/services/TokenDataService'
+import { TokenDataService, TokenResponse } from '__/services'
 import { Sidebar } from '__/components'
 
 export default defineComponent({

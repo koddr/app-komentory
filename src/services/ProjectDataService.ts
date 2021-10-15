@@ -1,5 +1,5 @@
 import { apiClient } from '__/requests'
-import { Task } from '__/services/TaskDataService'
+import { TasksList } from '__/'
 
 /**
  * @class ProjectDataService
@@ -7,12 +7,13 @@ import { Task } from '__/services/TaskDataService'
  */
 class ProjectDataService {
   /**
-   * @method getAll
-   * @description Method to get all projects from API.
+   * @method getByID
+   * @description Method to get one project from API by ID.
+   * @param {String} project_id
    * @returns Promise
    */
-  getAll(): Promise<any> {
-    return apiClient.get('/projects')
+  getByID(project_id: String): Promise<any> {
+    return apiClient.get(`/project/${project_id}`)
   }
 
   /**
@@ -26,38 +27,37 @@ class ProjectDataService {
   }
 
   /**
-   * @method getByID
-   * @description Method to get one project from API by ID.
-   * @param {String} project_id
+   * @method getAll
+   * @description Method to get all projects from API.
    * @returns Promise
    */
-  getByID(project_id: String): Promise<any> {
-    return apiClient.get(`/project/${project_id}`)
+  getAll(): Promise<any> {
+    return apiClient.get('/projects')
   }
 }
 
 /**
- * @interface ProjectsResponse
+ * @interface IProjectResponse
+ * @description Public interface to describe response data for Project model for one project.
+ */
+export interface IProjectResponse {
+  data: {
+    msg: string
+    status: number
+    project: project
+  }
+}
+
+/**
+ * @interface IProjectsResponse
  * @description Public interface to describe response data for Project model for many projects.
  */
-export interface ProjectsResponse {
+export interface IProjectsResponse {
   data: {
     msg: string
     status: number
     count: number
     projects: projects[]
-  }
-}
-
-/**
- * @interface ProjectResponse
- * @description Public interface to describe response data for Project model for one project.
- */
-export interface ProjectResponse {
-  data: {
-    msg: string
-    status: number
-    project: project
   }
 }
 
@@ -82,7 +82,7 @@ interface project {
     picture: string
   }
   tasks_count: number
-  tasks: Task[]
+  tasks: TasksList[]
 }
 
 // Private interface to describe Projects model.

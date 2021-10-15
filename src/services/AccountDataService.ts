@@ -8,27 +8,27 @@ class AccountDataService {
   /**
    * @method activate
    * @description Method to activate user account.
-   * @param {AccountActivateRequest} data
+   * @param {IAccountActivateRequest} data
    * @returns Promise
    */
-  activate(data: AccountActivateRequest): Promise<any> {
+  activate(data: IAccountActivateRequest): Promise<any> {
     return authClient.patch(`/account/activate`, data)
   }
 }
 
 /**
- * @interface AccountActivateRequest
+ * @interface IAccountActivateRequest
  * @description Public interface to describe request data for AccountActivate model.
  */
-export interface AccountActivateRequest {
+export interface IAccountActivateRequest {
   code: string
 }
 
 /**
- * @interface AccountActivateResponse
+ * @interface IAccountActivateResponse
  * @description Public interface to describe request data for AccountActivate model.
  */
-export interface AccountActivateResponse {
+export interface IAccountActivateResponse {
   data: {
     msg: string
     status: number

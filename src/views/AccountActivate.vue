@@ -5,8 +5,13 @@
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import AccountDataService, { AccountActivateRequest, AccountActivateResponse } from '__/services/AccountDataService'
-import PostmarkService, { PostmarkRequest } from '__/services/PostmarkService'
+import {
+  AccountDataService as Account,
+  AccountActivateRequest as ActivateRequest,
+  AccountActivateResponse as ActivateResponse,
+  PostmarkDataService as Postmark,
+  PostmarkRequest,
+} from '__/services'
 
 export default defineComponent({
   name: 'AccountActivate',
@@ -26,13 +31,13 @@ export default defineComponent({
     // Define async function for sign out.
     const accountActivate = async () => {
       // Define variables.
-      let requestData: AccountActivateRequest = {
+      let requestData: ActivateRequest = {
         code: props.code,
       }
 
       try {
         // Define await function for activate account.
-        const { data: activate_response }: AccountActivateResponse = await AccountDataService.activate(requestData)
+        const { data: activate_response }: ActivateResponse = await Account.activate(requestData)
         // Successful response from API server.
         if (activate_response.status === 200) {
           // Define data for Postmark request.
@@ -44,7 +49,7 @@ export default defineComponent({
             },
           }
           // Define await function for send email.
-          const { status } = await PostmarkService.send(postmarkData)
+          const { status } = await Postmark.send(postmarkData)
           // Successful response from Postmark server and go to sign in page, or failed with error message.
           if (status === 200) {
             router.replace({ name: 'login' }) // 200: replace path to User Login page

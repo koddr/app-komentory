@@ -8,28 +8,28 @@ class UserLoginDataService {
   /**
    * @method login
    * @description Method to authenticate user by email and password.
-   * @param {UserLoginRequest} data
+   * @param {IUserLoginRequest} data
    * @returns Promise
    */
-  login(data: UserLoginRequest): Promise<any> {
+  login(data: IUserLoginRequest): Promise<any> {
     return authClient.post('/user/login', data)
   }
 }
 
 /**
- * @interface UserLoginRequest
+ * @interface IUserLoginRequest
  * @description Public interface to describe request data for UserLogin model.
  */
-export interface UserLoginRequest {
+export interface IUserLoginRequest {
   email: string
   password: string
 }
 
 /**
- * @interface UserLoginResponse
+ * @interface IUserLoginResponse
  * @description Public interface to describe response data for UserLogin model.
  */
-export interface UserLoginResponse {
+export interface IUserLoginResponse {
   data: {
     msg: string
     status: number
@@ -40,15 +40,18 @@ export interface UserLoginResponse {
     user: {
       id: string
       email: string
-      username: string
-      user_status: number
-      user_attrs: {
-        first_name: string
-        last_name: string
-        about_me: string
-        picture: string
-        website_url: string
-        abilities: string[]
+      status: number
+      first_name: string
+      last_name: string
+      about_me: string
+      picture: string
+      website_url: string
+      abilities: string[]
+      settings: {
+        email_subscriptions: {
+          transactional: boolean
+          marketing: boolean
+        }
       }
     }
   }

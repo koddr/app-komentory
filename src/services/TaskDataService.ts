@@ -27,35 +27,51 @@ class TaskDataService {
 }
 
 /**
- * @interface TasksResponse
+ * @interface ITaskResponse
+ * @description Public interface to describe response data for Task model for one task.
+ */
+export interface ITaskResponse {
+  data: {
+    msg: string
+    status: number
+    task: task
+  }
+}
+
+/**
+ * @interface ITasksResponse
  * @description Public interface to describe response data for Task model for many Tasks.
  */
-export interface TasksResponse {
+export interface ITasksResponse {
   data: {
     msg: string
     status: number
     count: number
-    tasks: Task[]
+    tasks: task[]
   }
 }
 
 /**
- * @interface TaskResponse
- * @description Public interface to describe response data for Task model for one task.
+ * @interface ITasksList
+ * @description Public interface to describe Tasks list.
  */
-export interface TaskResponse {
-  data: {
-    msg: string
-    status: number
-    task: Task
+export interface ITasksList {
+  id: string
+  created_at: Date
+  updated_at: Date
+  attrs: {
+    name: string
+    description: string
+    steps: step[]
+    documents: string[]
+    images: string[]
+    links: string[]
   }
+  answers_count: number
 }
 
-/**
- * @interface Task
- * @description Public interface to describe Task model.
- */
-export interface Task {
+// Private interface to describe Task model.
+interface task {
   id: string
   created_at: Date
   updated_at: Date
@@ -72,26 +88,7 @@ export interface Task {
   answers_count: number
 }
 
-/**
- * @interface Tasks
- * @description Public interface to describe Tasks model.
- */
-export interface Tasks {
-  id: string
-  created_at: Date
-  updated_at: Date
-  attrs: {
-    name: string
-    description: string
-    steps: step[]
-    documents: string[]
-    images: string[]
-    links: string[]
-  }
-  answers_count: number
-}
-
-// Private interface to describe Steps field in Task model.
+// Private interface to describe steps field in Task model.
 interface step {
   position: number
   description: string

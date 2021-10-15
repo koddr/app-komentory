@@ -18,10 +18,10 @@ class TokenDataService {
 }
 
 /**
- * @interface TokenResponse
+ * @interface ITokenResponse
  * @description Public interface to describe response data for Token model.
  */
-export interface TokenResponse {
+export interface ITokenResponse {
   data: {
     msg: string
     status: number
@@ -32,9 +32,19 @@ export interface TokenResponse {
     user: {
       id: string
       email: string
-      username: string
-      user_status: number
-      user_attrs: object
+      status: number
+      first_name: string
+      last_name: string
+      about_me: string
+      picture: string
+      website_url: string
+      abilities: string[]
+      settings: {
+        email_subscriptions: {
+          transactional: boolean
+          marketing: boolean
+        }
+      }
     }
   }
 }

@@ -8,8 +8,8 @@ import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 import { useStore } from '__/store'
 import { REMOVE_CURRENT_STATE } from '__/store-constants'
-import UserLogoutDataService from '__/services/UserLogoutDataService'
-import { EmojiHandClap } from '__/components/emoji'
+import { UserLogoutDataService } from '__/services'
+import { EmojiHandClap } from '__/emojis'
 
 export default defineComponent({
   name: 'UserLogout',

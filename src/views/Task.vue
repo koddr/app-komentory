@@ -25,7 +25,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import TaskDataService, { TaskResponse } from '__/services/TaskDataService'
+import { TaskDataService as Task, TaskResponse } from '__/services'
 import { ContentLoader } from '__/components'
 
 export default defineComponent({
@@ -48,7 +48,7 @@ export default defineComponent({
     // Define function for getting task by ID.
     const getTaskByID = async () => {
       try {
-        const { data: task_response }: TaskResponse = await TaskDataService.getByID(props.id)
+        const { data: task_response }: TaskResponse = await Task.getByID(props.id)
         // Successful response from API server, or failed with warning message.
         if (task_response.status === 200) {
           // Get the task data:
