@@ -1,11 +1,23 @@
 <template>
   <p>
-    <Input v-model="email" inputType="email" placeholder="Enter email address" tabIndex="1" isRequired />
+    <Input
+      v-model="email"
+      :inputType="'email'"
+      :placeholder="'Enter your email address'"
+      :tabIndex="1"
+      :isRequired="true"
+    />
   </p>
   <p>
-    <Input v-model="password" inputType="password" placeholder="Enter password" tabIndex="2" isRequired />
+    <Input
+      v-model="password"
+      :inputType="'password'"
+      :placeholder="'Enter password'"
+      :tabIndex="2"
+      :isRequired="true"
+    />
   </p>
-  <p><Button @click="login" tabIndex="3">Login</Button></p>
+  <p><Button @click="login" :tabIndex="3">Let me in</Button></p>
 </template>
 
 <script lang="ts">

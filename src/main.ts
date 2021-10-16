@@ -37,14 +37,11 @@ const toastOptions: PluginOptions = {
 }
 
 // Set middleware before each route.
-router.beforeEach((to: any) => {
+router.beforeEach((to) => {
   // Checking router meta and user authentication.
   if (to.meta.requiresAuth && !localStorage.getItem('_komentory')) {
     // If not, redirect to User Login page.
-    return {
-      path: '/login',
-      query: { redirect: to.fullPath }, // save the location we were at to come back later
-    }
+    return { name: 'login', query: { redirect: to.fullPath } }
   }
 })
 

@@ -1,15 +1,33 @@
 <template>
   <p>
-    <Input v-model="first_name" inputType="text" placeholder="Enter your first name" tabIndex="1" isRequired />
+    <Input
+      v-model="first_name"
+      :inputType="'text'"
+      :placeholder="'Enter your first name'"
+      :tabIndex="1"
+      :isRequired="true"
+    />
   </p>
   <p>
-    <Input v-model="last_name" inputType="text" placeholder="Enter your last name" tabIndex="2" />
+    <Input v-model="last_name" :inputType="'text'" :placeholder="'Enter your last name'" :tabIndex="2" />
   </p>
   <p>
-    <Input v-model="email" inputType="email" placeholder="Enter email address" tabIndex="3" isRequired />
+    <Input
+      v-model="email"
+      :inputType="'email'"
+      :placeholder="'Enter your email address'"
+      :tabIndex="3"
+      :isRequired="true"
+    />
   </p>
   <p>
-    <Input v-model="password" inputType="password" placeholder="Enter password" tabIndex="4" isRequired />
+    <Input
+      v-model="password"
+      :inputType="'password'"
+      :placeholder="'Enter password'"
+      :tabIndex="4"
+      :isRequired="true"
+    />
   </p>
   <SwitchGroup>
     <div class="flex items-center">
@@ -23,11 +41,12 @@
           h-7
           transition-colors
           rounded-full
-          w-14
+          w-16
+          sm:w-11
           focus:outline-none
           focus:ring-2 focus:ring-offset-2 focus:ring-blue-600
         "
-        tabindex="5"
+        :tabindex="5"
       >
         <span
           :class="marketing_email_subscription ? 'translate-x-6' : 'translate-x-1'"
@@ -37,7 +56,7 @@
       <SwitchLabel class="ml-4">Subscribe to the marketing emails from Komentory</SwitchLabel>
     </div>
   </SwitchGroup>
-  <p><Button @click="register" tabIndex="6">Register</Button></p>
+  <p><Button @click="register" :tabIndex="6">Register</Button></p>
 </template>
 
 <script lang="ts">

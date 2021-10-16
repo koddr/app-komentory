@@ -26,6 +26,7 @@ export default defineComponent({
 
     // Define needed variables.
     const { access_token, expire } = store.state.jwt
+    const { name: current_route } = router.currentRoute.value // get current route name
 
     // Define function for renew token.
     const tokenRenew = async () => {
@@ -38,7 +39,8 @@ export default defineComponent({
           store.commit(UPDATE_CURRENT_USER, token_response.user) // add user data to store
         } else if (token_response.status === 401) {
           // Failed response from Auth server.
-          router.push({ name: 'login' }) // 401: push User Login page
+          // Skip redirect, if current route name is 'register'.
+          if (current_route !== 'register') router.push({ name: 'login' }) // 401: push User Login page
         } else console.warn(token_response.msg) // or show error message
       } catch (error: any) {
         console.error(error)

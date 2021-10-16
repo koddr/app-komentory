@@ -1,6 +1,6 @@
 <template>
   <input
-    class="px-4 py-3 border-2 rounded-xl"
+    class="px-4 py-3 border-2 rounded-lg"
     @input="$emit('update:modelValue', handleInputChange($event))"
     :type="inputType"
     :tabindex="tabIndex"
@@ -17,7 +17,7 @@ export default defineComponent({
   name: 'Input',
   props: {
     inputType: { type: String, required: true },
-    tabIndex: { type: String, required: true },
+    tabIndex: { type: Number, required: true },
     placeholder: { type: String, default: '' },
     modelValue: { type: String, default: '' },
     isRequired: { type: Boolean, default: false },
