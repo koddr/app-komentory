@@ -8,11 +8,11 @@ class UserRegisterDataService {
   /**
    * @method register
    * @description Method to register user with given name, email and password.
-   * @param {IUserRegisterRequest} data
+   * @param {IUserRegisterRequest} user_data
    * @returns Promise
    */
-  register(data: IUserRegisterRequest): Promise<any> {
-    return authClient.post('/user/create', data)
+  register(user_data: IUserRegisterRequest): Promise<any> {
+    return authClient.post('/user/create', user_data)
   }
 }
 

@@ -43,6 +43,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue'
 import {
   UserRegisterDataService as User,
@@ -51,6 +52,7 @@ import {
   PostmarkRequest,
 } from '__/services'
 import { Input, Button } from '__/components'
+import { EmojiOtherParty } from '__/emojis'
 
 export default defineComponent({
   name: 'UserRegisterForm',
@@ -64,6 +66,7 @@ export default defineComponent({
   setup: () => {
     // Define needed instances.
     const router = useRouter()
+    const toast = useToast()
 
     // Define needed variables.
     const email = ref('')
@@ -103,6 +106,10 @@ export default defineComponent({
         const { data: user_register } = await User.register(requestData)
         // Successful response from API server.
         if (user_register.status === 201) {
+          // Send success message.
+          toast.success(`Activation code was sent to ${email.value}. Please check your email!`, {
+            icon: EmojiOtherParty,
+          })
           // Define await function for send email.
           const { status: postmark_status } = await Postmark.send(postmarkData)
           // Successful response from Postmark server and go to user login page, or failed with error message.

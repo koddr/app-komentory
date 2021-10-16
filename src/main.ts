@@ -37,7 +37,7 @@ const toastOptions: PluginOptions = {
 }
 
 // Set middleware before each route.
-router.beforeEach((to) => {
+router.beforeEach((to: any) => {
   // Checking router meta and user authentication.
   if (to.meta.requiresAuth && !localStorage.getItem('_komentory')) {
     // If not, redirect to User Login page.

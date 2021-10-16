@@ -56,3 +56,11 @@ export type UserLoginResponse = import('__/services/UserLoginDataService').IUser
  * Exporting User Logout data service & interfaces.
  */
 export { default as UserLogoutDataService } from '__/services/UserLogoutDataService'
+
+/**
+ * Exporting User Update data service & interfaces.
+ */
+export { default as UserUpdateDataService } from '__/services/UserUpdateDataService'
+export type UserAttrsRequest = import('__/services/UserUpdateDataService').IUserAttrsRequest
+export type UserSettingsRequest = import('__/services/UserUpdateDataService').IUserSettingsRequest
+export type UserPasswordRequest = import('__/services/UserUpdateDataService').IUserPasswordRequest

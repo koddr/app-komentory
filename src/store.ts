@@ -11,13 +11,19 @@ export interface State {
   current_user: {
     id: string
     email: string
-    user_status: number
+    status: number
     first_name: string
     last_name: string
     about_me: string
     picture: string
     website_url: string
     abilities: string[]
+    settings: {
+      email_subscriptions: {
+        transactional: boolean
+        marketing: boolean
+      }
+    }
   }
 }
 
@@ -44,13 +50,19 @@ export const store = createStore<State>({
     current_user: {
       id: '',
       email: '',
-      user_status: 0,
+      status: 0,
       first_name: '',
       last_name: '',
       about_me: '',
       picture: '',
       website_url: '',
       abilities: [],
+      settings: {
+        email_subscriptions: {
+          transactional: true,
+          marketing: true,
+        },
+      },
     },
   },
   getters: {
@@ -58,7 +70,7 @@ export const store = createStore<State>({
      * Getter for checking user authentication.
      */
     isUserLoggedIn(state) {
-      return state.current_user.id === '' // always return true, if user is NOT logged in
+      return state.current_user.id === '' // return true, if user is NOT logged in
     },
   },
   mutations: {
@@ -78,13 +90,19 @@ export const store = createStore<State>({
       state.current_user = {
         id: user.id,
         email: user.email,
-        user_status: user.user_status,
-        first_name: user.user_attrs.first_name,
-        last_name: user.user_attrs.last_name,
-        about_me: user.user_attrs.about_me,
-        picture: user.user_attrs.picture,
-        website_url: user.user_attrs.website_url,
-        abilities: [...user.user_attrs.abilities],
+        status: user.status,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        about_me: user.about_me,
+        picture: user.picture,
+        website_url: user.website_url,
+        abilities: [...user.abilities],
+        settings: {
+          email_subscriptions: {
+            transactional: user.settings.email_subscriptions.transactional,
+            marketing: user.settings.email_subscriptions.marketing,
+          },
+        },
       }
     },
 
@@ -101,13 +119,19 @@ export const store = createStore<State>({
       state.current_user = {
         id: '',
         email: '',
-        user_status: 0,
+        status: 0,
         first_name: '',
         last_name: '',
         about_me: '',
         picture: '',
         website_url: '',
         abilities: [],
+        settings: {
+          email_subscriptions: {
+            transactional: true,
+            marketing: true,
+          },
+        },
       }
     },
   },

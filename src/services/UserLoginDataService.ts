@@ -8,11 +8,11 @@ class UserLoginDataService {
   /**
    * @method login
    * @description Method to authenticate user by email and password.
-   * @param {IUserLoginRequest} data
+   * @param {IUserLoginRequest} user_data
    * @returns Promise
    */
-  login(data: IUserLoginRequest): Promise<any> {
-    return authClient.post('/user/login', data)
+  login(user_data: IUserLoginRequest): Promise<any> {
+    return authClient.post('/user/login', user_data)
   }
 }
 
