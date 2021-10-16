@@ -41,14 +41,12 @@ class UserUpdateDataService {
  * @description Public interface to describe request data for UserAttrs model.
  */
 export interface IUserAttrsRequest {
-  user_attrs: {
-    first_name: string
-    last_name: string
-    about_me: string
-    picture: string
-    website_url: string
-    abilities: string[]
-  }
+  first_name: string
+  last_name: string
+  about_me: string
+  picture: string
+  website_url: string
+  abilities: string[]
 }
 
 /**
@@ -56,11 +54,9 @@ export interface IUserAttrsRequest {
  * @description Public interface to describe request data for UserSettings model.
  */
 export interface IUserSettingsRequest {
-  user_settings: {
-    email_subscriptions: {
-      transactional: boolean
-      marketing: boolean
-    }
+  email_subscriptions: {
+    transactional: boolean
+    marketing: boolean
   }
 }
 
