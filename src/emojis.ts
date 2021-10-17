@@ -14,8 +14,10 @@ export { default as EmojiWomanDoesNotKnow } from '__/components/emoji/woman/Does
 /**
  * Exporting other Emoji components.
  */
+export { default as EmojiOtherBulb } from '__/components/emoji/other/Bulb.vue'
 export { default as EmojiOtherFire } from '__/components/emoji/other/Fire.vue'
 export { default as EmojiOtherGift } from '__/components/emoji/other/Gift.vue'
 export { default as EmojiOtherParty } from '__/components/emoji/other/Party.vue'
+export { default as EmojiOtherLockWithKey } from '__/components/emoji/other/LockWithKey.vue'
 export { default as EmojiOtherRobot } from '__/components/emoji/other/Robot.vue'
 export { default as EmojiOtherUnderConstruction } from '__/components/emoji/other/UnderConstruction.vue'

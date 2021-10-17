@@ -10,6 +10,7 @@ import 'vue-toastification/dist/index.css'
 
 // Import App styles.
 import '__/assets/css/style.css'
+import '__/assets/css/heroicons.css'
 import '__/assets/css/toast.css'
 
 // Import the App component.

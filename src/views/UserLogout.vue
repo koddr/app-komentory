@@ -1,7 +1,3 @@
-<template>
-  <p>Successful sign out</p>
-</template>
-
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 import { useRouter } from 'vue-router'

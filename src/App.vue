@@ -1,9 +1,5 @@
 <template>
-  <div class="container py-2 px-2">
-    <Sidebar />
-    <hr />
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script lang="ts">
@@ -12,13 +8,9 @@ import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import { UPDATE_JWT, UPDATE_CURRENT_USER } from '__/store-constants'
 import { TokenDataService as Token, TokenResponse } from '__/services'
-import { Sidebar } from '__/components'
 
 export default defineComponent({
   name: 'App',
-  components: {
-    Sidebar,
-  },
   setup: () => {
     // Define needed instances.
     const store = useStore()

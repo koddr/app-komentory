@@ -1,11 +1,12 @@
 module.exports = {
   mode: 'jit',
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  darkMode: 'class', // or 'media'
+  darkMode: 'media', // or 'class'
   theme: {
     fontFamily: {
       sans: ['Inter var', ...require('tailwindcss/defaultConfig').theme.fontFamily.sans],
     },
+
     extend: {
       colors: {
         main: {
@@ -13,9 +14,12 @@ module.exports = {
           light: '#80D5AA',
           DEFAULT: '#00AB55',
           dark: '#008743',
+          darker: '#006231',
         },
         secondary: {
-          DEFAULT: '#F6F4EF',
+          light: '#F6F4EF',
+          DEFAULT: '#E3DDCF',
+          dark: '#3E3E41',
         },
       },
     },

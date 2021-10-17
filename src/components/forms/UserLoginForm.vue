@@ -1,5 +1,5 @@
 <template>
-  <p>
+  <div class="my-2">
     <Input
       v-model="email"
       :inputType="'email'"
@@ -7,8 +7,8 @@
       :tabIndex="1"
       :isRequired="true"
     />
-  </p>
-  <p>
+  </div>
+  <div class="my-2">
     <Input
       v-model="password"
       :inputType="'password'"
@@ -16,8 +16,10 @@
       :tabIndex="2"
       :isRequired="true"
     />
-  </p>
-  <p><Button @click="login" :tabIndex="3">Let me in</Button></p>
+  </div>
+  <div class="my-4">
+    <Button @click="login" :tabIndex="3" class="w-full">Let me in!</Button>
+  </div>
 </template>
 
 <script lang="ts">

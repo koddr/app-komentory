@@ -8,6 +8,7 @@ export { default as ContentLoader } from '__/components/loaders/ContentLoader.vu
  */
 export { default as AuthorCard } from '__/components/helpers/AuthorCard.vue'
 export { default as DateFormatted } from '__/components/helpers/DateFormatted.vue'
+export { default as CurrentUserAvatar } from '__/components/helpers/CurrentUserAvatar.vue'
 
 /**
  * Exporting Navigation components.

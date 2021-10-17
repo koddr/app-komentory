@@ -17,29 +17,11 @@
         ease-out
         border-2 border-main
         rounded-lg
-        group-hover:text-white group-hover:bg-main-dark
+        group-hover:text-white group-hover:bg-main
       "
       :tabindex="tabIndex"
     >
       <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg"></span>
-      <span
-        class="
-          absolute
-          left-0
-          w-48
-          h-48
-          -ml-2
-          transition-all
-          duration-300
-          origin-top-right
-          -rotate-90
-          -translate-x-full
-          translate-y-12
-          bg-main
-          group-hover:-rotate-180
-          ease
-        "
-      ></span>
       <span class="relative"><slot>Simple button</slot></span>
     </span>
     <span

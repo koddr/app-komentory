@@ -1,5 +1,5 @@
 <template>
-  <p>
+  <div class="my-2">
     <Input
       v-model="first_name"
       :inputType="'text'"
@@ -7,11 +7,11 @@
       :tabIndex="1"
       :isRequired="true"
     />
-  </p>
-  <p>
+  </div>
+  <div class="my-2">
     <Input v-model="last_name" :inputType="'text'" :placeholder="'Enter your last name'" :tabIndex="2" />
-  </p>
-  <p>
+  </div>
+  <div class="my-2">
     <Input
       v-model="email"
       :inputType="'email'"
@@ -19,8 +19,8 @@
       :tabIndex="3"
       :isRequired="true"
     />
-  </p>
-  <p>
+  </div>
+  <div class="my-2">
     <Input
       v-model="password"
       :inputType="'password'"
@@ -28,35 +28,38 @@
       :tabIndex="4"
       :isRequired="true"
     />
-  </p>
-  <SwitchGroup>
-    <div class="flex items-center">
-      <Switch
-        v-model="marketing_email_subscription"
-        :class="marketing_email_subscription ? 'bg-main' : 'bg-main-lighter'"
-        class="
-          relative
-          inline-flex
-          items-center
-          h-7
-          transition-colors
-          rounded-full
-          w-16
-          sm:w-11
-          focus:outline-none
-          focus:ring-2 focus:ring-offset-2 focus:ring-blue-600
-        "
-        :tabindex="5"
-      >
-        <span
-          :class="marketing_email_subscription ? 'translate-x-6' : 'translate-x-1'"
-          class="inline-block w-4 h-4 transition-transform transform bg-white rounded-full"
-        />
-      </Switch>
-      <SwitchLabel class="ml-4">Subscribe to the marketing emails from Komentory</SwitchLabel>
-    </div>
-  </SwitchGroup>
-  <p><Button @click="register" :tabIndex="6">Register</Button></p>
+  </div>
+  <div class="my-4">
+    <SwitchGroup>
+      <div class="flex items-center">
+        <Switch
+          v-model="marketing_email_subscription"
+          :class="marketing_email_subscription ? 'bg-main' : 'bg-main-lighter'"
+          class="
+            relative
+            inline-flex
+            items-center
+            h-7
+            transition-colors
+            rounded-full
+            w-10
+            focus:outline-none
+            focus:ring-2 focus:ring-offset-2 focus:ring-blue-600
+          "
+          :tabindex="5"
+        >
+          <span
+            :class="marketing_email_subscription ? 'translate-x-5' : 'translate-x-1'"
+            class="inline-block w-4 h-4 transition-transform transform bg-white rounded-full"
+          />
+        </Switch>
+        <SwitchLabel class="ml-2 text-sm">Subscribe to the marketing emails</SwitchLabel>
+      </div>
+    </SwitchGroup>
+  </div>
+  <div class="my-4">
+    <Button @click="register" :tabIndex="6" class="w-full">And now register me!</Button>
+  </div>
 </template>
 
 <script lang="ts">

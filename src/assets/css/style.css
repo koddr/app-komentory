@@ -7,16 +7,20 @@
   h1,
   h2,
   h3 {
-    @apply text-gray-700;
+    @apply text-secondary-dark;
+    @apply dark:text-secondary;
   }
   body {
     @apply font-normal;
     @apply bg-secondary;
+    @apply text-secondary-dark;
+    @apply dark:bg-secondary-dark;
+    @apply dark:text-secondary;
   }
   h1 {
     @apply font-medium;
     @apply text-3xl;
-    @apply mb-2;
+    @apply leading-none;
   }
   h2 {
     @apply text-2xl;
