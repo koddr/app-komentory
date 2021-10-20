@@ -69,8 +69,8 @@ export const store = createStore<State>({
     /**
      * Getter for checking user authentication.
      */
-    isUserLoggedIn(state) {
-      return state.current_user.id === '' // return true, if user is NOT logged in
+    isUserLoggedOut(state) {
+      return state.current_user.id === '' // return true, if user is logged out
     },
   },
   mutations: {

@@ -1,10 +1,6 @@
 <template>
   <img
-    :src="
-      $store.state.current_user.picture
-        ? $store.state.current_user.picture
-        : 'https://cdn.komentory.com/media/user/default-picture.svg'
-    "
+    :src="current_user.picture ? current_user.picture : 'https://cdn.komentory.com/media/user/default-picture.svg'"
     class="w-12 h-12 mx-auto border-2 border-main-light dark:border-secondary rounded-full"
     alt="user picture"
   />
@@ -12,8 +8,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { mapState } from 'vuex'
 
 export default defineComponent({
   name: 'CurrentUserAvatar',
+  computed: {
+    ...mapState(['current_user']),
+  },
 })
 </script>

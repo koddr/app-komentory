@@ -1,5 +1,5 @@
 import { apiClient } from '__/requests'
-import { TasksList } from '__/'
+import { TasksList } from '__/services'
 
 /**
  * @class ProjectDataService
