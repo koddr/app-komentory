@@ -14,7 +14,7 @@
     @apply font-normal;
     @apply bg-secondary;
     @apply text-secondary-dark;
-    @apply dark:bg-secondary-dark;
+    @apply dark:bg-secondary-darker;
     @apply dark:text-secondary;
   }
   h1 {
@@ -36,8 +36,9 @@
     @apply mb-2;
   }
   a {
+    @apply text-main;
     @apply border-b;
-    @apply border-main;
+    @apply border-main-light;
   }
   a:hover {
     @apply border-b-0;

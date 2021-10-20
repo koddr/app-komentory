@@ -1,10 +1,10 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-12">
-    <div>
+  <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
+    <div class="xl:col-start-7">
       <Sidebar />
     </div>
-    <div class="col-span-11">
-      <div class="py-4 px-2 sm:py-6 sm:px-6 border-b">
+    <div class="sm:col-span-11 xl:dark:border-r xl:dark:border-secondary">
+      <div class="py-4 px-2 sm:py-6 sm:px-6 border-b border-secondary">
         <h1>Projects</h1>
       </div>
       <div class="py-4 px-2 sm:py-6 sm:px-6">

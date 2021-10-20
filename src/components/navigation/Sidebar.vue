@@ -5,11 +5,9 @@
         flex
         justify-between
         bg-main
-        dark:bg-secondary-dark
-        dark:border-b dark:border-secondary
-        sm:dark:border-r sm:dark:border-b-0
-        sm:flex-col
-        sm:h-screen
+        dark:bg-secondary-darker dark:border-b dark:border-secondary
+        sm:dark:border-r sm:dark:border-b-0 sm:flex-col sm:h-screen
+        xl:dark:border-l
         w-full
       "
     >
@@ -29,7 +27,7 @@
           </li>
           <li class="py-2">
             <router-link :to="{ name: 'projects' }">
-              <NewspaperIcon class="h-10 w-10 mx-auto text-white dark:text-secondary heroicon-stroke-1" />
+              <NewspaperIcon class="h-10 w-10 mx-auto text-white dark:text-secondary heroicon-stroke-0.9" />
             </router-link>
           </li>
           <li class="py-2">
@@ -41,7 +39,7 @@
       </div>
       <div class="mb-4">
         <router-link :to="{ name: 'logout' }">
-          <LogoutIcon class="h-8 w-8 mx-auto text-white dark:text-secondary heroicon-stroke-1.2" />
+          <LogoutIcon class="h-8 w-8 mx-auto text-white dark:text-secondary heroicon-stroke-1.1" />
         </router-link>
       </div>
     </nav>

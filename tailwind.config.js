@@ -6,8 +6,13 @@ module.exports = {
     fontFamily: {
       sans: ['Inter var', ...require('tailwindcss/defaultConfig').theme.fontFamily.sans],
     },
-
     extend: {
+      gridTemplateColumns: {
+        24: 'repeat(24, minmax(0, 1fr))',
+      },
+      gridColumn: {
+        'span-23': 'span 23 / span 23',
+      },
       colors: {
         main: {
           lighter: '#BFEAD4',
@@ -17,9 +22,11 @@ module.exports = {
           darker: '#006231',
         },
         secondary: {
+          lighter: '#FDFCFB',
           light: '#F6F4EF',
           DEFAULT: '#E3DDCF',
-          dark: '#3E3E41',
+          dark: '#626268',
+          darker: '#3E3E41',
         },
       },
     },

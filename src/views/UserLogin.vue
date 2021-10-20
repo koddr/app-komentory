@@ -1,7 +1,18 @@
 <template>
   <div class="container px-4 sm:px-0">
     <div class="grid items-center justify-center h-screen sm:w-screen">
-      <div class="py-8 px-8 sm:py-10 sm:px-14 mx-auto bg-white shadow-md rounded-3xl">
+      <div
+        class="
+          py-8
+          px-8
+          sm:py-10 sm:px-14
+          mx-auto
+          bg-white
+          shadow-md
+          rounded-3xl
+          dark:bg-secondary-darker dark:border dark:border-secondary dark:shadow-none
+        "
+      >
         <h1 class="mb-8 text-center text-main"><EmojiOtherLockWithKey /> User Login</h1>
         <UserLoginForm />
         <hr class="mt-8 mb-6" />
