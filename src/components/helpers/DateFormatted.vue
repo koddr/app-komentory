@@ -1,14 +1,12 @@
 <template>
-  <div class="mt-1 mb-1">
-    <div class="inline-flex items-center space-x-2 text-sm text-gray-400">
-      <div class="inline-flex items-center space-x-1">
-        <CalendarIcon class="h-5 w-5" />
-        <div>{{ dateFormatted }}</div>
-      </div>
-      <div v-if="withTime" class="inline-flex items-center space-x-1">
-        <ClockIcon class="h-5 w-5" />
-        <div>{{ timeFormatted }}</div>
-      </div>
+  <div class="inline-flex items-center space-x-2">
+    <div class="inline-flex items-center space-x-1">
+      <CalendarIcon class="h-6 w-6" />
+      <div>{{ dateFormatted }}</div>
+    </div>
+    <div v-if="withTime" class="inline-flex items-center space-x-1">
+      <ClockIcon class="h-6 w-6" />
+      <div>{{ timeFormatted }}</div>
     </div>
   </div>
 </template>
@@ -25,7 +23,7 @@ export default defineComponent({
   },
   props: {
     date: { type: String, required: true },
-    locale: { type: String, required: true },
+    locale: { type: String, default: 'en' },
     withTime: { type: Boolean, default: false },
   },
   setup: (props) => {
@@ -40,7 +38,10 @@ export default defineComponent({
     })
 
     // Formatted time.
-    const timeFormatted = `${date.getHours()}:${date.getMinutes()}`
+    const timeFormatted = date.toLocaleTimeString(props.locale, {
+      hour: '2-digit',
+      minute: '2-digit',
+    })
 
     // Return instances and lifecycle hooks.
     return { dateFormatted, timeFormatted }

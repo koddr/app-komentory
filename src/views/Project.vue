@@ -17,7 +17,7 @@
           <ContentLoader />
         </div>
         <div v-else>
-          <p>{{ project.created_at }}</p>
+          <p><DateFormatted :date="project.created_at" :withTime="true" /></p>
           <p>Author: {{ author.first_name }}</p>
           <h2>Tasks: {{ project.tasks_count }}</h2>
           <div v-for="task in tasks" :key="task.id" class="mt-2 mb-2 py-2 px-3 border rounded">
@@ -35,7 +35,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ArrowLeftIcon } from '@heroicons/vue/outline'
 import { ProjectDataService as Project, ProjectResponse } from '__/services'
-import { ContentLoader, Sidebar } from '__/components'
+import { ContentLoader, Sidebar, DateFormatted } from '__/components'
 
 export default defineComponent({
   name: 'Project',
@@ -46,6 +46,7 @@ export default defineComponent({
     ContentLoader,
     Sidebar,
     ArrowLeftIcon,
+    DateFormatted,
   },
   setup: (props) => {
     // Define needed instances.
