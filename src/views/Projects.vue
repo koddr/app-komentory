@@ -1,9 +1,9 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
-    <div class="xl:col-start-7">
+  <div class="grid grid-cols-1 sm:grid-cols-12 2xl:grid-cols-24">
+    <div class="2xl:col-start-5">
       <Sidebar />
     </div>
-    <div class="sm:col-span-11 xl:dark:border-r xl:dark:border-secondary">
+    <div class="sm:col-span-11 2xl:col-span-15 2xl:dark:border-r 2xl:dark:border-secondary">
       <div class="py-4 px-2 sm:py-6 sm:px-6 border-b border-secondary">
         <h1>Projects</h1>
       </div>

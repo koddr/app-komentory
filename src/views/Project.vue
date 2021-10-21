@@ -1,9 +1,9 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
-    <div>
+  <div class="grid grid-cols-1 sm:grid-cols-12 2xl:grid-cols-24">
+    <div class="2xl:col-start-5">
       <Sidebar />
     </div>
-    <div class="sm:col-span-11 xl:col-span-23">
+    <div class="sm:col-span-11 2xl:col-span-15 2xl:dark:border-r 2xl:dark:border-secondary">
       <div class="border-b py-4 px-2 sm:py-6 sm:px-6">
         <div class="inline-flex items-center space-x-4">
           <router-link :to="{ name: 'projects' }" class="border-0 hover:text-main-light">
@@ -20,9 +20,21 @@
           <p><DateFormatted :date="project.created_at" :withTime="true" /></p>
           <p>Author: {{ author.first_name }}</p>
           <h2>Tasks: {{ project.tasks_count }}</h2>
-          <div v-for="task in tasks" :key="task.id" class="mt-2 mb-2 py-2 px-3 border rounded">
-            <router-link :to="{ name: 'task-details', params: { id: task.id } }"> {{ task.name }}</router-link> &mdash;
-            {{ task.description }}
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div v-for="(task, index) in tasks" :key="task.id" class="py-6 px-6 border rounded-xl">
+              <h3>Task #{{ index + 1 }}</h3>
+              <strong>{{ task.name }}</strong>
+              {{ task.description }}
+              <div class="mt-6">
+                <Button
+                  @click="() => $router.push({ name: 'task-details', params: { id: task.id } })"
+                  :tabIndex="index + 1"
+                  class="w-full"
+                >
+                  Go to task
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -35,7 +47,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ArrowLeftIcon } from '@heroicons/vue/outline'
 import { ProjectDataService as Project, ProjectResponse } from '__/services'
-import { ContentLoader, Sidebar, DateFormatted } from '__/components'
+import { ContentLoader, Sidebar, DateFormatted, Button } from '__/components'
 
 export default defineComponent({
   name: 'Project',
@@ -47,6 +59,7 @@ export default defineComponent({
     Sidebar,
     ArrowLeftIcon,
     DateFormatted,
+    Button,
   },
   setup: (props) => {
     // Define needed instances.

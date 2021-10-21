@@ -14,7 +14,7 @@
         "
       >
         <div v-if="isUserLoggedOut">
-          <h1 class="mb-8 text-center text-main"><EmojiOtherBulb /> User Register</h1>
+          <h1 class="mb-8 text-center"><EmojiOtherBulb /> User Register</h1>
           <UserRegisterForm />
           <hr class="mt-8 mb-6" />
           <div class="text-sm text-center">
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div v-else>
-          <h1 class="mb-8 text-center text-main"><EmojiHandOk /> Hey, {{ current_user.first_name }}</h1>
+          <h1 class="mb-8 text-center"><EmojiHandOk /> Hey, {{ current_user.first_name }}</h1>
           <div class="text-center">You're already logged in!</div>
           <div class="mt-8">
             <Button @click="() => $router.replace({ name: 'index' })" :tabIndex="1" class="w-full">

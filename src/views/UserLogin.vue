@@ -14,7 +14,7 @@
         "
       >
         <div v-if="isUserLoggedOut">
-          <h1 class="mb-8 text-center text-main"><EmojiOtherLockWithKey /> User Login</h1>
+          <h1 class="mb-8 text-center"><EmojiOtherLockWithKey /> User Login</h1>
           <UserLoginForm />
           <hr class="mt-8 mb-6" />
           <div class="text-sm text-center">
@@ -22,8 +22,8 @@
           </div>
         </div>
         <div v-else>
-          <h1 class="mb-8 text-center text-main"><EmojiHandOk /> Hey, {{ current_user.first_name }}</h1>
-          <div class="text-center">You're already logged in!</div>
+          <h1 class="mb-8 text-center"><EmojiOtherRobot /> Oh, wait...</h1>
+          <div class="text-center">{{ current_user.first_name }}, you're already logged in!</div>
           <div class="mt-8">
             <Button @click="() => $router.replace({ name: 'index' })" :tabIndex="1" class="w-full">
               Go to account
@@ -39,14 +39,14 @@
 import { defineComponent } from 'vue'
 import { mapState, mapGetters } from 'vuex'
 import { UserLoginForm, Button } from '__/components'
-import { EmojiOtherLockWithKey, EmojiHandOk } from '__/emojis'
+import { EmojiOtherLockWithKey, EmojiOtherRobot } from '__/emojis'
 
 export default defineComponent({
   name: 'UserLogin',
   components: {
     UserLoginForm,
     EmojiOtherLockWithKey,
-    EmojiHandOk,
+    EmojiOtherRobot,
     Button,
   },
   computed: {
