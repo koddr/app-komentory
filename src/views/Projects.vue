@@ -1,9 +1,9 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-12 2xl:grid-cols-24">
-    <div class="2xl:col-start-5">
+    <div class="2xl:col-start-7">
       <Sidebar />
     </div>
-    <div class="sm:col-span-11 2xl:col-span-15 2xl:dark:border-r 2xl:dark:border-secondary">
+    <div class="sm:col-span-11 2xl:dark:border-r 2xl:dark:border-secondary">
       <div class="py-4 px-2 sm:py-6 sm:px-6 border-b border-secondary">
         <h1>Projects</h1>
       </div>
@@ -11,7 +11,7 @@
         <div v-if="isLoading">
           <ContentLoader />
         </div>
-        <div v-else class="grid grid-cols-1 sm:grid-cols-3">
+        <div v-else class="grid grid-cols-1 sm:grid-cols-3 2xl:grid-cols-4">
           <div v-for="project in projects" :key="project.id" class="py-6 px-6 border rounded-xl">
             <AuthorCard
               :id="project.author.user_id"
@@ -26,7 +26,6 @@
         </div>
       </div>
     </div>
-    <div class="col-span-1"></div>
   </div>
 </template>
 

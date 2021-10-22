@@ -1,9 +1,9 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-12 2xl:grid-cols-24">
-    <div class="2xl:col-start-5">
+    <div class="2xl:col-start-7">
       <Sidebar />
     </div>
-    <div class="sm:col-span-11 2xl:col-span-15 2xl:dark:border-r 2xl:dark:border-secondary">
+    <div class="sm:col-span-11 2xl:dark:border-r 2xl:dark:border-secondary">
       <div class="border-b py-4 px-2 sm:py-6 sm:px-6">
         <div class="inline-flex items-center space-x-4">
           <router-link :to="{ name: 'projects' }" class="border-0 hover:text-main-light">
@@ -18,7 +18,14 @@
         </div>
         <div v-else>
           <p><DateFormatted :date="project.created_at" :withTime="true" /></p>
-          <p>Author: {{ author.first_name }}</p>
+          <p>
+            <AuthorCard
+              :id="author.user_id"
+              :first_name="author.first_name"
+              :last_name="author.last_name"
+              :picture="author.picture"
+            />
+          </p>
           <h2>Tasks: {{ project.tasks_count }}</h2>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div v-for="(task, index) in tasks" :key="task.id" class="py-6 px-6 border rounded-xl">
@@ -47,7 +54,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ArrowLeftIcon } from '@heroicons/vue/outline'
 import { ProjectDataService as Project, ProjectResponse } from '__/services'
-import { ContentLoader, Sidebar, DateFormatted, Button } from '__/components'
+import { ContentLoader, Sidebar, DateFormatted, AuthorCard, Button } from '__/components'
 
 export default defineComponent({
   name: 'Project',
@@ -59,6 +66,7 @@ export default defineComponent({
     Sidebar,
     ArrowLeftIcon,
     DateFormatted,
+    AuthorCard,
     Button,
   },
   setup: (props) => {

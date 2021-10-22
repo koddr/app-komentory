@@ -2,9 +2,8 @@
   <div class="mt-1 mb-1">
     <div class="inline-flex items-center space-x-2 text-sm text-gray-400">
       <img
-        v-if="picture"
-        :src="picture"
-        class="w-7 h-7 block rounded-full border-2 border-main-lighter"
+        :src="picture ? picture : 'https://cdn.komentory.com/media/user/default-picture.svg'"
+        class="w-7 h-7 border-2 border-main-light dark:border-secondary rounded-full"
         alt="user picture"
       />
       <div>
