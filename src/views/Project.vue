@@ -26,15 +26,18 @@
               :picture="author.picture"
             />
           </p>
-          <h2>Tasks: {{ project.tasks_count }}</h2>
+          <h2>Tasks ({{ project.tasks_count }})</h2>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div v-for="(task, index) in tasks" :key="task.id" class="py-6 px-6 border rounded-xl">
               <h3>Task #{{ index + 1 }}</h3>
-              <strong>{{ task.name }}</strong>
-              {{ task.description }}
+              <p class="line-clamp-3">
+                <strong>{{ task.name }}.</strong>
+                {{ task.description }}
+              </p>
               <div class="mt-6">
                 <Button
                   @click="() => $router.push({ name: 'task-details', params: { id: task.id } })"
+                  :action="'success'"
                   :tabIndex="index + 1"
                   class="w-full"
                 >

@@ -16,11 +16,11 @@ module.exports = {
       },
       colors: {
         main: {
-          lighter: '#BFEAD4',
-          light: '#80D5AA',
+          lighter: '#1FFF8F',
+          light: '#00F57A',
           DEFAULT: '#00AB55',
-          dark: '#008743',
-          darker: '#006231',
+          dark: '#007A3D',
+          darker: '#005229',
         },
         secondary: {
           lighter: '#FDFCFB',
@@ -28,6 +28,15 @@ module.exports = {
           DEFAULT: '#E3DDCF',
           dark: '#626268',
           darker: '#3E3E41',
+        },
+        blue: {
+          DEFAULT: '#2D7DD2',
+        },
+        yellow: {
+          DEFAULT: '#FFB238',
+        },
+        red: {
+          DEFAULT: '#FE4A49',
         },
       },
     },

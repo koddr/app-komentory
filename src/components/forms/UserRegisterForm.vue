@@ -1,40 +1,58 @@
 <template>
-  <div class="my-2">
+  <div class="my-3">
     <Input
       v-model="first_name"
+      :id="'first_name'"
+      :label="'First name'"
       :inputType="'text'"
       :placeholder="'Enter your first name'"
+      :helpText="''"
       :tabIndex="1"
       :isRequired="true"
     />
   </div>
-  <div class="my-2">
-    <Input v-model="last_name" :inputType="'text'" :placeholder="'Enter your last name'" :tabIndex="2" />
+  <div class="my-3">
+    <Input
+      v-model="last_name"
+      :id="'last_name'"
+      :label="'Last name'"
+      :inputType="'text'"
+      :placeholder="'Enter your last name'"
+      :helpText="''"
+      :tabIndex="2"
+    />
   </div>
-  <div class="my-2">
+  <div class="my-3">
     <Input
       v-model="email"
+      :id="'email'"
+      :label="'Email'"
       :inputType="'email'"
       :placeholder="'Enter your email address'"
+      :helpText="'Only a valid email, we\'ll send a confirmation email to it.'"
       :tabIndex="3"
       :isRequired="true"
     />
   </div>
-  <div class="my-2">
+  <div class="my-3">
     <Input
       v-model="password"
+      :id="'password'"
+      :label="'Password'"
       :inputType="'password'"
-      :placeholder="'Enter password'"
+      :placeholder="'Enter your secret password'"
+      :helpText="'At least 8 characters, letters in different registers, numbers.'"
       :tabIndex="4"
       :isRequired="true"
     />
   </div>
-  <div class="my-4">
+  <div class="my-6">
     <SwitchGroup>
       <div class="flex items-center">
         <Switch
           v-model="marketing_email_subscription"
-          :class="marketing_email_subscription ? 'bg-main' : 'bg-main-lighter'"
+          :class="marketing_email_subscription ? 'bg-main' : 'bg-secondary'"
+          :tabindex="5"
           class="
             relative
             inline-flex
@@ -45,7 +63,7 @@
             rounded-full
             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600
           "
-          :tabindex="5"
+          id="marketing_email_subscription"
         >
           <span
             :class="marketing_email_subscription ? 'translate-x-5' : 'translate-x-1'"
@@ -56,8 +74,8 @@
       </div>
     </SwitchGroup>
   </div>
-  <div class="my-4">
-    <Button @click="register" :tabIndex="6" class="w-full">And now register me!</Button>
+  <div class="mt-6 mb-4">
+    <Button @click="register" :action="'success'" :tabIndex="6" class="w-full">And now register me!</Button>
   </div>
 </template>
 

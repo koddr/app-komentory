@@ -18,7 +18,7 @@
     @apply dark:text-secondary;
   }
   h1 {
-    @apply font-medium;
+    @apply font-semibold;
     @apply text-3xl;
     @apply leading-none;
   }
@@ -38,7 +38,7 @@
   a {
     @apply text-main;
     @apply border-b;
-    @apply border-main-light;
+    @apply border-main;
   }
   a:hover {
     @apply border-b-0;

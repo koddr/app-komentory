@@ -1,24 +1,28 @@
 <template>
-  <div class="my-2">
+  <div class="my-3">
     <Input
       v-model="email"
+      :id="'email'"
+      :label="'Email'"
       :inputType="'email'"
-      :placeholder="'Enter your email address'"
+      :placeholder="'Your email address'"
       :tabIndex="1"
       :isRequired="true"
     />
   </div>
-  <div class="my-2">
+  <div class="my-3">
     <Input
       v-model="password"
+      :id="'password'"
+      :label="'Password'"
       :inputType="'password'"
-      :placeholder="'Enter password'"
+      :placeholder="'Your password'"
       :tabIndex="2"
       :isRequired="true"
     />
   </div>
-  <div class="my-4">
-    <Button @click="login" :tabIndex="3" :action="'success'" class="w-full">Okay, let me in!</Button>
+  <div class="mt-6 mb-4">
+    <Button @click="login" :action="'success'" :tabIndex="3" class="w-full">Okay, let me in!</Button>
   </div>
 </template>
 

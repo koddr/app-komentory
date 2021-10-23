@@ -1,5 +1,9 @@
 <template>
-  <button class="px-6 pt-3 pb-2.5 font-medium border-b-2 rounded-lg" :class="buttonStyle" :tabindex="tabIndex">
+  <button
+    class="px-6 pt-3 pb-2.5 font-medium border-b-4 rounded-lg"
+    :class="[bg.light, border.light, text.light, hover.light, bg.dark, border.dark, text.dark, hover.dark]"
+    :tabindex="tabIndex"
+  >
     <slot>Button Text</slot>
   </button>
 </template>
@@ -14,57 +18,65 @@ export default defineComponent({
     tabIndex: { type: Number, required: true },
   },
   setup: (props) => {
-    //
+    // Define needed variables.
     const style = ref({
-      bg: {
-        light: '',
-        dark: '',
-      },
-      border: {
-        light: '',
-        dark: '',
-      },
-      text: {
-        light: '',
-        dark: '',
-      },
-      hover: {
-        light: '',
-        dark: '',
-      },
+      bg: { light: '', dark: '' },
+      text: { light: '', dark: '' },
+      border: { light: '', dark: '' },
+      hover: { light: '', dark: '' },
     })
 
-    //
+    // Define styles for button.
     switch (props.action) {
       case 'success':
         style.value = {
-          bg: {
-            light: 'bg-main',
-            dark: 'dark:bg-secondary-dark',
-          },
-          border: {
-            light: 'border-main-lighter',
-            dark: 'dark:border-main',
-          },
-          text: {
-            light: 'text-white',
-            dark: 'dark:text-secondary',
-          },
+          bg: { light: 'bg-main', dark: 'dark:bg-secondary-dark' },
+          text: { light: 'text-white', dark: 'dark:text-secondary' },
+          border: { light: 'border-main-dark', dark: 'dark:border-main' },
           hover: {
-            light: 'hover:bg-main-light hover:text-main-darker hover:text-secondary-light',
-            dark: 'dark:hover:bg-main dark:hover:border-main-dark ',
+            light: 'hover:bg-secondary hover:text-secondary-dark hover:border-transparent',
+            dark: 'dark:hover:bg-main dark:hover:text-secondary-light dark:hover:border-transparent',
           },
         }
+        break
+      case 'info':
+        style.value = {
+          bg: { light: 'bg-blue-500', dark: 'dark:bg-secondary-dark' },
+          text: { light: 'text-white', dark: 'dark:text-secondary' },
+          border: { light: 'border-blue-700', dark: 'dark:border-blue' },
+          hover: {
+            light: 'hover:bg-secondary hover:text-secondary-dark hover:border-transparent',
+            dark: 'dark:hover:bg-blue dark:hover:text-secondary-light dark:hover:border-transparent',
+          },
+        }
+        break
+      case 'warning':
+        style.value = {
+          bg: { light: 'bg-yellow-500', dark: 'dark:bg-secondary-dark' },
+          text: { light: 'text-white', dark: 'dark:text-secondary' },
+          border: { light: 'border-yellow-700', dark: 'dark:border-yellow' },
+          hover: {
+            light: 'hover:bg-secondary hover:text-secondary-dark hover:border-transparent',
+            dark: 'dark:hover:bg-yellow dark:hover:text-secondary-light dark:hover:border-transparent',
+          },
+        }
+        break
+      case 'error':
+        style.value = {
+          bg: { light: 'bg-red-500', dark: 'dark:bg-secondary-dark' },
+          text: { light: 'text-white', dark: 'dark:text-secondary' },
+          border: { light: 'border-red-700', dark: 'dark:border-red' },
+          hover: {
+            light: 'hover:bg-secondary hover:text-secondary-dark hover:border-transparent',
+            dark: 'dark:hover:bg-red dark:hover:text-secondary-light dark:hover:border-transparent',
+          },
+        }
+      default:
+        break
     }
 
-    //
-    const { bg, border, text, hover } = style.value
-
-    //
-    const buttonStyle = `${bg.light} ${border.light} ${text.light} ${hover.light} ${bg.dark} ${border.dark} ${text.dark} ${hover.dark}`
-
-    //
-    return { buttonStyle }
+    // Return variables.
+    return { bg: style.value.bg, border: style.value.border, text: style.value.text, hover: style.value.hover }
   },
 })
 </script>
