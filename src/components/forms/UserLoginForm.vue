@@ -18,7 +18,7 @@
     />
   </div>
   <div class="my-4">
-    <Button @click="login" :tabIndex="3" class="w-full">Okay, let me in!</Button>
+    <Button @click="login" :tabIndex="3" :action="'success'" class="w-full">Okay, let me in!</Button>
   </div>
 </template>
 
