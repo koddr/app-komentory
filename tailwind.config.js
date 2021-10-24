@@ -1,12 +1,15 @@
 module.exports = {
   mode: 'jit',
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  darkMode: 'class', // or 'class'
+  darkMode: 'media', // or 'class'
   theme: {
     fontFamily: {
       sans: ['Inter var', ...require('tailwindcss/defaultConfig').theme.fontFamily.sans],
     },
     extend: {
+      width: {
+        22: '5.5rem',
+      },
       gridTemplateColumns: {
         24: 'repeat(24, minmax(0, 1fr))',
       },

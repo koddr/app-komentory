@@ -1,5 +1,5 @@
 <template>
-  <div class="flex sm:h-full">
+  <div class="fixed w-full sm:w-22 2xl:w-24 sm:h-full">
     <nav
       class="
         flex
@@ -14,7 +14,7 @@
       <div class="mt-4">
         <router-link :to="{ name: 'index' }">
           <img
-            class="w-12 h-12 mx-auto"
+            class="w-14 h-14 mx-auto"
             src="https://cdn.komentory.com/favicons/bg-main_border-solid.svg"
             alt="komentory logo"
           />
@@ -27,19 +27,19 @@
           </li>
           <li class="py-2">
             <router-link :to="{ name: 'projects' }">
-              <NewspaperIcon class="h-10 w-10 mx-auto text-white dark:text-secondary heroicon-stroke-0.9" />
+              <NewspaperIcon class="h-10 w-10 mx-auto text-secondary-light dark:text-main heroicon-stroke-0.9" />
             </router-link>
           </li>
           <li class="py-2">
             <router-link :to="{ name: 'get-started' }">
-              <AcademicCapIcon class="h-10 w-10 mx-auto text-white dark:text-secondary heroicon-stroke-0.7" />
+              <AcademicCapIcon class="h-10 w-10 mx-auto text-secondary-light dark:text-main heroicon-stroke-0.7" />
             </router-link>
           </li>
         </ul>
       </div>
       <div class="mb-4">
         <router-link :to="{ name: 'logout' }">
-          <LogoutIcon class="h-8 w-8 mx-auto text-white dark:text-secondary heroicon-stroke-1.1" />
+          <LogoutIcon class="h-8 w-8 mx-auto text-secondary-light dark:text-main heroicon-stroke-1.1" />
         </router-link>
       </div>
     </nav>

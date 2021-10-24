@@ -20,7 +20,6 @@
   h1 {
     @apply font-semibold;
     @apply text-3xl;
-    @apply leading-none;
   }
   h2 {
     @apply text-2xl;
@@ -41,6 +40,7 @@
     @apply border-main;
   }
   a:hover {
+    @apply text-main-dark;
     @apply border-b-0;
     @apply border-transparent;
   }
@@ -52,6 +52,12 @@
     @apply text-transparent;
     @apply bg-gradient-to-r;
     @apply from-main to-blue;
-    @apply leading-normal;
+  }
+  .block-item {
+    @apply rounded-3xl;
+    @apply bg-white;
+    @apply dark:bg-secondary-darker;
+    @apply dark:border;
+    @apply dark:border-secondary-dark;
   }
 }

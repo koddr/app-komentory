@@ -3,13 +3,13 @@
     <div class="2xl:col-start-7">
       <Sidebar />
     </div>
-    <div class="sm:col-span-11 2xl:dark:border-r 2xl:dark:border-secondary">
-      <div class="border-b py-4 px-2 sm:py-6 sm:px-6">
+    <div class="sm:col-span-11 2xl:border-r-main 2xl:border-r 2xl:min-h-screen 2xl:dark:border-r-secondary">
+      <div class="py-4 px-2 sm:py-6 sm:px-6">
         <div class="inline-flex items-center space-x-4">
-          <router-link :to="{ name: 'projects' }" class="border-0 hover:text-main-light">
+          <router-link :to="{ name: 'projects' }" class="border-0">
             <ArrowLeftIcon class="h-7 w-7" />
           </router-link>
-          <h1>{{ project.title }}</h1>
+          <h1 class="line-clamp-1" :title="project.title">{{ project.title }}</h1>
         </div>
       </div>
       <div class="py-4 px-2 sm:py-6 sm:px-6">
@@ -27,8 +27,8 @@
             />
           </p>
           <h2>Tasks ({{ project.tasks_count }})</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div v-for="(task, index) in tasks" :key="task.id" class="py-6 px-6 border rounded-xl">
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div v-for="(task, index) in tasks" :key="task.id" class="py-6 px-6 block-item shadow">
               <h3>Task #{{ index + 1 }}</h3>
               <p class="line-clamp-3">
                 <strong>{{ task.name }}.</strong>
@@ -37,7 +37,7 @@
               <div class="mt-6">
                 <Button
                   @click="() => $router.push({ name: 'task-details', params: { id: task.id } })"
-                  :action="'success'"
+                  :action="'info'"
                   :tabIndex="index + 1"
                   class="w-full"
                 >

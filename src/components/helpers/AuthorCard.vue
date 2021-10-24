@@ -3,7 +3,7 @@
     <div class="inline-flex items-center space-x-2 text-sm text-gray-400">
       <img
         :src="picture ? picture : 'https://cdn.komentory.com/media/user/default-picture.svg'"
-        class="w-7 h-7 border-2 border-main-light dark:border-secondary rounded-full"
+        class="w-7 h-7 border-2 bg-main border-secondary rounded-full"
         alt="user picture"
       />
       <div>

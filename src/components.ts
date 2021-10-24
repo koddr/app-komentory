@@ -2,6 +2,7 @@
  * Exporting Content Loaders components.
  */
 export { default as ContentLoader } from '__/components/loaders/ContentLoader.vue'
+export { default as ProjectsLoader } from '__/components/loaders/ProjectsLoader.vue'
 
 /**
  * Exporting Helpers components.
