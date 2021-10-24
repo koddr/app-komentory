@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  darkMode: 'media', // or 'class'
+  darkMode: 'class', // or 'class'
   theme: {
     fontFamily: {
       sans: ['Inter var', ...require('tailwindcss/defaultConfig').theme.fontFamily.sans],

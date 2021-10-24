@@ -45,3 +45,13 @@
     @apply border-transparent;
   }
 }
+
+@layer utilities {
+  .gradient-text-leading-main-blue {
+    @apply bg-clip-text;
+    @apply text-transparent;
+    @apply bg-gradient-to-r;
+    @apply from-main to-blue;
+    @apply leading-normal;
+  }
+}

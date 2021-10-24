@@ -4,7 +4,7 @@
       <Sidebar />
     </div>
     <div class="sm:col-span-11 2xl:dark:border-r 2xl:dark:border-secondary">
-      <div class="py-4 px-2 sm:py-6 sm:px-6 border-b border-secondary">
+      <div class="py-4 px-2 sm:py-6 sm:px-6 border-b border-secondary-dark dark:border-secondary">
         <h1>Projects</h1>
       </div>
       <div class="py-4 px-2 sm:py-6 sm:px-6">
@@ -12,7 +12,11 @@
           <ContentLoader />
         </div>
         <div v-else class="grid grid-cols-1 sm:grid-cols-3 2xl:grid-cols-4">
-          <div v-for="project in projects" :key="project.id" class="py-6 px-6 border rounded-xl">
+          <div
+            v-for="project in projects"
+            :key="project.id"
+            class="py-6 px-6 bg-white border-secondary-dark rounded-xl"
+          >
             <AuthorCard
               :id="project.author.user_id"
               :first_name="project.author.first_name"

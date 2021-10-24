@@ -20,6 +20,9 @@
       :tabIndex="2"
       :isRequired="true"
     />
+    <p class="text-right text-sm">
+      <router-link :to="{ name: 'password-reset' }">Forgot your password?</router-link>
+    </p>
   </div>
   <div class="mt-6 mb-4">
     <Button @click="login" :action="'success'" :tabIndex="3" class="w-full">Okay, let me in!</Button>

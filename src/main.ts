@@ -12,6 +12,7 @@ import 'vue-toastification/dist/index.css'
 import '__/assets/css/style.css'
 import '__/assets/css/heroicons.css'
 import '__/assets/css/toast.css'
+import '__/assets/css/transition.css'
 
 // Import the App component.
 import App from '__/App.vue'

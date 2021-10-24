@@ -21,20 +21,27 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: false, transition: 'fade' },
     component: () => import('__/views/UserLogin.vue'),
   },
   {
     path: '/logout',
     name: 'logout',
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: false, transition: 'fade' },
     component: () => import('__/views/UserLogout.vue'),
   },
   {
     path: '/register',
     name: 'register',
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: false, transition: 'fade' },
     component: () => import('__/views/UserRegister.vue'),
+  },
+  // Password reset routes:
+  {
+    path: '/password/reset',
+    name: 'password-reset',
+    meta: { requiresAuth: false, transition: 'fade' },
+    component: () => import('__/views/PasswordReset.vue'),
   },
   // Information routes:
   {
