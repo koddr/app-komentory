@@ -47,11 +47,13 @@
 }
 
 @layer utilities {
-  .gradient-text-leading-main-blue {
+  .gradient-color-yellow-main-blue {
+    @apply bg-gradient-to-r;
+    @apply from-yellow via-main to-blue;
+  }
+  .gradient-text {
     @apply bg-clip-text;
     @apply text-transparent;
-    @apply bg-gradient-to-r;
-    @apply from-main to-blue;
   }
   .block-item {
     @apply rounded-3xl;

@@ -14,7 +14,7 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   name: 'Button',
   props: {
-    action: { type: String, required: true },
+    action: { type: String, default: '' },
     tabIndex: { type: Number, required: true },
   },
   setup: (props) => {
@@ -72,6 +72,15 @@ export default defineComponent({
           },
         }
       default:
+        style.value = {
+          bg: { light: 'bg-secondary', dark: 'dark:bg-secondary-dark' },
+          text: { light: 'text-secondary-dark', dark: 'dark:text-secondary' },
+          border: { light: 'border-secondary-dark', dark: 'dark:border-secondary' },
+          hover: {
+            light: 'hover:bg-secondary-dark hover:text-secondary hover:border-transparent',
+            dark: 'dark:hover:bg-secondary dark:hover:text-secondary-darker dark:hover:border-transparent',
+          },
+        }
         break
     }
 

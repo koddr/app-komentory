@@ -1,14 +1,13 @@
 <template>
-  <div class="mt-1 mb-1">
-    <div class="inline-flex items-center space-x-2 text-sm text-gray-400">
-      <img
-        :src="picture ? picture : 'https://cdn.komentory.com/media/user/default-picture.svg'"
-        class="w-7 h-7 border-2 bg-main border-secondary rounded-full"
-        alt="user picture"
-      />
-      <div>
-        <router-link :to="{ name: 'user-details', params: { id } }">{{ fullName }}</router-link>
-      </div>
+  <div class="inline-flex items-center space-x-2">
+    <img
+      :src="picture ? picture : 'https://cdn.komentory.com/media/user/default-picture.svg'"
+      :class="`h-${pictureHeight} w-${pictureWidth}`"
+      class="border-2 bg-main border-secondary rounded-full"
+      alt="user picture"
+    />
+    <div>
+      <router-link :to="{ name: 'user-details', params: { id } }">{{ first_name }} {{ last_name }}</router-link>
     </div>
   </div>
 </template>
@@ -21,15 +20,10 @@ export default defineComponent({
   props: {
     id: { type: String, required: true },
     first_name: { type: String, required: true },
-    last_name: { type: String, required: false },
-    picture: { type: String, required: false },
-  },
-  setup: (props) => {
-    // Define needed variables.
-    const fullName = `${props.first_name} ${props.last_name}`
-
-    // Return instances and lifecycle hooks.
-    return { fullName }
+    last_name: { type: String, default: '' },
+    picture: { type: String, default: '' },
+    pictureHeight: { type: Number, default: 7 },
+    pictureWidth: { type: Number, default: 7 },
   },
 })
 </script>

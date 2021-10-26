@@ -52,7 +52,7 @@
         <Switch
           v-model="marketing_email_subscription"
           :class="marketing_email_subscription ? 'bg-main' : 'bg-secondary'"
-          :tabindex="5"
+          tabindex="5"
           class="
             relative
             inline-flex

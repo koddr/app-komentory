@@ -1,9 +1,9 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-12 2xl:grid-cols-24">
-    <div class="2xl:col-start-7">
+  <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
+    <div class="xl:col-start-7">
       <Sidebar />
     </div>
-    <div class="sm:col-span-11 2xl:border-r-main 2xl:border-r 2xl:min-h-screen 2xl:dark:border-r-secondary">
+    <div class="sm:col-span-11 xl:border-r-main xl:border-r xl:min-h-screen xl:dark:border-r-secondary">
       <div class="py-4 px-2 sm:py-6 sm:px-6">
         <div class="inline-flex items-center space-x-4">
           <router-link :to="{ name: 'projects' }" class="border-0">
@@ -17,32 +17,33 @@
           <ContentLoader />
         </div>
         <div v-else>
-          <p><DateFormatted :date="project.created_at" :withTime="true" /></p>
-          <p>
+          <div class="inline-flex items-center space-x-4">
             <AuthorCard
               :id="author.user_id"
               :first_name="author.first_name"
               :last_name="author.last_name"
               :picture="author.picture"
+              :pictureHeight="10"
+              :pictureWidth="10"
             />
-          </p>
+            <DateFormatted :date="project.created_at" :withTime="true" />
+          </div>
           <h2>Tasks ({{ project.tasks_count }})</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-            <div v-for="(task, index) in tasks" :key="task.id" class="py-6 px-6 block-item shadow">
-              <h3>Task #{{ index + 1 }}</h3>
-              <p class="line-clamp-3">
-                <strong>{{ task.name }}.</strong>
-                {{ task.description }}
-              </p>
-              <div class="mt-6">
-                <Button
-                  @click="() => $router.push({ name: 'task-details', params: { id: task.id } })"
-                  :action="'info'"
-                  :tabIndex="index + 1"
-                  class="w-full"
-                >
-                  Go to task
-                </Button>
+          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div v-for="(task, index) in tasks" :key="task.id" class="block-item shadow-md">
+              <div class="py-6 px-6">
+                <h3>Task #{{ index + 1 }}</h3>
+                <p class="font-bold">{{ task.name }}</p>
+                <p class="line-clamp-4">{{ task.description }}</p>
+                <div class="mt-6">
+                  <Button
+                    @click="() => $router.push({ name: 'task-details', params: { id: task.id } })"
+                    :tabIndex="index + 1"
+                    class="w-full"
+                  >
+                    Task details
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

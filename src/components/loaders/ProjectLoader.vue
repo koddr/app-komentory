@@ -1,5 +1,5 @@
 <template>
-  <div class="animate-pulse border border-blue-200 shadow rounded-3xl">
+  <div class="animate-pulse border border-blue-300 shadow rounded-3xl">
     <div class="bg-blue-400 h-24 rounded-t-3xl"></div>
     <div class="py-4 px-6">
       <div class="flex items-center space-x-2">
@@ -26,6 +26,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'ProjectsLoader',
+  name: 'ProjectLoader',
 })
 </script>

@@ -1,25 +1,26 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-12 2xl:grid-cols-24">
-    <div class="2xl:col-start-7">
+  <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
+    <div class="xl:col-start-7">
       <Sidebar />
     </div>
-    <div class="sm:col-span-11 2xl:border-r-main 2xl:border-r 2xl:min-h-screen 2xl:dark:border-r-secondary">
+    <div class="sm:col-span-11 xl:border-r-main xl:border-r xl:min-h-screen xl:dark:border-r-secondary">
       <div class="py-4 px-2 sm:py-6 sm:px-6">
         <h1 class="line-clamp-1 text-4xl">All projects</h1>
       </div>
       <div class="py-4 px-2 sm:py-6 sm:px-6">
         <div v-if="isLoading" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          <ProjectsLoader />
+          <ProjectLoader />
         </div>
         <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          <div v-for="(project, index) in projects" :key="project.id" class="block-item shadow">
-            <div class="bg-gradient-to-r from-main to-blue h-24 rounded-t-3xl"></div>
-            <div class="py-4 px-6">
+          <div v-for="(project, index) in projects" :key="project.id" class="block-item shadow-md">
+            <div class="gradient-color-yellow-main-blue h-24 rounded-t-3xl"></div>
+            <div class="py-6 px-6">
               <AuthorCard
                 :id="project.author.user_id"
                 :first_name="project.author.first_name"
                 :last_name="project.author.last_name"
                 :picture="project.author.picture"
+                class="text-sm"
               />
               <h3 class="my-2 line-clamp-2">{{ project.attrs.title }}</h3>
               <p class="line-clamp-3">{{ project.attrs.description }}</p>
@@ -29,10 +30,10 @@
                 :tabIndex="index + 1"
                 class="my-4 w-full"
               >
-                Watch details
+                Watch project tasks ({{ project.tasks_count }})
               </Button>
               <div class="text-center text-sm text-gray-300 dark:text-secondary-dark">
-                <DateFormatted :date="project.created_at" :withTime="true" />
+                <DateFormatted :date="project.created_at" :iconHeight="5" :iconWidth="5" :withTime="true" />
               </div>
             </div>
           </div>
@@ -45,13 +46,13 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { ProjectDataService, ProjectsResponse } from '__/services'
-import { Sidebar, ProjectsLoader, AuthorCard, Button, DateFormatted } from '__/components'
+import { Sidebar, ProjectLoader, AuthorCard, Button, DateFormatted } from '__/components'
 
 export default defineComponent({
   name: 'Projects',
   components: {
     Sidebar,
-    ProjectsLoader,
+    ProjectLoader,
     AuthorCard,
     Button,
     DateFormatted,
