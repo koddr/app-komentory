@@ -7,9 +7,15 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'index',
     meta: { requiresAuth: true }, // only authenticate user can enter to account
-    component: () => import('__/views/Account.vue'),
+    component: () => import('__/views/Index.vue'),
   },
   // Account routes:
+  {
+    path: '/account',
+    name: 'account',
+    meta: { requiresAuth: true },
+    component: () => import('__/views/Account.vue'),
+  },
   {
     path: '/account/activate',
     name: 'account-activate',
@@ -21,32 +27,33 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    meta: { requiresAuth: false, transition: 'fade' },
+    meta: { requiresAuth: false },
     component: () => import('__/views/UserLogin.vue'),
   },
   {
     path: '/logout',
     name: 'logout',
-    meta: { requiresAuth: false, transition: 'fade' },
+    meta: { requiresAuth: false },
     component: () => import('__/views/UserLogout.vue'),
   },
   {
     path: '/register',
     name: 'register',
-    meta: { requiresAuth: false, transition: 'fade' },
+    meta: { requiresAuth: false },
     component: () => import('__/views/UserRegister.vue'),
   },
   // Password reset routes:
   {
     path: '/password/reset',
     name: 'password-reset',
-    meta: { requiresAuth: false, transition: 'fade' },
+    meta: { requiresAuth: false },
     component: () => import('__/views/PasswordReset.vue'),
   },
   // Information routes:
   {
     path: '/get-started',
     name: 'get-started',
+    meta: { requiresAuth: false },
     component: () => import('__/views/GetStarted.vue'),
   },
   // Project routes:

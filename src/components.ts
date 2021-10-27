@@ -14,7 +14,8 @@ export { default as CurrentUserAvatar } from '__/components/helpers/CurrentUserA
 /**
  * Exporting Navigation components.
  */
-export { default as Sidebar } from '__/components/navigation/Sidebar.vue'
+export { default as MainMenu } from '__/components/navigation/MainMenu.vue'
+export { default as FooterMenu } from '__/components/navigation/FooterMenu.vue'
 
 /**
  * Exporting Form Element components.

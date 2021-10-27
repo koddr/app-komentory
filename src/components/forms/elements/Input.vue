@@ -4,8 +4,10 @@
   </p>
   <input
     @input="$emit('update:modelValue', handleInputChange($event))"
-    class="px-4 py-3 text-base border-2 rounded-lg h-full w-full"
-    :class="'text-secondary-darker placeholder-gray-300 dark:placeholder-gray-500 dark:bg-secondary dark:border-secondary-dark'"
+    :class="[
+      'px-4 py-3 text-base border-2 rounded-lg h-full w-full',
+      'text-secondary-darker placeholder-gray-300 dark:placeholder-gray-500 dark:bg-secondary dark:border-secondary-dark',
+    ]"
     :id="id"
     :type="inputType"
     :tabindex="tabIndex"

@@ -1,11 +1,11 @@
 <template>
   <div class="inline-flex items-center space-x-2">
     <div class="inline-flex items-center space-x-1">
-      <CalendarIcon :class="`h-${iconHeight} w-${iconWidth}`" />
+      <CalendarIcon :class="iconSize" />
       <div>{{ dateFormatted }}</div>
     </div>
     <div v-if="withTime" class="inline-flex items-center space-x-1">
-      <ClockIcon :class="`h-${iconHeight} w-${iconWidth}`" />
+      <ClockIcon :class="iconSize" />
       <div>{{ timeFormatted }}</div>
     </div>
   </div>
@@ -23,9 +23,8 @@ export default defineComponent({
   },
   props: {
     date: { type: String, required: true },
+    iconSize: { type: String, required: true },
     locale: { type: String, default: 'en' },
-    iconHeight: { type: Number, default: 6 },
-    iconWidth: { type: Number, default: 6 },
     withTime: { type: Boolean, default: false },
   },
   setup: (props) => {

@@ -1,8 +1,12 @@
 <template>
   <router-view v-slot="{ Component, route }">
-    <transition :name="route.meta.transition">
-      <component :is="Component" :key="route.path" />
-    </transition>
+    <MainMenu v-if="!(route.name === 'login' || route.name === 'register')" />
+    <div class="flex flex-col h-screen">
+      <transition :name="route.meta.transition || 'fade'" mode="out-in" class="flex-grow">
+        <component :is="Component" :key="route.path" />
+      </transition>
+      <FooterMenu v-if="!(route.name === 'login' || route.name === 'register')" />
+    </div>
   </router-view>
 </template>
 
@@ -11,10 +15,15 @@ import { defineComponent, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import { UPDATE_JWT, UPDATE_CURRENT_USER } from '__/store-constants'
+import { MainMenu, FooterMenu } from '__/components'
 import { TokenDataService as Token, TokenResponse } from '__/services'
 
 export default defineComponent({
   name: 'App',
+  components: {
+    MainMenu,
+    FooterMenu,
+  },
   setup: () => {
     // Define needed instances.
     const store = useStore()

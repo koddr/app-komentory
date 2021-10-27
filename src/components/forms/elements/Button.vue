@@ -1,7 +1,16 @@
 <template>
   <button
-    class="px-6 pt-3 pb-2.5 font-medium border-b-4 rounded-lg"
-    :class="[bg.light, border.light, text.light, hover.light, bg.dark, border.dark, text.dark, hover.dark]"
+    :class="[
+      bg.light,
+      border.light,
+      text.light,
+      hover.light,
+      bg.dark,
+      border.dark,
+      text.dark,
+      hover.dark,
+      'px-6 pt-3 pb-2.5 font-medium border-b-4 rounded-lg',
+    ]"
     :tabindex="tabIndex"
   >
     <slot>Button Text</slot>

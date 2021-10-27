@@ -1,48 +1,49 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
-    <div class="xl:col-start-7">
-      <Sidebar />
-    </div>
-    <div class="sm:col-span-11 xl:border-r-main xl:border-r xl:min-h-screen xl:dark:border-r-secondary">
-      <div class="py-4 px-2 sm:py-6 sm:px-6">
-        <div class="inline-flex items-center space-x-4">
-          <router-link :to="{ name: 'projects' }" class="border-0">
-            <ArrowLeftIcon class="h-7 w-7" />
-          </router-link>
-          <h1 class="line-clamp-1" :title="project.title">{{ project.title }}</h1>
-        </div>
-      </div>
-      <div class="py-4 px-2 sm:py-6 sm:px-6">
+    <div class="sm:col-span-12 xl:col-start-7">
+      <div class="mt-20 py-4 px-2 sm:mt-24 sm:py-6 sm:px-6">
         <div v-if="isLoading">
           <ContentLoader />
         </div>
         <div v-else>
-          <div class="inline-flex items-center space-x-4">
+          <div class="my-6 sm:inline-flex sm:items-center sm:space-x-4">
+            <router-link :to="{ name: 'projects' }" class="no-border">
+              <ArrowLeftIcon class="h-7 w-7 mb-4 sm:mb-0" />
+            </router-link>
+            <h1 :title="project.title">{{ project.title }}</h1>
+          </div>
+          <div class="my-6">
             <AuthorCard
               :id="author.user_id"
               :first_name="author.first_name"
               :last_name="author.last_name"
               :picture="author.picture"
-              :pictureHeight="10"
-              :pictureWidth="10"
+              :pictureSize="'h-9 w-9'"
             />
-            <DateFormatted :date="project.created_at" :withTime="true" />
           </div>
-          <h2>Tasks ({{ project.tasks_count }})</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-4">
-            <div v-for="(task, index) in tasks" :key="task.id" class="block-item shadow-md">
-              <div class="py-6 px-6">
-                <h3>Task #{{ index + 1 }}</h3>
-                <p class="font-bold">{{ task.name }}</p>
-                <p class="line-clamp-4">{{ task.description }}</p>
-                <div class="mt-6">
-                  <Button
-                    @click="() => $router.push({ name: 'task-details', params: { id: task.id } })"
-                    :tabIndex="index + 1"
-                    class="w-full"
-                  >
-                    Task details
-                  </Button>
+          <div class="my-6">
+            <p>{{ project.description }}</p>
+          </div>
+          <div class="my-6 text-secondary-dark">
+            <p><DateFormatted :date="project.created_at" :withTime="true" :iconSize="'h-6 w-6'" /></p>
+          </div>
+          <div class="my-6">
+            <h2>Tasks ({{ project.tasks_count }})</h2>
+            <div class="my-4 grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div v-for="(task, index) in tasks" :key="task.id" class="block-item shadow-md">
+                <div class="py-6 px-6">
+                  <h3>Task #{{ index + 1 }}</h3>
+                  <p class="font-bold">{{ task.name }}</p>
+                  <p class="line-clamp-4">{{ task.description }}</p>
+                  <div class="mt-6">
+                    <Button
+                      @click="() => $router.push({ name: 'task-details', params: { id: task.id } })"
+                      :tabIndex="index + 1"
+                      class="w-full"
+                    >
+                      Task details
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -58,7 +59,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ArrowLeftIcon } from '@heroicons/vue/outline'
 import { ProjectDataService as Project, ProjectResponse } from '__/services'
-import { ContentLoader, Sidebar, DateFormatted, AuthorCard, Button } from '__/components'
+import { ContentLoader, DateFormatted, AuthorCard, Button } from '__/components'
 
 export default defineComponent({
   name: 'Project',
@@ -67,7 +68,6 @@ export default defineComponent({
   },
   components: {
     ContentLoader,
-    Sidebar,
     ArrowLeftIcon,
     DateFormatted,
     AuthorCard,

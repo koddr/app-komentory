@@ -1,7 +1,7 @@
 <template>
   <img
     :src="current_user.picture ? current_user.picture : 'https://cdn.komentory.com/media/user/default-picture.svg'"
-    class="w-12 h-12 mx-auto border-2 rounded-full border-secondary-light dark:border-main"
+    class="w-10 h-10 mx-auto border-2 rounded-full border-secondary-light dark:border-main"
     alt="user picture"
   />
 </template>

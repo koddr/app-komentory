@@ -2,7 +2,7 @@
   <div class="inline-flex items-center space-x-2">
     <img
       :src="picture ? picture : 'https://cdn.komentory.com/media/user/default-picture.svg'"
-      :class="`h-${pictureHeight} w-${pictureWidth}`"
+      :class="pictureSize"
       class="border-2 bg-main border-secondary rounded-full"
       alt="user picture"
     />
@@ -22,8 +22,7 @@ export default defineComponent({
     first_name: { type: String, required: true },
     last_name: { type: String, default: '' },
     picture: { type: String, default: '' },
-    pictureHeight: { type: Number, default: 7 },
-    pictureWidth: { type: Number, default: 7 },
+    pictureSize: { type: String, required: true },
   },
 })
 </script>

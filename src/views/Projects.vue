@@ -1,9 +1,6 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
-    <div class="xl:col-start-7">
-      <Sidebar />
-    </div>
-    <div class="sm:col-span-11 xl:border-r-main xl:border-r xl:min-h-screen xl:dark:border-r-secondary">
+    <div class="sm:col-span-12 xl:col-start-7 mt-24">
       <div class="py-4 px-2 sm:py-6 sm:px-6">
         <h1 class="line-clamp-1 text-4xl">All projects</h1>
       </div>
@@ -20,6 +17,7 @@
                 :first_name="project.author.first_name"
                 :last_name="project.author.last_name"
                 :picture="project.author.picture"
+                :pictureSize="'h-8 w-8'"
                 class="text-sm"
               />
               <h3 class="my-2 line-clamp-2">{{ project.attrs.title }}</h3>
@@ -33,7 +31,7 @@
                 Watch project tasks ({{ project.tasks_count }})
               </Button>
               <div class="text-center text-sm text-gray-300 dark:text-secondary-dark">
-                <DateFormatted :date="project.created_at" :iconHeight="5" :iconWidth="5" :withTime="true" />
+                <DateFormatted :date="project.created_at" :withTime="true" :iconSize="'h-5 w-5'" />
               </div>
             </div>
           </div>
@@ -46,12 +44,11 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { ProjectDataService, ProjectsResponse } from '__/services'
-import { Sidebar, ProjectLoader, AuthorCard, Button, DateFormatted } from '__/components'
+import { ProjectLoader, AuthorCard, Button, DateFormatted } from '__/components'
 
 export default defineComponent({
   name: 'Projects',
   components: {
-    Sidebar,
     ProjectLoader,
     AuthorCard,
     Button,

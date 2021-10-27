@@ -40,7 +40,7 @@
     @apply border-main;
   }
   a:hover {
-    @apply text-main-dark;
+    @apply text-main;
     @apply border-b-0;
     @apply border-transparent;
   }
@@ -61,5 +61,8 @@
     @apply dark:bg-secondary-darker;
     @apply dark:border;
     @apply dark:border-secondary-dark;
+  }
+  .no-border {
+    @apply border-none;
   }
 }
