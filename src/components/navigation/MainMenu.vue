@@ -31,11 +31,13 @@
         <div class="flex-1 flex items-center justify-center sm:justify-start">
           <div class="flex-shrink-0 flex items-center">
             <router-link :to="{ name: 'index' }" class="no-border">
-              <img
-                class="block h-11 w-auto"
-                src="https://cdn.komentory.com/favicons/bg-main_border-solid.svg"
-                alt="komentory logo"
-              />
+              <svg fill="none" height="46" width="46" viewBox="0 0 68 68" xmlns="http://www.w3.org/2000/svg">
+                <rect height="66" width="66" rx="21" fill="#00ab55" stroke="#f6f4ef" stroke-width="2" x="1" y="1" />
+                <path
+                  d="m51.604 54.5858-7.128-11.7-3.312 4.032v7.668h-4.572v-25.2h4.572v11.556l8.964-11.556h5.328l-7.992 9.792 9.144 15.408z"
+                  fill="#f6f4ef"
+                />
+              </svg>
             </router-link>
           </div>
           <div class="hidden sm:block sm:ml-8">
