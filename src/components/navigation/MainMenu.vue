@@ -2,7 +2,11 @@
   <Disclosure
     as="nav"
     v-slot="{ open }"
-    class="drop-shadow-md bg-main dark:bg-secondary-darker dark:border-b-2 dark:border-secondary-dark fixed w-full"
+    :class="[
+      'z-50 drop-shadow-md fixed w-full',
+      'bg-main',
+      'dark:bg-secondary-darker dark:border-b-2 dark:border-secondary-dark',
+    ]"
   >
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16 sm:h-20">
@@ -127,10 +131,10 @@
           <router-link
             :to="{ name: item.to }"
             :class="[
+              'block px-3 py-2 rounded-lg font-medium cursor-pointer no-border',
               $router.currentRoute.value.name === item.to
                 ? ['', 'dark:bg-secondary-dark dark:text-secondary dark:hover:text-main']
                 : ['', 'dark:text-secondary dark:hover:bg-secondary-dark dark:hover:text-secondary'],
-              'block px-3 py-2 rounded-lg font-medium cursor-pointer no-border',
             ]"
             :aria-current="$router.currentRoute.value.name === item.to ? 'page' : undefined"
           >

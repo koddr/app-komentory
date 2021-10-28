@@ -1,11 +1,11 @@
 <template>
   <router-view v-slot="{ Component, route }">
-    <MainMenu v-if="!(route.name === 'login' || route.name === 'register')" />
+    <MainMenu v-if="!(route.name === 'login' || route.name === 'logout' || route.name === 'register')" />
     <div class="flex flex-col h-screen">
-      <transition :name="route.meta.transition || 'fade'" mode="out-in" class="flex-grow">
+      <transition :name="route.meta.transitionName || 'fade'" mode="out-in" class="flex-grow">
         <component :is="Component" :key="route.path" />
       </transition>
-      <FooterMenu v-if="!(route.name === 'login' || route.name === 'register')" />
+      <FooterMenu v-if="!(route.name === 'login' || route.name === 'logout' || route.name === 'register')" />
     </div>
   </router-view>
 </template>

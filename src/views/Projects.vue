@@ -2,7 +2,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
     <div class="sm:col-span-12 xl:col-start-7 mt-24">
       <div class="py-4 px-2 sm:py-6 sm:px-6">
-        <h1 class="line-clamp-1 text-4xl">All projects</h1>
+        <h1 class="line-clamp-1 text-4xl">Projects</h1>
       </div>
       <div class="py-4 px-2 sm:py-6 sm:px-6">
         <div v-if="isLoading" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
